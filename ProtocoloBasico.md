@@ -8,7 +8,7 @@ Se ha identificado que existen software para escribir guiones, pero no para dise
 
 ### Tema, planteamiento del problema, justificación y objetivos
 
-- **Tema:**
+- **Tema:** Sistema de Estructuración Dramática de Obras Audiovisuales
 
 #### Planteamiento del Problema
 
