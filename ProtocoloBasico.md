@@ -4,7 +4,7 @@
 
 ### Identificación
 
-Se ha identificado que existen software para diseñar guiones para diferentes tipos de películas, pero no ninguna que permita ser de Software Open Source y que permita crear fichas de personajes, paisajes o entornos y poder enlazarlas dentro del proceso de creación del guión.
+Se ha identificado que existen software para escribir guiones, pero no para diseñar para diferentes tipos de películas, series, juegos, etc., pero no ninguna que permita ser de Software Open Source y que permita crear fichas de personajes y locaciones y estructuras dramáticas para poder enlazarlas dentro del proceso de creación del guión.
 
 ### Tema, planteamiento del problema, justificación y objetivos
 
