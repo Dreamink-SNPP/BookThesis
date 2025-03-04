@@ -2,7 +2,9 @@
 
 ## Documentación básica
 
-Se debe entregar una documentación básica para la primera entrega de este proyecto, respondiendo a varias cuestiones por el cual se necesitan obtener los requisitos del problema en el cual se quiere trabajar.
+### Identificación
+
+Se ha identificado que existen software para diseñar guiones para diferentes tipos de películas, pero no ninguna que permita ser de Software Open Source y que permita crear fichas de personajes, paisajes o entornos y poder enlazarlas dentro del proceso de creación del guión.
 
 ### Tema, planteamiento del problema, justificación y objetivos
 
