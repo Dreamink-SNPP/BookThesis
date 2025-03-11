@@ -12,6 +12,16 @@ La estructura dramática es el núcleo de cualquier obra audiovisual, ya que org
 
 ### Delimitación del problema
 
+Este proyecto se centra específicamente en desarrollar una aplicación web Open Source que permita:
+
+- Crear fichas detalladas para personajes (nombre, motivaciones, conflictos internos/externos) y locaciones (descripción física, contexto narrativo).
+
+- Exportar estos datos al formato Fountain para integrarlos directamente a softwares de escritura de guiones.
+
+- Facilitar la colaboración entre usuarios mediante funcionalidades compartidas.
+
+El alcance está delimitado a proyectos audiovisuales como cortometrajes, largometrajes y series web, excluyendo otros formatos como teatro o literatura no audiovisual.
+
 ### Justificación del problema
 
 ### Tema, planteamiento del problema, justificación y objetivos
