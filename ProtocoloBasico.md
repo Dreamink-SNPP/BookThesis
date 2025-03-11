@@ -2,9 +2,15 @@
 
 ## Documentación básica
 
-### Identificación
+### Identificación del problema
 
 Se ha identificado que existen software para escribir guiones, pero no para diseñar para diferentes tipos de películas, series, juegos, etc., pero no ninguna que permita ser de Software Open Source y que permita crear fichas de personajes y locaciones y estructuras dramáticas para poder enlazarlas dentro del proceso de creación del guión.
+
+### Contextualización del problema
+
+### Delimitación del problema
+
+### Justificación del problema
 
 ### Tema, planteamiento del problema, justificación y objetivos
 
