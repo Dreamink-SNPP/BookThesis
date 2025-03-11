@@ -41,19 +41,35 @@ La importancia de este proyecto radica en su capacidad para democratizar el acce
 
 ##### Síntomas
 
-Describir en listas los síntomas.
+Los síntomas del problema actual en la creación de guiones audiovisuales incluyen:
+
+- **Dificultad en la organización de elementos narrativos**: Los guionistas enfrentan desafíos al estructurar personajes, locaciones y tramas de manera eficiente.
+- **Limitaciones en herramientas colaborativas**: La falta de plataformas accesibles y colaborativas para la creación de fichas de personajes y locaciones dificulta el trabajo en equipo.
+- **Incompatibilidad con formatos estándar**: La exportación de estos elementos a formatos como Fountain es complicada, lo que retrasa el proceso de escritura del guión.
 
 ##### Causas
 
-Describir en listas las causas.
+Las causas detrás de estos síntomas son:
+
+- **Falta de herramientas especializadas**: No existen herramientas Open Source que permitan la creación colaborativa y detallada de fichas de personajes y locaciones integrables al formato Fountain.
+- **Costo y complejidad de software existentes**: Herramientas profesionales como Final Draft o Celtx pueden ser costosas o difíciles de usar para muchos guionistas, especialmente aquellos en proyectos independientes.
+- **Limitaciones en la colaboración remota**: La falta de funcionalidades de colaboración en tiempo real dificulta el trabajo conjunto entre guionistas.
 
 ##### Pronóstico
 
-Describir en listas el pronóstico
+Si no se aborda este problema, se pueden esperar las siguientes consecuencias:
+
+- **Ineficiencia en el proceso creativo**: Continuarán los retrasos y la frustración en la creación de guiones debido a la falta de organización y colaboración efectiva.
+- **Dificultades para nuevos guionistas**: Los escritores emergentes enfrentarán mayores barreras para entrar en la industria debido a la falta de acceso a herramientas adecuadas.
+- **Calidad reducida en los guiones**: La ineficiencia en la estructuración de elementos narrativos puede afectar negativamente la calidad final del guión.
 
 ##### Control al pronóstico
 
-Describir en listas el control al pronóstico
+Para superar esta situación, se propone desarrollar una aplicación web Open Source que:
+
+- **Permita la creación colaborativa de fichas de personajes y locaciones**: Facilitando el trabajo en equipo y la organización de elementos narrativos.
+- **Ofrezca exportación directa al formato Fountain**: Simplificando la integración con softwares de escritura de guiones.
+- **Sea accesible y fácil de usar**: Reduciendo las barreras para nuevos guionistas y mejorando la eficiencia en el proceso creativo.
 
 ##### Planteamiento del Problema
 
