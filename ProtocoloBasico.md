@@ -8,6 +8,8 @@ Se ha identificado que existen aplicaciones web para escribir guiones, sin embar
 
 ### Contextualización del problema
 
+La estructura dramática es el núcleo de cualquier obra audiovisual, ya que organiza los elementos narrativos para garantizar coherencia e impacto emocional. En el ámbito profesional, herramientas como Final Draft o Celtx son populares pero suelen ser costosas o limitadas en términos de personalización para proyectos específicos. Además, el formato Fountain ha ganado relevancia por su simplicidad y compatibilidad con múltiples plataformas, siendo ideal para guionistas que buscan flexibilidad. Sin embargo, no existe una solución Open Source que facilite la creación colaborativa de fichas organizadas para personajes y locaciones, integrando estas directamente al flujo técnico del guión. Esto representa un vacío en el ecosistema de herramientas disponibles para escritores audiovisuales.
+
 ### Delimitación del problema
 
 ### Justificación del problema
