@@ -4,7 +4,7 @@
 
 ### Identificación del problema
 
-Se ha identificado que existen software para escribir guiones, pero no para diseñar para diferentes tipos de películas, series, juegos, etc., pero no ninguna que permita ser de Software Open Source y que permita crear fichas de personajes y locaciones y estructuras dramáticas para poder enlazarlas dentro del proceso de creación del guión.
+Se ha identificado que existen aplicaciones web para escribir guiones, sin embargo, no para **diseñar** para diferentes tipos de películas, series, juegos, etc., agreando que no todas son actualmente Open Source y que permita crear fichas de personajes y locaciones y estructuras dramáticas para poder enlazarlas dentro del proceso de creación del guión.
 
 ### Contextualización del problema
 
