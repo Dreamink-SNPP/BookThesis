@@ -10,6 +10,11 @@ Se ha identificado que existen software para escribir guiones, pero no para dise
 
 - **Tema:** Sistema de Estructuración Dramática de Obras Audiovisuales
 
+### Integrantes
+
+- Fernando Cardozo
+- Alberto Álvarez
+
 #### Planteamiento del Problema
 
 ##### Síntomas
