@@ -24,6 +24,8 @@ El alcance está delimitado a proyectos audiovisuales como cortometrajes, largom
 
 ### Justificación del problema
 
+La importancia de este proyecto radica en su capacidad para democratizar el acceso a herramientas profesionales para escritores audiovisuales independientes. Al ser Open Source, permitirá que cualquier usuario pueda adaptarlo a sus necesidades específicas sin incurrir en altos costos. Además, optimizará el proceso creativo al integrar las etapas iniciales (conceptualización) con las técnicas (escritura), reduciendo tiempos y errores en la transición entre ambas fases. Este enfoque no solo responde a una necesidad técnica sino también creativa, al ofrecer un espacio organizado donde los guionistas puedan explorar las relaciones entre personajes, locaciones y trama desde una perspectiva estructural.
+
 ### Tema, planteamiento del problema, justificación y objetivos
 
 - **Tema:** Sistema de Estructuración Dramática de Obras Audiovisuales
