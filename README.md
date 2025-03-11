@@ -6,7 +6,7 @@ Se debe entregar una documentación básica para la primera entrega de este proy
 
 ### Tema
 
-- **Tema:**
+- **Tema:** Sistema de Estructuración Dramática de Obras Audiovisuales
 
 ### Integrantes
 
