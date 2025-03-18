@@ -28,6 +28,8 @@ El alcance está delimitado a proyectos audiovisuales como cortometrajes, largom
 
 La importancia de este proyecto radica en su capacidad para democratizar el acceso a herramientas profesionales para escritores audiovisuales independientes. Al ser Open Source, permitirá que cualquier usuario pueda adaptarlo a sus necesidades específicas sin incurrir en altos costos. Además, optimizará el proceso creativo al integrar las etapas iniciales (conceptualización) con las técnicas (escritura), reduciendo tiempos y errores en la transición entre ambas fases. Este enfoque no solo responde a una necesidad técnica sino también creativa, al ofrecer un espacio organizado donde los guionistas puedan explorar las relaciones entre personajes, locaciones y trama desde una perspectiva estructural.
 
+----------
+
 ### Tema, planteamiento del problema, justificación y objetivos
 
 - **Tema:** Sistema de Estructuración Dramática de Obras Audiovisuales
@@ -38,6 +40,8 @@ La importancia de este proyecto radica en su capacidad para democratizar el acce
 
 - Fernando Cardozo
 - Alberto Álvarez
+
+----------
 
 #### Planteamiento del Problema
 
@@ -72,6 +76,8 @@ Para superar esta situación, se propone desarrollar una aplicación web Open So
 - **Permita la creación colaborativa de fichas de personajes y locaciones**: Facilitando el trabajo en equipo y la organización de elementos narrativos.
 - **Ofrezca exportación directa al formato Fountain**: Simplificando la integración con softwares de escritura de guiones.
 - **Sea accesible y fácil de usar**: Reduciendo las barreras para nuevos guionistas y mejorando la eficiencia en el proceso creativo.
+
+----------
 
 ##### Planteamiento del Problema
 
