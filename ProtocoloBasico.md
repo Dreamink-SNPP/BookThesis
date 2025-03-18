@@ -91,4 +91,6 @@ La justificación de este proyecto radica en su capacidad para democratizar el a
 
 #### Objetivo General
 
+Desarrollar una aplicación web Open Source que permita la creación de fichas de personajes y locaciones, integrándolas eficientemente al formato Fountain para mejorar el proceso de escritura de guiones audiovisuales.
+
 #### Objetivos Específicos
