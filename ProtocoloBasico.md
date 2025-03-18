@@ -77,7 +77,7 @@ El proceso de creación de guiones audiovisuales enfrenta desafíos significativ
 
 #### Pregunta General
 
-¿Cómo se puede desarrollar una herramienta accesible que permita a los guionistas crear y estructurar fichas de personajes y locaciones, integrándolas eficientemente al formato Fountain para mejorar el proceso de escritura de guiones audiovisuales?
+¿Cómo se puede desarrollar una herramienta accesible que permita a los guionistas crear y estructurar fichas de personajes y locaciones, integrándose eficientemente al formato Fountain para mejorar el proceso de escritura de guiones audiovisuales?
 
 #### Preguntas Específicas
 
@@ -91,7 +91,7 @@ La justificación de este proyecto radica en su capacidad para democratizar el a
 
 #### Objetivo General
 
-Desarrollar una aplicación web Open Source que permita la creación de fichas de personajes y locaciones, integrándolas eficientemente al formato Fountain para mejorar el proceso de escritura de guiones audiovisuales.
+Desarrollar una aplicación web Open Source que permita la creación de fichas de personajes y locaciones, integrándose eficientemente al formato Fountain para mejorar el proceso de escritura de guiones audiovisuales.
 
 #### Objetivos Específicos
 
