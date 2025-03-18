@@ -77,6 +77,8 @@ El proceso de creación de guiones audiovisuales enfrenta desafíos significativ
 
 #### Pregunta General
 
+¿Cómo se puede desarrollar una herramienta accesible que permita a los guionistas crear y estructurar fichas de personajes y locaciones, integrándolas eficientemente al formato Fountain para mejorar el proceso de escritura de guiones audiovisuales?
+
 #### Preguntas Específicas
 
 #### Justificación
