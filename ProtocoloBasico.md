@@ -73,7 +73,7 @@ Para superar esta situación, se propone desarrollar una aplicación web Open So
 
 ##### Planteamiento del Problema
 
-Describir el planteamiento del problema como resultado de los pequeños problemas presentados.
+El proceso de creación de guiones audiovisuales enfrenta desafíos significativos debido a la falta de herramientas accesibles para la organización de elementos narrativos clave como personajes y locaciones. Aunque existen softwares especializados, muchos carecen de funcionalidades específicas para la creación detallada de fichas integrables al formato Fountain, generando una brecha entre la conceptualización inicial y la escritura técnica del guión. Esto afecta la fluidez del proceso creativo y limita el acceso a herramientas profesionales para guionistas independientes.
 
 #### Pregunta General
 
