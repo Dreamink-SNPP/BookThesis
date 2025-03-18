@@ -81,6 +81,10 @@ El proceso de creación de guiones audiovisuales enfrenta desafíos significativ
 
 #### Preguntas Específicas
 
+1. ¿Cuáles son las funcionalidades clave que debe tener una herramienta para la creación de fichas de personajes y locaciones en el contexto de la escritura de guiones?
+2. ¿Cómo se puede asegurar la compatibilidad y exportación de estos elementos al formato Fountain de manera eficiente?
+3. ¿Qué características de colaboración en tiempo real son necesarias para facilitar el trabajo en equipo entre guionistas?
+
 #### Justificación
 
 #### Objetivo General
