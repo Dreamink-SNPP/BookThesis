@@ -87,6 +87,8 @@ El proceso de creación de guiones audiovisuales enfrenta desafíos significativ
 
 #### Justificación
 
+La justificación de este proyecto radica en su capacidad para democratizar el acceso a herramientas profesionales para escritores audiovisuales independientes. Al ser Open Source, permitirá que cualquier usuario pueda adaptarlo a sus necesidades específicas sin incurrir en altos costos. Además, optimizará el proceso creativo al integrar las etapas iniciales (conceptualización) con las técnicas (escritura), reduciendo tiempos y errores en la transición entre ambas fases. Este enfoque responde tanto a necesidades técnicas como creativas, ofreciendo un espacio organizado donde los guionistas puedan explorar las relaciones entre personajes, locaciones y trama desde una perspectiva estructural.
+
 #### Objetivo General
 
 #### Objetivos Específicos
