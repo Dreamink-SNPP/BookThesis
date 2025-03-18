@@ -32,6 +32,8 @@ La importancia de este proyecto radica en su capacidad para democratizar el acce
 
 - **Tema:** Sistema de Estructuración Dramática de Obras Audiovisuales
 
+- **Nombre del Sistema:** Ficha de Estructuración Dramática (_FEDRA_)
+
 ### Integrantes
 
 - Fernando Cardozo
