@@ -94,3 +94,7 @@ La justificación de este proyecto radica en su capacidad para democratizar el a
 Desarrollar una aplicación web Open Source que permita la creación de fichas de personajes y locaciones, integrándolas eficientemente al formato Fountain para mejorar el proceso de escritura de guiones audiovisuales.
 
 #### Objetivos Específicos
+
+1. **Crear un sistema de fichas detalladas**: Desarrollar una plataforma que permita a los usuarios crear fichas detalladas para personajes (nombre, motivaciones, conflictos internos/externos) y locaciones (descripción física, contexto narrativo).
+2. **Implementar exportación al formato Fountain**: Asegurar que la plataforma pueda exportar estos elementos directamente al formato Fountain para facilitar su integración en softwares de escritura de guiones.
+3. **Facilitar la usabilidad y accesibilidad**: Diseñar una interfaz intuitiva y fácil de usar para que los guionistas puedan aprovechar al máximo la herramienta sin necesidad de conocimientos técnicos avanzados.
