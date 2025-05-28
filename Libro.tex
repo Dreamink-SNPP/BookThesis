@@ -1,15 +1,28 @@
 \documentclass[12pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{fontspec}
-\usepackage{lipsum}
-\usepackage{hyperref}
-\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue}
+\usepackage[spanish]{babel}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage[hidelinks]{hyperref}
 
 % Configuración del tipo de letra para LuaTeX:
 \setmainfont{Times New Roman}
 
 % Configuración para evitar encabezados y pies de página:
 \pagestyle{empty}
+
+% Estilos de secciones
+\titleformat{\section}[block]
+{\normalfont\Large\bfseries\centering}{\thesection}{1em}{}
+
+% Configuración de Índice
+\contentsmargin{0cm}
+\titlecontents{section}[0em]
+{\vspace{0.5em}\bfseries}
+{\contentslabel{2em}}
+{}
+{\titlerule*[0.5pc]{.}\contentspage}
 
 \begin{document}
 
