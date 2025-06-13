@@ -4,6 +4,7 @@
 \usepackage{fontspec}
 \usepackage[spanish]{babel}
 \usepackage{titlesec}
+\usepackage{csquotes}
 \usepackage{titletoc}
 \usepackage[hidelinks]{hyperref}
 
@@ -22,6 +23,10 @@
 
 % Configuración para evitar encabezados y pies de página:
 \pagestyle{empty}
+
+% Referencias Bibliográficas con Biber:
+\usepackage[backend=biber, style=apa, sorting=nyt]{biblatex}
+\addbibresource{./referencias.bib} % Enlazar el archivo .bib
 
 % Estilos de secciones
 \titleformat{\section}[block]
@@ -318,5 +323,10 @@
 	\hspace{1.27cm}La fase de mantenimiento de software es una parte explícita del modelo en cascada del proceso de desarrollo de software el cual fue desarrollado durante el movimiento de programación estructurada en computadores. El otro gran modelo, el Desarrollo en espiral desarrollado durante el movimiento de ingeniería de software orientada a objeto no hace una mención explícita de la fase de mantenimiento.
 
 	\hspace{1.27cm}En un ambiente formal de desarrollo de software, la organización o equipo de desarrollo tendrán algún mecanismo para documentar y rastrear defectos y deficiencias. El Software tan igual como la mayoría de otros productos, es típicamente lanzado con un conjunto conocido de defectos y deficiencias.
+
+	\subsection*{Contenedores}
+	\addcontentsline{toc}{section}{Contenedores}
+
+	\hspace{1.27cm}Según lo describe \textcite{merkel2014}, los contenedores son entornos aislados a nivel de sistema operativo que permiten empaquetar y ejecutar aplicaciones junto con todas sus dependencias. Esta tecnología permite asegurar la portabilidad del software, ya que puede ejecutarse de forma consistente en cualquier entorno que tenga un motor de contenedores. A diferencia de las máquinas virtuales tradicionales, los contenedores comparten el núcleo del sistema operativo, lo que los hace más livianos y eficientes en recursos.
 
 \end{document}
