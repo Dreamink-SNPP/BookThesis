@@ -308,7 +308,9 @@
 
 	\subsection{Paradigmas del Software}
 
-	\hspace{1.27cm}Explican \textcite{maida_metodologias_2015}, la ingeniería de software es reconocida como una disciplina legítima, digna de tener una investigación seria, un estudio cuidadoso y generando una gran controversia. En la industria el ingeniero del software ha sustituido al programador como título de trabajo preferente. Los modelos de procesos de software, métodos de ingeniería de software y herramientas se han adoptado con éxito en el amplio espectro de las aplicaciones industriales. \\
+	\hspace{1.27cm}Explican \textcite{maida_metodologias_2015}, la ingeniería de software es reconocida como una disciplina legítima, digna de tener una investigación seria, un estudio cuidadoso y generando una gran controversia. \\
+
+	\hspace{1.27cm}En la industria el ingeniero del software ha sustituido al programador como título de trabajo preferente. Los modelos de procesos de software, métodos de ingeniería de software y herramientas se han adoptado con éxito en el amplio espectro de las aplicaciones industriales. \\
 
 	\hspace{1.27cm}Un paradigma de programación es un modelo básico de diseño y desarrollo de programas, que	permite producir programas con una directriz específica, tales como: estructura modular, fuerte cohesión, alta rentabilidad, etc. \\
 
@@ -382,27 +384,39 @@
 
 	\subsection{Contenedores}
 
-	\hspace{1.27cm}Según lo describe \textcite{merkel2014}, los contenedores son entornos aislados a nivel de sistema operativo que permiten empaquetar y ejecutar aplicaciones junto con todas sus dependencias. Esta tecnología permite asegurar la portabilidad del software, ya que puede ejecutarse de forma consistente en cualquier entorno que tenga un motor de contenedores. A diferencia de las máquinas virtuales tradicionales, los contenedores comparten el núcleo del sistema operativo, lo que los hace más livianos y eficientes en recursos.
+	\hspace{1.27cm}Según lo describe \textcite{merkel2014}, los contenedores son entornos aislados a nivel de sistema operativo que permiten empaquetar y ejecutar aplicaciones junto con todas sus dependencias. Esta tecnología permite asegurar la portabilidad del software, ya que puede ejecutarse de forma consistente en cualquier entorno que tenga un motor de contenedores.
+
+	\hspace{1.27cm}A diferencia de las máquinas virtuales tradicionales, los contenedores comparten el núcleo del sistema operativo, lo que los hace más livianos y eficientes en recursos.
 
 	\subsection{Podman}
 
-	\hspace{1.27cm}Según \textcite{redhat2021}, \textit{Podman} es una herramienta de gestión de contenedores compatible con OCI (\textit{Open Container Initiative}), que permite crear, ejecutar y mantener contenedores sin necesidad de un demonio centralizado como ocurre en \textit{Docker}. Se distingue por su enfoque en la seguridad, ya que permite la ejecución como usuario sin privilegios, lo que lo hace adecuado para entornos de desarrollo y producción con altos estándares de control de acceso.
+	\hspace{1.27cm}Según \textcite{redhat2021}, \textit{Podman} es una herramienta de gestión de contenedores compatible con OCI (\textit{Open Container Initiative}), que permite crear, ejecutar y mantener contenedores sin necesidad de un demonio centralizado como ocurre en \textit{Docker}.
+
+	\hspace{1.27cm}Se distingue por su enfoque en la seguridad, ya que permite la ejecución como usuario sin privilegios, lo que lo hace adecuado para entornos de desarrollo y producción con altos estándares de control de acceso.
 
 	\subsection{Podman Desktop}
 
-	\hspace{1.27cm}\textit{Podman Desktop} es una herramienta gráfica de código abierto y multiplataforma desarrollada por Red-Hat (contribución comunitaria), diseñada para simplificar la gestión de contenedores y flujos de trabajo de Kubernetes en entornos locales. Proporciona un entorno visual para crear, ejecutar, inspeccionar y depurar contenedores y pods, además de permitir construir YAML de Kubernetes y probar despliegues locales \parencite{redhat_podman_desktop,georger2024}. Además, ofrece compatibilidad con múltiples motores (Podman, Docker, CRC, Lima), integrándose bien con herramientas OCI y APIs de Docker \parencite{podman_desktop_multi}.
+	\hspace{1.27cm}\textit{Podman Desktop} es una herramienta gráfica de código abierto y multiplataforma desarrollada por Red-Hat (contribución comunitaria), diseñada para simplificar la gestión de contenedores y flujos de trabajo de Kubernetes en entornos locales. Proporciona un entorno visual para crear, ejecutar, inspeccionar y depurar contenedores y pods, además de permitir construir YAML de Kubernetes y probar despliegues locales \parencite{redhat_podman_desktop,georger2024}.
+
+	\hspace{1.27cm}Además, ofrece compatibilidad con múltiples motores (Podman, Docker, CRC, Lima), integrándose bien con herramientas OCI y APIs de Docker \parencite{podman_desktop_multi}.
 
 	\subsection{API (Interfaz de programación de aplicaciones)}
 
-	\hspace{1.27cm}Una API (por sus siglas en inglés, \emph{Application Programming Interface}) es un conjunto de reglas y protocolos que permiten la comunicación entre componentes de software, facilitando el intercambio de datos y funcionalidades mediante solicitudes y respuestas estructuradas \parencite{aws_api,oracle_api}. En contraste con una interfaz de usuario, la API conecta programas o sistemas, incluidos servicios web, bibliotecas y sistemas operativos \parencite{wikipedia_api}.
+	\hspace{1.27cm}Una API (por sus siglas en inglés, \emph{Application Programming Interface}) es un conjunto de reglas y protocolos que permiten la comunicación entre componentes de software, facilitando el intercambio de datos y funcionalidades mediante solicitudes y respuestas estructuradas \parencite{aws_api,oracle_api}.
+
+	\hspace{1.27cm}En contraste con una interfaz de usuario, la API conecta programas o sistemas, incluidos servicios web, bibliotecas y sistemas operativos \parencite{wikipedia_api}.
 
 	\subsection{Kanban}
 
-	\hspace{1.27cm}El término \emph{Kanban} (del japonés “letrero” o “tarjeta”) describe tanto un sistema de señales para gestión de inventarios bajo producción justo a tiempo, como un método ágil para la gestión visual del trabajo. Utilizado originalmente en Toyota, se basa en tarjetas o tableros que indican cuándo comenzar o detener tareas, limitando el trabajo en curso y mejorando la eficiencia \parencite{wikipedia_kanban_dev,asana_kanban}.
+	\hspace{1.27cm}El término \emph{Kanban} (del japonés “letrero” o “tarjeta”) describe tanto un sistema de señales para gestión de inventarios bajo producción justo a tiempo, como un método ágil para la gestión visual del trabajo.
+
+	\hspace{1.27cm}Utilizado originalmente en Toyota, se basa en tarjetas o tableros que indican cuándo comenzar o detener tareas, limitando el trabajo en curso y mejorando la eficiencia \parencite{wikipedia_kanban_dev,asana_kanban}.
 
 	\subsection{Entorno de Desarrollo Integrado (IDE)}
 
-	\hspace{1.27cm}Un IDE (\emph{Integrated Development Environment}) es una aplicación que integra en una sola interfaz el editor de código, herramientas de compilación, depuración y, a menudo, control de versiones, con el fin de mejorar la productividad de los desarrolladores \parencite{eswiki_ide,geeksforgeeks_ide}. Proporciona funciones como resaltado de sintaxis, auto-completado, inspección de clases y manejo de proyectos, todo accesible desde una sola ventana \parencite{eswiki_ide}.
+	\hspace{1.27cm}Un IDE (\emph{Integrated Development Environment}) es una aplicación que integra en una sola interfaz el editor de código, herramientas de compilación, depuración y, a menudo, control de versiones, con el fin de mejorar la productividad de los desarrolladores \parencite{eswiki_ide,geeksforgeeks_ide}.
+
+	\hspace{1.27cm}Proporciona funciones como resaltado de sintaxis, auto-completado, inspección de clases y manejo de proyectos, todo accesible desde una sola ventana \parencite{eswiki_ide}.
 
 	\section{Marco Histórico}
 
