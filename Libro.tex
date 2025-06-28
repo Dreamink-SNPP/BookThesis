@@ -171,20 +171,22 @@
 
 	\subsection{Limitaciones}
 
-	Este sistema tendrá las siguientes limitaciones:
+	Este sistema presentará las siguientes limitaciones, de acuerdo con su alcance técnico y funcional:
 
-	\begin{itemize}[label=\textbullet, leftmargin=1.5cm, itemsep=0.8em]
-		\item Funcionará por web.
-		\item Será solamente de uso local.
-		\item Será solamente mono-usuario y no colaborativo en multiusuario.
-		\item No tendrá manejo de usuarios.
-		\item Solamente podrá exportar a formato Foutain.
-		\item No podrá importar formatos privativos (como FadeIn, Final Draft, WriterDuet, etc.).
-		\item Solamente permitirá la estructuración previa del guion, no el guion literario.
-		\item No realizará el guion técnico.
-		\item La vista web será enfocada para monitores de computador, y no para dispositivos móviles.
-		\item No tendrá implementación con LLMs o algún parecido.
-	\end{itemize}
+	\begin{enumerate}[label=\arabic*., leftmargin=1.5cm, itemsep=0.8em]
+		\item Funcionará únicamente en entornos web.
+		\item Será de uso exclusivamente local.
+		\item No permitirá trabajo colaborativo en modalidad multiusuario.
+		\item No incluirá gestión o manejo de múltiples cuentas de usuario.
+		\item Permitirá únicamente la exportación al formato \textit{Fountain}.
+		\item No admitirá la importación de formatos privativos (como \textit{FadeIn}, \textit{Final Draft}, \textit{WriterDuet}, etc.).
+		\item Se limitará a la estructuración previa del guion, sin abarcar el desarrollo del guion literario.
+		\item No cubrirá la elaboración del guion técnico.
+		\item La interfaz estará optimizada para pantallas de computadoras, no para dispositivos móviles.
+		\item No se integrará con modelos de lenguaje de gran escala (LLMs) ni con herramientas similares.
+	\end{enumerate}
+
+	\newpage
 
 	\subsection{Presupuesto}
 
@@ -218,11 +220,69 @@
 		\end{tabularx}
 	\end{table}
 
-	\newpage
+	\clearpage
 
 	\section{Marco Conceptual}
 
-	\hspace{1.27cm}Se exponen los siguientes conceptos para el marco conceptual del trabajo.
+	\hspace{1.27cm}Se exponen los siguientes conceptos para el marco conceptual del trabajo. Tanto para la parte artística de las obras audiovisuales, como las partes técnicas que se usarán en el proyecto.
+
+	\subsection{Guion Literario}
+
+	\hspace{1.27cm}Un guion literario es una historia desarrollada mediante imágenes, diálogos y descripciones, ubicada dentro de una estructura dramática definida. Este tipo de guión se considera la base sobre la que se construye el guion técnico y adaptativo, según \textcite{field2005}.
+
+	\subsection{Logline}
+
+	\hspace{1.27cm}Según el autor \textcite{snyder2005}, un logline es un resumen breve —normalmente de una o dos frases— que presenta el conflicto central de una historia, diseñado para captar la atención del lector o espectador. Proporciona una visión clara y atractiva del núcleo narrativo del proyecto.
+
+	\subsection{Storyline}
+
+	\hspace{1.27cm}El \textit{storyline} es la secuencia de eventos que constituyen la trama de una obra narrativa, como un libro, una película, una obra teatral, entre otros. Esta secuencia organiza las acciones de los personajes, los conflictos y sus consecuencias en una progresión estructurada que permite comprender el desarrollo de la historia.
+
+	\hspace{1.27cm}A diferencia de la sinopsis o del logline, que son formatos de resumen, el storyline refleja el contenido central del relato, ya que delimita cómo ocurren los hechos, en qué orden, y con qué propósito narrativo \parencite{cambridge_storyline}.
+
+	\hspace{1.27cm}Según el \textit{Cambridge Dictionary}, el término \textit{storyline} se refiere a la historia principal en una obra audiovisual o literaria, como una película, un libro o una obra teatral. Esta definición delimita el núcleo estructural de la narración, distinguiéndolo de elementos secundarios o subtramas.
+
+	\hspace{1.27cm}En este sentido, el storyline representa el hilo conductor esencial que articula el relato completo y le otorga coherencia global \parencite{cambridge_storyline}.
+
+	\subsection{Sinopsis}
+
+	\hspace{1.27cm}La \textit{sinopsis} es un resumen breve y estructurado de una obra narrativa, ya sea audiovisual o literaria, que tiene como objetivo principal captar la atención del lector, productor o evaluador del proyecto.
+
+	\hspace{1.27cm}Su función es presentar de manera condensada los elementos centrales de la historia —como los personajes principales, el conflicto esencial, el tono y la progresión dramática— sin desarrollar en profundidad los acontecimientos. Suele utilizarse como herramienta de venta, presentación o evaluación de guiones y proyectos creativos, y es fundamental en el contexto de pitchings o convocatorias abiertas \parencite{studiobinder_sinopsis}.
+
+	\subsubsection{Sinopsis (según fuentes académicas y profesionales)}
+
+	\hspace{1.27cm}La \textit{sinopsis} es un resumen conciso que describe la trama principal de una obra narrativa, como un libro, una serie o una película. Esta descripción se elabora con el objetivo de presentar o promocionar la obra ante terceros, como productores, editores o evaluadores. A diferencia de la storyline, que detalla la progresión estructural del relato, la sinopsis se enfoca en destacar los elementos más llamativos de la historia para generar interés.
+
+	\hspace{1.27cm}De ahí que sea una herramienta esencial en entornos editoriales y audiovisuales, donde se requiere sintetizar la propuesta narrativa sin revelar completamente su resolución \parencite{studiobinder_sinopsis}.
+
+	\subsection{Escaleta}
+
+	\hspace{1.27cm}La \textit{escaleta}, también conocida como “step outline”, es un esquema narrativo que presenta, de forma organizada, las escenas o secuencias de una obra audiovisual o literaria. Actúa como un índice de la historia, detallando brevemente lo que ocurre en cada escena (ubicación, acción principal, cambio de estado) sin incluir diálogos, lo que permite visualizar la progresión dramática y estructural de la obra \parencite{escaleta_wikipedia,aprendercine_escaleta}.
+
+	\subsection{Escaleta (función profesional)}
+
+	\hspace{1.27cm}Más allá de ser un simple esquema, la escaleta es una herramienta profesional esencial para guionistas y equipos de producción. Permite ordenar sistemáticamente los bloques narrativos, identificar puntos de giro, gestionar localizaciones y distribuir tiempos, y funciona como guía para la preproducción, ya que facilita la planificación de la grabación de manera práctica y eficiente \parencite{treintaycinco_escaleta,escueladesarts_escaleta}.
+
+	\subsection{Tratamiento}
+
+	\hspace{1.27cm}El \textit{tratamiento} es un relato en prosa de la historia completa, que amplía la sinopsis y escaleta, presentando cada escena como un párrafo narrativo en tiempo presente, incluyendo las acciones clave y el subtexto, pero sin diálogos técnicos. Sirve tanto para desarrollar la trama en detalle como para ofrecer un documento legible por productores y agentes literarios, con una extensión aproximada de 30 a 40 páginas en el caso de un largometraje \parencite{revista24cuadros_tratamiento,tratamiento_wikipedia}.
+
+	\subsection{Tratamiento (paso intermedio)}
+
+	\hspace{1.27cm}El tratamiento es el paso narrativo intermedio entre la escaleta y el guion literario final. Se caracteriza por narrar escena por escena en prosa, incluyendo detalles narrativos y de escena, y sirve como una herramienta de planificación y visualización narrativa para garantizar coherencia en el guion final \parencite{unir_escaleta_tratamiento,tratamiento_wikipedia}.
+
+	\subsection{Escena}
+
+	\hspace{1.27cm}Una \textit{escena} es la unidad narrativa que ocurre en un mismo lugar y tiempo, constituyendo la estructura básica de un guion literario o técnico. En cada escena, se presentan acciones, cambios de personajes o desarrollo dramático, representando un segmento coherente e independiente dentro del relato general \parencite{trottier_scene}.
+
+	\subsection{Tema}
+
+	\hspace{1.27cm}El \textit{tema} representa el mensaje o idea central que atraviesa la obra. No suele expresarse de forma explícita en el guion, sino que está contenido en los elementos dramáticos, estructurales y emocionales de la historia. Funciona como el “ADN” del relato, conectando escenas, personajes y arcos en función de un propósito narrativo mayor \parencite{greenlight_theme,writingninja_theme}.
+
+	\subsection{Secuencia}
+
+	\hspace{1.27cm}Una \textit{secuencia} es un bloque narrativo dentro de un acto que agrupa varias escenas con una mini-estructura dramática completa: inicio, desarrollo y resolución parcial. En términos audiovisuales, suelen durar entre ocho y quince minutos y funcionan como sub-relatos que mantienen la atención del espectador y avanzan la narración general \parencite{gulino_sequence,cambridge_sequence}.
 
 	\subsection{Concepto de Ingeniería}
 
