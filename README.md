@@ -6,7 +6,7 @@ Se debe entregar una documentación básica para la primera entrega de este proy
 
 ## Documentación a trabajar
 
-Aquí se presentará el documento **no-oficial** del libro para la entrega del proyecto, en el cual contendrá todos los elementos requeridos para su entrega.
+Aquí se presentará el documento **oficial** del libro para la entrega del proyecto, en el cual contendrá todos los elementos requeridos para su entrega.
 
 ### Tema
 
