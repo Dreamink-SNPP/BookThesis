@@ -16,3 +16,10 @@ Aquí se presentará el documento **oficial** del libro para la entrega del proy
 
 - Fernando Cardozo
 - Alberto Álvarez
+
+## License
+
+Dreamink Thesis Book (c) by Fernando Cardozo and Alberto Álvarez.
+
+Dreamink Thesis Book is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.  
+You should have received a copy of the license along with this work. If not, see https://creativecommons.org/licenses/by-nc/4.0/.
