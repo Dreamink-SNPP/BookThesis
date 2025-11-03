@@ -56,3 +56,14 @@
 1.5. Justificación
 1.6. Limitaciones
 1.7. Alcance o Delimitación
+
+**CAPÍTULO II - MARCO TEÓRICO**
+
+> En donde se deben investigar lo siguiente puntos...
+
+- Antecedentes de la investigación
+- Bases teóricas
+- Bases legales
+
+> [!WARNING]
+> Se deben respetar las **citas** textuales y contextuales del trabajo.
