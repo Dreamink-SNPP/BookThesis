@@ -114,7 +114,7 @@
   - Utilizar el vocabulario técnico adecuado
   - Estar actualizados en materia idiomática
   - Adoptar una actitud crítica y autocrítica
-12. Por lo tanto, las cualidades que contribuyen a que la redacción sea adecuada son la *claridad*, la *concisión*, la *sencillez*, la *precisión* y la **.
+12. Por lo tanto, las cualidades que contribuyen a que la redacción sea adecuada son la *claridad*, la *concisión*, la *sencillez*, la *precisión* y la *propiedad*.
 13. Las tablas y los gráficos pueden estar incluidos en el texto, con el *título* y la *fuente citada* y la numeración según aparición, excepto aquellas que son elaborados por el proyectista.
 
 > [!CAUTION]
