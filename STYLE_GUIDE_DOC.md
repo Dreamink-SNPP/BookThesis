@@ -67,3 +67,13 @@
 
 > [!WARNING]
 > Se deben respetar las **citas** textuales y contextuales del trabajo.
+
+**CAPÍTULO III - MARCO METODOLÓGICO**
+
+- Tipo de investigación
+- Diseño de la investigación
+- Nivel de investigación
+- Universo del discurso
+- Población muestra
+- Instrumentos de recolección de datos
+- Técnica de análisis de los datos, pasos o procedimientos a seguir
