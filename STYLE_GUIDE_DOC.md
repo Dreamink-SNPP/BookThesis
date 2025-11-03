@@ -89,3 +89,8 @@
 1. Conclusión
 2. Recomendación para futuras investigaciones
 3. Bibliografía según **normativa APA**
+
+### Parte Post Textual
+
+1. **Anexos**: Instrumentos de recolección de datos utilizados, fotos, imágenes
+2. **Apéndices**: Glosario
