@@ -94,3 +94,28 @@
 
 1. **Anexos**: Instrumentos de recolección de datos utilizados, fotos, imágenes
 2. **Apéndices**: Glosario
+
+## Recomendaciones finales
+
+1. Los títulos ni subtítulos no llevan puntos finales
+2. Las mayúsculas se acentúan
+3. Signos de admiración e interrogación: son utilizados al inicio y al final, luego de estos signos no se usa ninguna otra puntuación
+4. Evitar el lenguaje sexista. Ejemplo: Profesor, profesora. Alumno, alumna
+5. Usar tiempo pasado de los verbos desde el inicio hasta el final del trabajo
+6. Los meses del año van en minúsculas
+7. Verificar que los títulos o subtítulos no queden sueltos al pie del trabajo
+8. Verificar siempre la concordancia a lo largo del texto
+9. Verificar que la encuadernación esté bien paginada
+10. Los nombres propios no se traducen
+11. Recordar también que la redacción eficaz requiere que se den los siguientes factores:
+  - Tener claridad en el objetivo del trabajo
+  - Tomar en consideración al destinatario
+  - Plantear de manera cuidadosa el contenido
+  - Utilizar el vocabulario técnico adecuado
+  - Estar actualizados en materia idiomática
+  - Adoptar una actitud crítica y autocrítica
+12. Por lo tanto, las cualidades que contribuyen a que la redacción sea adecuada son la *claridad*, la *concisión*, la *sencillez*, la *precisión* y la **.
+13. Las tablas y los gráficos pueden estar incluidos en el texto, con el *título* y la *fuente citada* y la numeración según aparición, excepto aquellas que son elaborados por el proyectista.
+
+> [!CAUTION]
+> Todos los párrafos deben iniciarse **sin sangría**.
