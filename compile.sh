@@ -171,12 +171,9 @@ show_menu() {
     echo ""
 }
 
-# Main loop
-while true; do
-    show_menu
-    read -p "Select an option [1-6]: " choice
-    echo ""
-
+# Function to execute option
+execute_option() {
+    local choice=$1
     case $choice in
         1)
             full_compile
@@ -199,8 +196,32 @@ while true; do
             ;;
         *)
             print_error "Invalid option. Please select 1-6."
+            echo ""
+            echo "Usage: $0 [option]"
+            echo "  1 - Full compilation"
+            echo "  2 - Quick compilation"
+            echo "  3 - Check warnings and errors"
+            echo "  4 - Clean auxiliary files"
+            echo "  5 - Show PDF information"
+            echo "  6 - Exit"
+            exit 1
             ;;
     esac
+}
+
+# Check if argument provided (non-interactive mode)
+if [ $# -gt 0 ]; then
+    execute_option "$1"
+    exit $?
+fi
+
+# Interactive mode - Main loop
+while true; do
+    show_menu
+    read -p "Select an option [1-6]: " choice
+    echo ""
+
+    execute_option "$choice"
 
     echo ""
     read -p "Press Enter to continue..."

@@ -2,11 +2,27 @@
 
 ## Usage
 
+### Interactive mode
+
 Run the interactive menu:
 
 ```bash
 ./compile.sh
 ```
+
+### Non-interactive mode (direct execution)
+
+Execute specific option directly:
+
+```bash
+./compile.sh 1    # Full compilation
+./compile.sh 2    # Quick compilation
+./compile.sh 3    # Check warnings and errors
+./compile.sh 4    # Clean auxiliary files
+./compile.sh 5    # Show PDF information
+```
+
+This mode is useful for automation and scripting.
 
 ## Menu Options
 
