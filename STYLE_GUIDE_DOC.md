@@ -21,3 +21,20 @@
 - **Encabezado**: Sin ningún tipo de escritura
 - **Pie de página**: Sin ningún tipo de escritura
 - **Total de páginas**: Mínimo 50 hojas a partir de la introducción.
+
+## Estructura de la tesis
+
+### Parte Pre Textual
+
+1. Tapa
+2. Hoja guarda (hoja en blanco)
+3. Carátula o Portada (según _Anexo 1_)
+4. Hoja de aprobación (según _Anexo 2_)
+5. Hoja de _RECONOCIMIENTO_ o _DEDICATORIA_ (opcional)
+6. Hoja de _AGRADECIMIENTOS_ (opcional)
+7. Índice o tabla de contenidos
+8. Lista de tablas
+9. Lista de gráficos (figuras)
+10. Índice de siglas
+11. Resumen (_centrado y sin negrita_)
+12. _Abstract_ (_se recomienda en inglés_)
