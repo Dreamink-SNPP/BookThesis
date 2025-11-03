@@ -48,9 +48,6 @@
 \addbibresource{./referencias.bib} % Enlazar el archivo .bib
 \addbibresource{./tesis_metodologia_desarrollo.bib}
 
-% Cambiar "Referencias" a "Bibliografía":
-\DefineBibliographyStrings{spanish}{bibliography = {Bibliografía}}
-
 % Estilos de secciones (16pt, negrita, centrado)
 \titleformat{\section}[block]
 {\normalfont\fontsize{16}{19.2}\selectfont\bfseries\centering}{\thesection}{1em}{}
@@ -684,8 +681,7 @@
 
 	\newpage
 
-	\printbibliography{}
-	\addcontentsline{toc}{section}{Bibliografía}
+	\printbibliography[title={Bibliografía}, heading=bibintoc]
 
 	\newpage
 
