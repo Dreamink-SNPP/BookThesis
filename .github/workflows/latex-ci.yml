@@ -1,0 +1,38 @@
+name: LaTeX CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: danteev/texlive:latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Compile LaTeX document (full compilation)
+      run: |
+        chmod +x compile.sh
+        ./compile.sh 1
+
+    - name: Check for warnings and errors
+      run: ./compile.sh 3
+
+    - name: Upload PDF artifact
+      uses: actions/upload-artifact@v4
+      if: success()
+      with:
+        name: libro-pdf
+        path: Libro.pdf
+        retention-days: 30
+
+    - name: Show PDF information
+      if: success()
+      run: ./compile.sh 5
