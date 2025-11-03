@@ -16,6 +16,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        lfs: true
 
     - name: Compile LaTeX document (full compilation)
       run: |
@@ -30,7 +32,7 @@ jobs:
       if: success()
       with:
         name: libro-pdf
-        path: Libro.pdf
+        path: build/Libro.pdf
         retention-days: 30
 
     - name: Show PDF information
