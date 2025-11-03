@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
-\usepackage[margin=1in]{geometry}
-\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{geometry}
+\geometry{left=3cm, right=3cm, top=2.54cm, bottom=2.54cm}
 \usepackage{fontspec}
 \usepackage[spanish]{babel}
 \usepackage{titlesec}
@@ -22,20 +22,41 @@
 % Microtipo:
 \usepackage{microtype}
 
+% Interlineado 1.5:
+\usepackage{setspace}
+\onehalfspacing
+
+% Espaciado de párrafos (anterior: 0, posterior: 10pt):
+\setlength{\parskip}{10pt}
+\setlength{\parindent}{0pt}
+
 % Configuración del tipo de letra para LuaTeX:
 \setmainfont{Arial}
 
-% Configuración para evitar encabezados y pies de página:
-\pagestyle{empty}
+% Configuración de encabezados y pies de página:
+% Sin encabezados, números de página centrados abajo
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % Limpiar encabezados y pies
+\renewcommand{\headrulewidth}{0pt} % Sin línea en el encabezado
+\fancyfoot[C]{\thepage} % Número de página centrado abajo
 
 % Referencias Bibliográficas con Biber:
 \usepackage[backend=biber, style=apa, sorting=nyt]{biblatex}
 \addbibresource{./referencias.bib} % Enlazar el archivo .bib
 \addbibresource{./tesis_metodologia_desarrollo.bib}
 
-% Estilos de secciones
+% Estilos de secciones (16pt, negrita, centrado)
 \titleformat{\section}[block]
-{\normalfont\Large\bfseries\centering}{\thesection}{1em}{}
+{\normalfont\fontsize{16}{19.2}\selectfont\bfseries\centering}{\thesection}{1em}{}
+
+% Estilos de subsecciones (14pt, negrita, izquierda)
+\titleformat{\subsection}[block]
+{\normalfont\fontsize{14}{16.8}\selectfont\bfseries}{\thesubsection}{1em}{}
+
+% Estilos de subsubsecciones (12pt, negrita, izquierda)
+\titleformat{\subsubsection}[block]
+{\normalfont\fontsize{12}{14.4}\selectfont\bfseries}{\thesubsubsection}{1em}{}
 
 % Configuración de Índice
 \contentsmargin{0cm}
@@ -46,6 +67,9 @@
 {\titlerule*[0.5pc]{.}\contentspage}
 
 \begin{document}
+
+	% Inicio de la parte pre-textual: numeración romana minúscula
+	\pagenumbering{roman}
 
 	\begin{center}
 		\vspace*{3cm} % Espacio superior para centrar el contenido.
@@ -99,6 +123,9 @@
 	% Índice
 	\tableofcontents
 	\newpage
+
+	% Inicio de la parte textual: numeración arábiga
+	\pagenumbering{arabic}
 
 	\section*{Introducción}
 	\addcontentsline{toc}{section}{Introducción}
