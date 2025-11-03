@@ -63,14 +63,19 @@
 % Configuración de Índice (ToC spacing control)
 \renewcommand{\cftparfillskip}{\fill}
 
-% Sobre el interlineado de los índices (ToC):
+% Sobre el interlineado de los índices (ToC y LoF):
 \setlength{\cftbeforesecskip}{2pt}
 \setlength{\cftbeforesubsecskip}{2pt}
 \setlength{\cftbeforesubsubsecskip}{2pt}
+\setlength{\cftbeforefigskip}{2pt}
 
 % Espaciado antes y después del título del ToC:
 \renewcommand{\cftbeforetoctitleskip}{0pt}
 \renewcommand{\cftaftertoctitleskip}{\baselineskip}
+
+% Espaciado antes y después del título del LoF:
+\renewcommand{\cftbeforeloftitleskip}{0pt}
+\renewcommand{\cftafterloftitleskip}{\baselineskip}
 
 \begin{document}
 
