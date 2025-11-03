@@ -45,14 +45,14 @@
 
 **CAPÍTULO I - MARCO INTRODUCTORIO**
 
-> *Introducción*
+> _Introducción_
 
 1.1. Planteamiento del problema
 1.2. Formulación del problema
 1.3. Preguntas de investigación
 1.4. Objetivos de la investigación
-  1.4.1. Objetivo general
-  1.4.2. Objetivos específicos
+1.4.1. Objetivo general
+1.4.2. Objetivos específicos
 1.5. Justificación
 1.6. Limitaciones
 1.7. Alcance o Delimitación
@@ -108,14 +108,16 @@
 9. Verificar que la encuadernación esté bien paginada
 10. Los nombres propios no se traducen
 11. Recordar también que la redacción eficaz requiere que se den los siguientes factores:
-  - Tener claridad en el objetivo del trabajo
-  - Tomar en consideración al destinatario
-  - Plantear de manera cuidadosa el contenido
-  - Utilizar el vocabulario técnico adecuado
-  - Estar actualizados en materia idiomática
-  - Adoptar una actitud crítica y autocrítica
-12. Por lo tanto, las cualidades que contribuyen a que la redacción sea adecuada son la *claridad*, la *concisión*, la *sencillez*, la *precisión* y la *propiedad*.
-13. Las tablas y los gráficos pueden estar incluidos en el texto, con el *título* y la *fuente citada* y la numeración según aparición, excepto aquellas que son elaborados por el proyectista.
+
+- Tener claridad en el objetivo del trabajo
+- Tomar en consideración al destinatario
+- Plantear de manera cuidadosa el contenido
+- Utilizar el vocabulario técnico adecuado
+- Estar actualizados en materia idiomática
+- Adoptar una actitud crítica y autocrítica
+
+12. Por lo tanto, las cualidades que contribuyen a que la redacción sea adecuada son la _claridad_, la _concisión_, la _sencillez_, la _precisión_ y la _propiedad_.
+13. Las tablas y los gráficos pueden estar incluidos en el texto, con el _título_ y la _fuente citada_ y la numeración según aparición, excepto aquellas que son elaborados por el proyectista.
 
 > [!CAUTION]
 > Todos los párrafos deben iniciarse **sin sangría**.
