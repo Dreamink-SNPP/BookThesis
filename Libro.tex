@@ -76,9 +76,13 @@
 % Espaciado antes y después del título del LoF:
 \renewcommand{\cftbeforeloftitleskip}{0pt}
 \renewcommand{\cftafterloftitleskip}{\baselineskip}
+\renewcommand{\cftbeforelottitleskip}{0pt}
+\renewcommand{\cftafterlottitleskip}{\baselineskip}
+\setlength{\cftbeforetabskip}{2pt}
 
 % Renombrar títulos de listas:
 \addto\captionsspanish{\renewcommand{\listfigurename}{Lista de gráficos}}
+\addto\captionsspanish{\renewcommand{\listtablename}{Lista de tablas}}
 
 \begin{document}
 
@@ -136,6 +140,10 @@
 
 	% Índice
 	\tableofcontents
+	\newpage
+
+	% Lista de tablas
+	\listoftables
 	\newpage
 
 	% Lista de gráficos
@@ -243,6 +251,7 @@
 
 	\begin{table}[ht]
 		\centering
+		\caption{Presupuesto parcial del proyecto}
 		\renewcommand{\arraystretch}{1.3}
 		\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}X|>{\raggedleft\arraybackslash}p{3cm}|}
 			\hline
