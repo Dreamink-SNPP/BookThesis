@@ -83,3 +83,9 @@
 - Procesamiento de los datos recogidos
 - Análisis en base a diversas técnicas
 - Presentación de los resultados y discusión de los mismos
+
+**ÚLTIMOS INDEPENDIENTES**
+
+1. Conclusión
+2. Recomendación para futuras investigaciones
+3. Bibliografía según **normativa APA**
