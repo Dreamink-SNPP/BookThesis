@@ -77,3 +77,9 @@
 - Población muestra
 - Instrumentos de recolección de datos
 - Técnica de análisis de los datos, pasos o procedimientos a seguir
+
+**CAPÍTULO IV - MARCO ANALÍTICO**
+
+- Procesamiento de los datos recogidos
+- Análisis en base a diversas técnicas
+- Presentación de los resultados y discusión de los mismos
