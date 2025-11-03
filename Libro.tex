@@ -77,6 +77,9 @@
 \renewcommand{\cftbeforeloftitleskip}{0pt}
 \renewcommand{\cftafterloftitleskip}{\baselineskip}
 
+% Renombrar títulos de listas:
+\addto\captionsspanish{\renewcommand{\listfigurename}{Lista de gráficos}}
+
 \begin{document}
 
 	% Inicio de la parte pre-textual: numeración romana minúscula
@@ -133,6 +136,10 @@
 
 	% Índice
 	\tableofcontents
+	\newpage
+
+	% Lista de gráficos
+	\listoffigures
 	\newpage
 
 	% Inicio de la parte textual: numeración arábiga
