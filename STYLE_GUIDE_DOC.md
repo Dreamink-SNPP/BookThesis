@@ -47,15 +47,15 @@
 
 > _Introducción_
 
-1.1. Planteamiento del problema
-1.2. Formulación del problema
-1.3. Preguntas de investigación
-1.4. Objetivos de la investigación
-1.4.1. Objetivo general
-1.4.2. Objetivos específicos
-1.5. Justificación
-1.6. Limitaciones
-1.7. Alcance o Delimitación
+- 1.1. Planteamiento del problema
+- 1.2. Formulación del problema
+- 1.3. Preguntas de investigación
+- 1.4. Objetivos de la investigación
+  - 1.4.1. Objetivo general
+  - 1.4.2. Objetivos específicos
+- 1.5. Justificación
+- 1.6. Limitaciones
+- 1.7. Alcance o Delimitación
 
 **CAPÍTULO II - MARCO TEÓRICO**
 
