@@ -5,7 +5,7 @@
 \usepackage[spanish]{babel}
 \usepackage{titlesec}
 \usepackage{csquotes}
-\usepackage{titletoc}
+\usepackage{tocloft}
 \usepackage[hidelinks]{hyperref}
 
 % Para las tablas:
@@ -58,13 +58,17 @@
 \titleformat{\subsubsection}[block]
 {\normalfont\fontsize{12}{14.4}\selectfont\bfseries}{\thesubsubsection}{1em}{}
 
-% Configuración de Índice
-\contentsmargin{0cm}
-\titlecontents{section}[0em]
-{\vspace{0.5em}\bfseries}
-{\contentslabel{2em}}
-{}
-{\titlerule*[0.5pc]{.}\contentspage}
+% Configuración de Índice (ToC spacing control)
+\renewcommand{\cftparfillskip}{\fill}
+
+% Sobre el interlineado de los índices (ToC):
+\setlength{\cftbeforesecskip}{2pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{2pt}
+
+% Espaciado antes y después del título del ToC:
+\renewcommand{\cftbeforetoctitleskip}{0pt}
+\renewcommand{\cftaftertoctitleskip}{\baselineskip}
 
 \begin{document}
 
