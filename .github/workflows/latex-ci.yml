@@ -22,10 +22,13 @@ jobs:
     - name: Install Git LFS and fetch files
       run: |
         apt-get update -qq
-        apt-get install -y git-lfs
-        cd $GITHUB_WORKSPACE
-        git lfs install --skip-smudge
-        git lfs pull
+        apt-get install -y git-lfs git
+        pwd
+        ls -la
+        git status || echo "Git status failed"
+        git lfs install
+        git lfs fetch
+        git lfs checkout
 
     - name: Compile LaTeX document (full compilation)
       run: |
