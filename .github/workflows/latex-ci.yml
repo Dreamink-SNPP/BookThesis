@@ -23,9 +23,7 @@ jobs:
       run: |
         apt-get update -qq
         apt-get install -y git-lfs git
-        pwd
-        ls -la
-        git status || echo "Git status failed"
+        git config --global --add safe.directory /__w/BookThesis/BookThesis
         git lfs install
         git lfs fetch
         git lfs checkout
