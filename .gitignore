@@ -16,10 +16,7 @@
 *.dvi
 *.xdv
 *-converted-to.*
-# these rules might exclude image files for figures etc.
 *.ps
-# *.eps - Tracked by Git LFS
-# *.pdf - Tracked by Git LFS
 
 ## Build directory
 build/

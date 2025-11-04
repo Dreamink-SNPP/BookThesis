@@ -18,15 +18,22 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+        lfs: false
+
+    - name: Cache apt packages
+      uses: actions/cache@v4
+      with:
+        path: /var/cache/apt/archives
+        key: apt-${{ runner.os }}-${{ hashFiles('.github/workflows/latex-ci.yml') }}
+        restore-keys: |
+          apt-${{ runner.os }}-
 
     - name: Install Git LFS and fetch files
       run: |
         apt-get update -qq
         apt-get install -y git-lfs git
         git config --global --add safe.directory /__w/BookThesis/BookThesis
-        git lfs install
-        git lfs fetch
-        git lfs checkout
+        git lfs pull
 
     - name: Compile LaTeX document (full compilation)
       run: |
@@ -41,7 +48,7 @@ jobs:
       if: success()
       with:
         name: libro-pdf
-        path: build/Libro.pdf
+        path: build/*.pdf
         retention-days: 30
 
     - name: Show PDF information

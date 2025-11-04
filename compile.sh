@@ -4,8 +4,11 @@
 # Compatible with LuaLaTeX and Biber
 
 MAIN_FILE="src/Libro.tex"
-PDF_OUTPUT="build/Libro.pdf"
 BUILD_DIR="build"
+
+# Derive base filename from MAIN_FILE
+BASE_NAME=$(basename "$MAIN_FILE" .tex)
+PDF_OUTPUT="$BUILD_DIR/$BASE_NAME.pdf"
 
 # Colors for output
 RED='\033[0;31m'
@@ -31,10 +34,24 @@ print_error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
+# Function to check if required files exist
+check_files() {
+    if [ ! -f "$MAIN_FILE" ]; then
+        print_error "Main file not found: $MAIN_FILE"
+        return 1
+    fi
+    return 0
+}
+
 # Function to compile full sequence
 full_compile() {
     print_info "Starting full compilation sequence..."
     echo ""
+
+    # Check if main file exists
+    if ! check_files; then
+        return 1
+    fi
 
     # Create build directory if it doesn't exist
     mkdir -p "$BUILD_DIR"
@@ -49,11 +66,20 @@ full_compile() {
     fi
 
     print_info "Step 2/4: Running Biber..."
-    biber "$BUILD_DIR/Libro" 2>&1 | grep -E "INFO|WARN|ERROR"
-    if [ $? -eq 0 ]; then
+    biber_output=$(biber "$BUILD_DIR/$BASE_NAME" 2>&1)
+    biber_exit=$?
+
+    # Show filtered output (INFO, WARN, ERROR lines only)
+    echo "$biber_output" | grep -E "INFO|WARN|ERROR" || true
+
+    if [ $biber_exit -eq 0 ]; then
         print_success "Biber completed"
     else
-        print_warning "Biber completed with warnings"
+        print_error "Biber failed with exit code $biber_exit"
+        echo ""
+        print_info "Full Biber output:"
+        echo "$biber_output"
+        return 1
     fi
 
     print_info "Step 3/4: Running LuaLaTeX (second pass)..."
@@ -76,9 +102,13 @@ full_compile() {
 
     echo ""
     if [ -f "$PDF_OUTPUT" ]; then
-        local pages=$(pdfinfo "$PDF_OUTPUT" 2>/dev/null | grep Pages | awk '{print $2}')
         local size=$(du -h "$PDF_OUTPUT" | cut -f1)
-        print_success "Compilation complete! Output: $PDF_OUTPUT ($pages pages, $size)"
+        if command -v pdfinfo &> /dev/null; then
+            local pages=$(pdfinfo "$PDF_OUTPUT" 2>/dev/null | grep Pages | awk '{print $2}')
+            print_success "Compilation complete! Output: $PDF_OUTPUT ($pages pages, $size)"
+        else
+            print_success "Compilation complete! Output: $PDF_OUTPUT ($size)"
+        fi
     else
         print_error "PDF was not generated"
         return 1
@@ -89,6 +119,11 @@ full_compile() {
 quick_compile() {
     print_info "Running quick compilation (LuaLaTeX only)..."
 
+    # Check if main file exists
+    if ! check_files; then
+        return 1
+    fi
+
     # Create build directory if it doesn't exist
     mkdir -p "$BUILD_DIR"
 
@@ -96,9 +131,13 @@ quick_compile() {
     if [ $? -eq 0 ]; then
         print_success "Quick compilation completed"
         if [ -f "$PDF_OUTPUT" ]; then
-            local pages=$(pdfinfo "$PDF_OUTPUT" 2>/dev/null | grep Pages | awk '{print $2}')
             local size=$(du -h "$PDF_OUTPUT" | cut -f1)
-            print_success "Output: $PDF_OUTPUT ($pages pages, $size)"
+            if command -v pdfinfo &> /dev/null; then
+                local pages=$(pdfinfo "$PDF_OUTPUT" 2>/dev/null | grep Pages | awk '{print $2}')
+                print_success "Output: $PDF_OUTPUT ($pages pages, $size)"
+            else
+                print_success "Output: $PDF_OUTPUT ($size)"
+            fi
         fi
     else
         print_error "Quick compilation failed"
@@ -110,15 +149,20 @@ check_warnings() {
     print_info "Checking for warnings and errors..."
     echo ""
 
+    # Check if main file exists
+    if ! check_files; then
+        return 1
+    fi
+
     # Create build directory if it doesn't exist
     mkdir -p "$BUILD_DIR"
 
     print_info "Running LuaLaTeX to generate log..."
     lualatex -interaction=nonstopmode -output-directory="$BUILD_DIR" "$MAIN_FILE" > /dev/null 2>&1
 
-    if [ -f "$BUILD_DIR/Libro.log" ]; then
-        local errors=$(grep -c "^!" "$BUILD_DIR/Libro.log")
-        local warnings=$(grep -c "Warning" "$BUILD_DIR/Libro.log")
+    if [ -f "$BUILD_DIR/$BASE_NAME.log" ]; then
+        local errors=$(grep -c "^!" "$BUILD_DIR/$BASE_NAME.log")
+        local warnings=$(grep -c "Warning" "$BUILD_DIR/$BASE_NAME.log")
 
         echo ""
         echo "=== Summary ==="
@@ -126,7 +170,7 @@ check_warnings() {
             print_error "Found $errors error(s)"
             echo ""
             print_info "Errors:"
-            grep "^!" "$BUILD_DIR/Libro.log" | head -10
+            grep "^!" "$BUILD_DIR/$BASE_NAME.log" | head -10
         else
             print_success "No errors found"
         fi
@@ -136,7 +180,7 @@ check_warnings() {
             print_warning "Found $warnings warning(s)"
             echo ""
             print_info "Warnings (first 10):"
-            grep "Warning" "$BUILD_DIR/Libro.log" | head -10
+            grep "Warning" "$BUILD_DIR/$BASE_NAME.log" | head -10
         else
             print_success "No warnings found"
         fi
@@ -155,10 +199,15 @@ clean_files() {
 # Function to show file info
 show_info() {
     if [ -f "$PDF_OUTPUT" ]; then
-        print_info "PDF Information:"
-        echo ""
-        pdfinfo "$PDF_OUTPUT" 2>/dev/null | grep -E "Pages|File size|PDF version"
-        echo ""
+        if command -v pdfinfo &> /dev/null; then
+            print_info "PDF Information:"
+            echo ""
+            pdfinfo "$PDF_OUTPUT" 2>/dev/null | grep -E "Pages|File size|PDF version"
+            echo ""
+        else
+            print_warning "pdfinfo not installed. Install poppler-utils for PDF details."
+            echo ""
+        fi
         print_info "File details:"
         ls -lh "$PDF_OUTPUT"
     else

@@ -1,12 +1,17 @@
 # Git LFS tracking for binary files
+
 # PDF files
 *.pdf filter=lfs diff=lfs merge=lfs -text
-# Image files
+
+# Raster image files (binary formats only)
 *.png filter=lfs diff=lfs merge=lfs -text
 *.jpg filter=lfs diff=lfs merge=lfs -text
 *.jpeg filter=lfs diff=lfs merge=lfs -text
 *.gif filter=lfs diff=lfs merge=lfs -text
-*.svg filter=lfs diff=lfs merge=lfs -text
-*.eps filter=lfs diff=lfs merge=lfs -text
 *.tif filter=lfs diff=lfs merge=lfs -text
 *.tiff filter=lfs diff=lfs merge=lfs -text
+
+# Vector formats (EPS can be binary or text, kept for safety)
+*.eps filter=lfs diff=lfs merge=lfs -text
+
+# Note: SVG files are XML-based text and should not be tracked by LFS
