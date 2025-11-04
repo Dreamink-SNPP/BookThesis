@@ -7,7 +7,6 @@ MAIN_FILE="src/Libro.tex"
 BUILD_DIR="build"
 
 # Derive base filename from MAIN_FILE
-BASE_NAME=""
 BASE_NAME=$(basename "$MAIN_FILE" .tex)
 PDF_OUTPUT="$BUILD_DIR/$BASE_NAME.pdf"
 
@@ -71,7 +70,7 @@ full_compile() {
     biber_exit=$?
 
     # Show filtered output (INFO, WARN, ERROR lines only)
-    echo "$biber_output" | grep -E "INFO|WARN|ERROR"
+    echo "$biber_output" | grep -E "INFO|WARN|ERROR" || true
 
     if [ $biber_exit -eq 0 ]; then
         print_success "Biber completed"
@@ -103,9 +102,13 @@ full_compile() {
 
     echo ""
     if [ -f "$PDF_OUTPUT" ]; then
-        local pages=$(pdfinfo "$PDF_OUTPUT" 2>/dev/null | grep Pages | awk '{print $2}')
         local size=$(du -h "$PDF_OUTPUT" | cut -f1)
-        print_success "Compilation complete! Output: $PDF_OUTPUT ($pages pages, $size)"
+        if command -v pdfinfo &> /dev/null; then
+            local pages=$(pdfinfo "$PDF_OUTPUT" 2>/dev/null | grep Pages | awk '{print $2}')
+            print_success "Compilation complete! Output: $PDF_OUTPUT ($pages pages, $size)"
+        else
+            print_success "Compilation complete! Output: $PDF_OUTPUT ($size)"
+        fi
     else
         print_error "PDF was not generated"
         return 1
@@ -128,9 +131,13 @@ quick_compile() {
     if [ $? -eq 0 ]; then
         print_success "Quick compilation completed"
         if [ -f "$PDF_OUTPUT" ]; then
-            local pages=$(pdfinfo "$PDF_OUTPUT" 2>/dev/null | grep Pages | awk '{print $2}')
             local size=$(du -h "$PDF_OUTPUT" | cut -f1)
-            print_success "Output: $PDF_OUTPUT ($pages pages, $size)"
+            if command -v pdfinfo &> /dev/null; then
+                local pages=$(pdfinfo "$PDF_OUTPUT" 2>/dev/null | grep Pages | awk '{print $2}')
+                print_success "Output: $PDF_OUTPUT ($pages pages, $size)"
+            else
+                print_success "Output: $PDF_OUTPUT ($size)"
+            fi
         fi
     else
         print_error "Quick compilation failed"
@@ -192,10 +199,15 @@ clean_files() {
 # Function to show file info
 show_info() {
     if [ -f "$PDF_OUTPUT" ]; then
-        print_info "PDF Information:"
-        echo ""
-        pdfinfo "$PDF_OUTPUT" 2>/dev/null | grep -E "Pages|File size|PDF version"
-        echo ""
+        if command -v pdfinfo &> /dev/null; then
+            print_info "PDF Information:"
+            echo ""
+            pdfinfo "$PDF_OUTPUT" 2>/dev/null | grep -E "Pages|File size|PDF version"
+            echo ""
+        else
+            print_warning "pdfinfo not installed. Install poppler-utils for PDF details."
+            echo ""
+        fi
         print_info "File details:"
         ls -lh "$PDF_OUTPUT"
     else
