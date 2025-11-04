@@ -23,9 +23,10 @@ jobs:
     - name: Cache apt packages
       uses: actions/cache@v4
       with:
-        path: /var/cache/apt
-        key: apt-cache-${{ runner.os }}
-        restore-keys: apt-cache-
+        path: /var/cache/apt/archives
+        key: apt-${{ runner.os }}-${{ hashFiles('.github/workflows/latex-ci.yml') }}
+        restore-keys: |
+          apt-${{ runner.os }}-
 
     - name: Install Git LFS and fetch files
       run: |

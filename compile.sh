@@ -7,6 +7,7 @@ MAIN_FILE="src/Libro.tex"
 BUILD_DIR="build"
 
 # Derive base filename from MAIN_FILE
+BASE_NAME=""
 BASE_NAME=$(basename "$MAIN_FILE" .tex)
 PDF_OUTPUT="$BUILD_DIR/$BASE_NAME.pdf"
 
@@ -66,12 +67,19 @@ full_compile() {
     fi
 
     print_info "Step 2/4: Running Biber..."
-    biber "$BUILD_DIR/$BASE_NAME" 2>&1 | tee /tmp/biber_output.log | grep -E "INFO|WARN|ERROR"
-    biber_exit=${PIPESTATUS[0]}
+    biber_output=$(biber "$BUILD_DIR/$BASE_NAME" 2>&1)
+    biber_exit=$?
+
+    # Show filtered output (INFO, WARN, ERROR lines only)
+    echo "$biber_output" | grep -E "INFO|WARN|ERROR"
+
     if [ $biber_exit -eq 0 ]; then
         print_success "Biber completed"
     else
         print_error "Biber failed with exit code $biber_exit"
+        echo ""
+        print_info "Full Biber output:"
+        echo "$biber_output"
         return 1
     fi
 
