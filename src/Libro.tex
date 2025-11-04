@@ -1,3 +1,7 @@
+% IMPORTANT: This file must be compiled from the repository root directory
+% using the compile.sh script. Paths are relative to the repository root.
+% Direct compilation from this directory will fail.
+
 \documentclass[12pt]{article}
 \usepackage{geometry}
 \geometry{left=3cm, right=3cm, top=2.54cm, bottom=2.54cm}
@@ -45,8 +49,8 @@
 
 % Referencias Bibliográficas con Biber:
 \usepackage[backend=biber, style=apa, sorting=nyt]{biblatex}
-\addbibresource{./referencias.bib} % Enlazar el archivo .bib
-\addbibresource{./tesis_metodologia_desarrollo.bib}
+\addbibresource{bibliography/referencias.bib} % Enlazar el archivo .bib
+\addbibresource{bibliography/tesis_metodologia_desarrollo.bib}
 
 % Estilos de secciones (16pt, negrita, centrado)
 \titleformat{\section}[block]
@@ -290,7 +294,7 @@
 
 	\begin{figure}[H]
 		\centering
-		\rotatebox{90}{\includegraphics[width=0.85\textheight]{./img/Gantt.png}}
+		\rotatebox{90}{\includegraphics[width=0.85\textheight]{images/Gantt.png}}
 		\caption{Diagrama de actividades hecho con Mermaid y MarkDown.}
 		\label{fig:estructura-vertical}
 	\end{figure}

@@ -16,6 +16,17 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Install Git LFS and fetch files
+      run: |
+        apt-get update -qq
+        apt-get install -y git-lfs git
+        git config --global --add safe.directory /__w/BookThesis/BookThesis
+        git lfs install
+        git lfs fetch
+        git lfs checkout
 
     - name: Compile LaTeX document (full compilation)
       run: |
@@ -30,7 +41,7 @@ jobs:
       if: success()
       with:
         name: libro-pdf
-        path: Libro.pdf
+        path: build/Libro.pdf
         retention-days: 30
 
     - name: Show PDF information

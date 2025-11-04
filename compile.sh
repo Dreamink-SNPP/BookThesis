@@ -3,8 +3,9 @@
 # LaTeX Compilation Menu
 # Compatible with LuaLaTeX and Biber
 
-MAIN_FILE="Libro.tex"
-PDF_OUTPUT="Libro.pdf"
+MAIN_FILE="src/Libro.tex"
+PDF_OUTPUT="build/Libro.pdf"
+BUILD_DIR="build"
 
 # Colors for output
 RED='\033[0;31m'
@@ -35,8 +36,11 @@ full_compile() {
     print_info "Starting full compilation sequence..."
     echo ""
 
+    # Create build directory if it doesn't exist
+    mkdir -p "$BUILD_DIR"
+
     print_info "Step 1/4: Running LuaLaTeX (first pass)..."
-    lualatex -interaction=nonstopmode "$MAIN_FILE" > /dev/null 2>&1
+    lualatex -interaction=nonstopmode -output-directory="$BUILD_DIR" "$MAIN_FILE" > /dev/null 2>&1
     if [ $? -eq 0 ]; then
         print_success "LuaLaTeX first pass completed"
     else
@@ -45,7 +49,7 @@ full_compile() {
     fi
 
     print_info "Step 2/4: Running Biber..."
-    biber Libro 2>&1 | grep -E "INFO|WARN|ERROR"
+    biber "$BUILD_DIR/Libro" 2>&1 | grep -E "INFO|WARN|ERROR"
     if [ $? -eq 0 ]; then
         print_success "Biber completed"
     else
@@ -53,7 +57,7 @@ full_compile() {
     fi
 
     print_info "Step 3/4: Running LuaLaTeX (second pass)..."
-    lualatex -interaction=nonstopmode "$MAIN_FILE" > /dev/null 2>&1
+    lualatex -interaction=nonstopmode -output-directory="$BUILD_DIR" "$MAIN_FILE" > /dev/null 2>&1
     if [ $? -eq 0 ]; then
         print_success "LuaLaTeX second pass completed"
     else
@@ -62,7 +66,7 @@ full_compile() {
     fi
 
     print_info "Step 4/4: Running LuaLaTeX (final pass)..."
-    lualatex -interaction=nonstopmode "$MAIN_FILE" > /dev/null 2>&1
+    lualatex -interaction=nonstopmode -output-directory="$BUILD_DIR" "$MAIN_FILE" > /dev/null 2>&1
     if [ $? -eq 0 ]; then
         print_success "LuaLaTeX final pass completed"
     else
@@ -84,7 +88,11 @@ full_compile() {
 # Function to do quick compile
 quick_compile() {
     print_info "Running quick compilation (LuaLaTeX only)..."
-    lualatex -interaction=nonstopmode "$MAIN_FILE"
+
+    # Create build directory if it doesn't exist
+    mkdir -p "$BUILD_DIR"
+
+    lualatex -interaction=nonstopmode -output-directory="$BUILD_DIR" "$MAIN_FILE"
     if [ $? -eq 0 ]; then
         print_success "Quick compilation completed"
         if [ -f "$PDF_OUTPUT" ]; then
@@ -102,12 +110,15 @@ check_warnings() {
     print_info "Checking for warnings and errors..."
     echo ""
 
-    print_info "Running LuaLaTeX to generate log..."
-    lualatex -interaction=nonstopmode "$MAIN_FILE" > /dev/null 2>&1
+    # Create build directory if it doesn't exist
+    mkdir -p "$BUILD_DIR"
 
-    if [ -f "Libro.log" ]; then
-        local errors=$(grep -c "^!" Libro.log)
-        local warnings=$(grep -c "Warning" Libro.log)
+    print_info "Running LuaLaTeX to generate log..."
+    lualatex -interaction=nonstopmode -output-directory="$BUILD_DIR" "$MAIN_FILE" > /dev/null 2>&1
+
+    if [ -f "$BUILD_DIR/Libro.log" ]; then
+        local errors=$(grep -c "^!" "$BUILD_DIR/Libro.log")
+        local warnings=$(grep -c "Warning" "$BUILD_DIR/Libro.log")
 
         echo ""
         echo "=== Summary ==="
@@ -115,7 +126,7 @@ check_warnings() {
             print_error "Found $errors error(s)"
             echo ""
             print_info "Errors:"
-            grep "^!" Libro.log | head -10
+            grep "^!" "$BUILD_DIR/Libro.log" | head -10
         else
             print_success "No errors found"
         fi
@@ -125,7 +136,7 @@ check_warnings() {
             print_warning "Found $warnings warning(s)"
             echo ""
             print_info "Warnings (first 10):"
-            grep "Warning" Libro.log | head -10
+            grep "Warning" "$BUILD_DIR/Libro.log" | head -10
         else
             print_success "No warnings found"
         fi
@@ -137,7 +148,7 @@ check_warnings() {
 # Function to clean auxiliary files
 clean_files() {
     print_info "Cleaning auxiliary files..."
-    rm -f *.aux *.log *.out *.toc *.bbl *.bcf *.blg *.run.xml *.lof *.lot
+    rm -rf "$BUILD_DIR"/*
     print_success "Auxiliary files cleaned"
 }
 
