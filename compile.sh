@@ -36,6 +36,9 @@ full_compile() {
     print_info "Starting full compilation sequence..."
     echo ""
 
+    # Create build directory if it doesn't exist
+    mkdir -p "$BUILD_DIR"
+
     print_info "Step 1/4: Running LuaLaTeX (first pass)..."
     lualatex -interaction=nonstopmode -output-directory="$BUILD_DIR" "$MAIN_FILE" > /dev/null 2>&1
     if [ $? -eq 0 ]; then
@@ -85,6 +88,10 @@ full_compile() {
 # Function to do quick compile
 quick_compile() {
     print_info "Running quick compilation (LuaLaTeX only)..."
+
+    # Create build directory if it doesn't exist
+    mkdir -p "$BUILD_DIR"
+
     lualatex -interaction=nonstopmode -output-directory="$BUILD_DIR" "$MAIN_FILE"
     if [ $? -eq 0 ]; then
         print_success "Quick compilation completed"
@@ -102,6 +109,9 @@ quick_compile() {
 check_warnings() {
     print_info "Checking for warnings and errors..."
     echo ""
+
+    # Create build directory if it doesn't exist
+    mkdir -p "$BUILD_DIR"
 
     print_info "Running LuaLaTeX to generate log..."
     lualatex -interaction=nonstopmode -output-directory="$BUILD_DIR" "$MAIN_FILE" > /dev/null 2>&1
