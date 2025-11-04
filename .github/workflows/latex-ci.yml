@@ -16,8 +16,13 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      with:
-        lfs: true
+
+    - name: Install Git LFS
+      run: |
+        apt-get update
+        apt-get install -y git-lfs
+        git lfs install
+        git lfs pull
 
     - name: Compile LaTeX document (full compilation)
       run: |
