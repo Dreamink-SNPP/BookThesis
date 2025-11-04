@@ -80,9 +80,28 @@ This mode is useful for automation and scripting.
 
 ## Requirements
 
-- `lualatex` (from texlive)
+### Essential
+
+- `lualatex` (from texlive-luatex or texlive-full)
 - `biber` (bibliography processor)
-- `pdfinfo` (optional, for PDF details)
+- `git-lfs` (Git Large File Storage for images and PDFs)
+
+### Optional
+
+- `pdfinfo` (for PDF details in option 5)
+
+### Installation
+
+Ubuntu/Debian:
+```bash
+apt-get install texlive-luatex biber git-lfs
+git lfs install
+```
+
+After cloning the repository:
+```bash
+git lfs pull
+```
 
 ## Notes
 
