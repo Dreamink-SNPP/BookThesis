@@ -86,4 +86,19 @@ This mode is useful for automation and scripting.
 
 ## Notes
 
-The script is configured for `Libro.tex` as the main file. If your main file has a different name, edit the `MAIN_FILE` variable at the top of `compile.sh`.
+The script is configured for `src/Libro.tex` as the main file. If your main file has a different name, edit the `MAIN_FILE` variable at the top of `compile.sh`.
+
+## Important: Path Requirements
+
+The compilation script **must be run from the repository root directory**. The LaTeX source file uses paths relative to the repository root:
+
+- `bibliography/referencias.bib` - Bibliography files
+- `images/Gantt.png` - Image files
+
+**Do not** try to compile `src/Libro.tex` directly from the `src/` directory. Always use:
+
+```bash
+./compile.sh
+```
+
+from the repository root. The script automatically handles the correct paths and output directories.
