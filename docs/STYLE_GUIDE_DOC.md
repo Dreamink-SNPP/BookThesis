@@ -48,8 +48,7 @@
 > _Introducción_
 
 - 1.1. Planteamiento del problema
-- 1.2. Formulación del problema
-- 1.3. Preguntas de investigación
+- 1.2. Preguntas de investigación
 - 1.4. Objetivos de la investigación
   - 1.4.1. Objetivo general
   - 1.4.2. Objetivos específicos
