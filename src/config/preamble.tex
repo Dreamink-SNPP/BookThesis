@@ -1,0 +1,97 @@
+% ══════════════════════════════════════════════════════════════════
+% CONFIGURACIÓN DE PAQUETES Y ESTILO DEL DOCUMENTO
+% ══════════════════════════════════════════════════════════════════
+
+% Configuración de página
+\usepackage{geometry}
+\geometry{left=3cm, right=3cm, top=2.54cm, bottom=2.54cm}
+
+% Configuración de fuentes y idioma
+\usepackage{fontspec}
+\usepackage[spanish]{babel}
+\usepackage{csquotes}
+
+% Configuración de títulos y tabla de contenidos
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage[hidelinks]{hyperref}
+
+% Para las tablas:
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{float}
+
+% Para las listas:
+\usepackage{enumitem}
+
+% Microtipo:
+\usepackage{microtype}
+\microtypesetup{patch=none}
+
+% Interlineado 1.5:
+\usepackage{setspace}
+\onehalfspacing
+
+% Espaciado de párrafos (anterior: 0, posterior: 10pt):
+\setlength{\parskip}{10pt}
+\setlength{\parindent}{0pt}
+
+% Configuración del tipo de letra para LuaTeX:
+% TeX Gyre Termes es un clon de Times New Roman con soporte completo de small caps
+\setmainfont{TeX Gyre Termes}
+
+% Configuración de encabezados y pies de página:
+% Sin encabezados, números de página centrados abajo
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % Limpiar encabezados y pies
+\renewcommand{\headrulewidth}{0pt} % Sin línea en el encabezado
+\fancyfoot[C]{\thepage} % Número de página centrado abajo
+
+% Referencias Bibliográficas con Biber:
+\usepackage[backend=biber, style=apa, sorting=nyt]{biblatex}
+\addbibresource{bibliography/referencias.bib} % Enlazar el archivo .bib
+\addbibresource{bibliography/tesis_metodologia_desarrollo.bib}
+
+% Estilos de secciones (16pt, negrita, centrado)
+\titleformat{\section}[block]
+{\normalfont\fontsize{16}{19.2}\selectfont\bfseries\centering}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{0pt}{0pt}
+
+% Estilos de subsecciones (14pt, negrita, izquierda)
+\titleformat{\subsection}[block]
+{\normalfont\fontsize{14}{16.8}\selectfont\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+
+% Estilos de subsubsecciones (12pt, negrita, izquierda)
+\titleformat{\subsubsection}[block]
+{\normalfont\fontsize{12}{14.4}\selectfont\bfseries}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
+
+% Configuración de Índice (ToC spacing control)
+\renewcommand{\cftparfillskip}{\fill}
+
+% Sobre el interlineado de los índices (ToC y LoF):
+\setlength{\cftbeforesecskip}{2pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{2pt}
+\setlength{\cftbeforefigskip}{2pt}
+
+% Espaciado antes y después del título del ToC:
+\renewcommand{\cftbeforetoctitleskip}{0pt}
+\renewcommand{\cftaftertoctitleskip}{\baselineskip}
+
+% Espaciado antes y después del título del LoF:
+\renewcommand{\cftbeforeloftitleskip}{0pt}
+\renewcommand{\cftafterloftitleskip}{\baselineskip}
+\renewcommand{\cftbeforelottitleskip}{0pt}
+\renewcommand{\cftafterlottitleskip}{\baselineskip}
+\setlength{\cftbeforetabskip}{2pt}
+
+% Renombrar títulos de listas:
+\addto\captionsspanish{\renewcommand{\listfigurename}{Lista de gráficos}}
+\addto\captionsspanish{\renewcommand{\listtablename}{Lista de tablas}}
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
