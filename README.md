@@ -21,5 +21,18 @@ Aquí se presentará el documento **oficial** del libro para la entrega del proy
 
 Dreamink Thesis Book (c) by Fernando Cardozo and Alberto Álvarez.
 
-Dreamink Thesis Book is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.  
-You should have received a copy of the license along with this work. If not, see https://creativecommons.org/licenses/by-nc/4.0/.
+This project uses dual licensing:
+
+### Content License (LaTeX files, documentation, images)
+
+The book content is licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
+
+See the [LICENSE](LICENSE) file for details, or visit https://creativecommons.org/licenses/by/4.0/
+
+### Code License (scripts and programs)
+
+The code is licensed under the **MIT License**.
+
+See the [LICENSE-CODE](LICENSE-CODE) file for details.
+
+Both licenses are Free Software / Open Source approved licenses.
