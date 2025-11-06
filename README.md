@@ -1,4 +1,4 @@
-# Proyecto I
+# Proyecto Técnico
 
 ## Documentación básica
 
