@@ -1,4 +1,6 @@
 #!/bin/bash
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2025 Fernando Cardozo and Alberto Álvarez
 
 # LaTeX Compilation Menu
 # Compatible with LuaLaTeX and Biber
