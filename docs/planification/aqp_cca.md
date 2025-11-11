@@ -6,7 +6,7 @@
 - **Quiénes:** Guionistas y escritores de obras audiovisuales que necesitan organizar y estructurar sus proyectos antes de la escritura formal del guión.
 - **Problema:** Los guionistas enfrentan dificultades para gestionar de manera integrada todos los elementos fundamentales de la pre-escritura (tratamiento, estructura dramática, personajes, locaciones, ideas) debido a la fragmentación de herramientas o la ausencia de sistemas especializados que centralicen estos componentes.
 
-> **Variable Madre (Independiente):** La gestión integrada de elementos de pre-escritura en obras audiovisuales.
+> **Variable Madre (Independiente):** La falta de gestión integrada de elementos de pre-escritura en obras audiovisuales.
 
 ---
 
