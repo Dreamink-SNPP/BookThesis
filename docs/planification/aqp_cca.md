@@ -22,7 +22,7 @@ Este diseño busca describir y caracterizar el problema sin proponer una soluci�
 
 > **Variable Dependiente:** La fragmentación de información en el proceso de pre-escritura de guiones audiovisuales.
 
-> **Variable Dependiente:** Herramientas no especializadas para la estructura dramática
+> **Variable Dependiente:** Herramientas no especializadas para la estructura dramática.
 
 _Nota: Estas variables dependientes surgen de las CONSECUENCIAS y CAUSAS identificadas, respectivamente._
 
@@ -36,6 +36,6 @@ Este diseño busca proponer y validar una solución al problema identificado.
 
 - **Aporte:** Desarrollo de un sistema web de código abierto (Dreamink) que integre de manera centralizada la gestión del tratamiento, la estructura dramática mediante tablero Kanban jerárquico, las fichas detalladas de personajes (rasgos internos y externos), la gestión de locaciones, el banco de ideas etiquetado, y la capacidad de exportación a formato Fountain.
 
-> **Variable Dependiente:** La eficiencia en la organización de elementos de pre-escritura mediante un sistema integrado especializado.
+> **Variable Dependiente:** Desarrollo de un sistema web de gestión de la estructura dramática.
 
 _Nota: Esta variable dependiente surge del APORTE propuesto._
