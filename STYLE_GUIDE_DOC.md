@@ -43,9 +43,11 @@
 
 #### Desarrollo del trabajo, dividido en cuatro capítulos
 
-**CAPÍTULO I - MARCO INTRODUCTORIO**
+**INDEPENDIENTE**
 
-> _Introducción_
+- Introducción
+
+**CAPÍTULO I - MARCO INTRODUCTORIO**
 
 - 1.1. Planteamiento del problema
 - 1.2. Preguntas de investigación
