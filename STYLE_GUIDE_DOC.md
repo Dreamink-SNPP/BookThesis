@@ -47,6 +47,9 @@
 
 - Introducción
 
+> [!IMPORTANT]
+> Cada capítulo debe estar en una hoja como separador, centrado verticalmente y horizontalmente y sin número de página.
+
 **CAPÍTULO I - MARCO INTRODUCTORIO**
 
 - 1.1. Planteamiento del problema
