@@ -2,11 +2,11 @@
 
 **Título del estudio:** Sistematización del proceso de pre-escritura de guiones en los guionistas del Departamento Central. 2025.
 
-**Investigador principal:** [Nombre del investigador]
+**Investigador principal:** Fernando Cardozo
 
-**Institución:** [Nombre de la institución]
+**Institución:** Centro Tecnológico de Formación Profesional Paraguay - Japón
 
-**Contacto:** [Correo electrónico o teléfono]
+**Contacto:** nuevo_10000@outlook.com
 
 ---
 
