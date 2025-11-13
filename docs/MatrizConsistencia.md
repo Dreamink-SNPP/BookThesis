@@ -12,9 +12,9 @@ La matriz de consistencia permite visualizar la coherencia entre los elementos f
 
 ## Matriz de Consistencia
 
-| **Problema General** | **Objetivo General** | **Hipótesis Descriptiva** |
-|----------------------|----------------------|---------------------------|
-| ¿Cuáles son las características de la dispersión organizativa de estructuras dramáticas en los guionistas del Departamento Central durante el año 2025? | Describir la dispersión organizativa de estructuras dramáticas en los guionistas del Departamento Central durante el año 2025. | Los guionistas del Departamento Central presentan dispersión organizativa en sus estructuras dramáticas durante el año 2025. |
+| **Problema General** | **Objetivo General** | **Hipótesis Descriptiva** | **Variable(s)** |
+|----------------------|----------------------|---------------------------|-----------------|
+| ¿Cuáles son las características de la dispersión organizativa de estructuras dramáticas en los guionistas del Departamento Central durante el año 2025? | Describir la dispersión organizativa de estructuras dramáticas en los guionistas del Departamento Central durante el año 2025. | Los guionistas del Departamento Central presentan dispersión organizativa en sus estructuras dramáticas durante el año 2025. | Dispersión organizativa de estructuras dramáticas |
 
 > [!NOTE]
 > La hipótesis descriptiva presentada en esta matriz puede ser omitida del estudio final, dado que la investigación emplea un **enfoque cualitativo** con una **única variable** (dispersión organizativa de estructuras dramáticas). En estudios cualitativos descriptivos, no se formula una hipótesis para ser contrastada estadísticamente, sino que la investigación se orienta a la comprensión y descripción profunda del fenómeno observado. La hipótesis se incluye aquí únicamente con fines de consistencia metodológica en la matriz.
