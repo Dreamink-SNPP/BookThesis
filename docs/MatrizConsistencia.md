@@ -1,6 +1,6 @@
 # Matriz de Consistencia del Estudio
 
-**Título del estudio:** Dispersión organizativa de estructuras dramáticas en los guionistas del Departamento Central. 2025.
+**Título del estudio:** Sistematización del proceso de pre-escritura de guiones en los guionistas del Departamento Central. 2025.
 
 ---
 
@@ -14,10 +14,10 @@ La matriz de consistencia permite visualizar la coherencia entre los elementos f
 
 | **Problema General** | **Objetivo General** | **Hipótesis Descriptiva** | **Variable(s)** |
 |----------------------|----------------------|---------------------------|-----------------|
-| ¿Cuáles son las características de la dispersión organizativa de estructuras dramáticas en los guionistas del Departamento Central durante el año 2025? | Describir la dispersión organizativa de estructuras dramáticas en los guionistas del Departamento Central durante el año 2025. | Los guionistas del Departamento Central presentan dispersión organizativa en sus estructuras dramáticas durante el año 2025. | Dispersión organizativa de estructuras dramáticas |
+| ¿Cuáles son los métodos de sistematización del proceso de pre-escritura de guiones utilizados por los guionistas del Departamento Central durante el año 2025? | Describir los métodos de sistematización del proceso de pre-escritura de guiones utilizados por los guionistas del Departamento Central durante el año 2025. | Los guionistas del Departamento Central utilizan diversos métodos de sistematización en el proceso de pre-escritura de guiones durante el año 2025. | Sistematización del proceso de pre-escritura de guiones |
 
 > [!NOTE]
-> La hipótesis descriptiva presentada en esta matriz puede ser omitida del estudio final, dado que la investigación emplea un **enfoque cualitativo** con una **única variable** (dispersión organizativa de estructuras dramáticas). En estudios cualitativos descriptivos, no se formula una hipótesis para ser contrastada estadísticamente, sino que la investigación se orienta a la comprensión y descripción profunda del fenómeno observado. La hipótesis se incluye aquí únicamente con fines de consistencia metodológica en la matriz.
+> La hipótesis descriptiva presentada en esta matriz puede ser omitida del estudio final, dado que la investigación emplea un **enfoque cualitativo** con una **única variable** (sistematización del proceso de pre-escritura de guiones). En estudios cualitativos descriptivos, no se formula una hipótesis para ser contrastada estadísticamente, sino que la investigación se orienta a la comprensión y descripción profunda del fenómeno observado. La hipótesis se incluye aquí únicamente con fines de consistencia metodológica en la matriz.
 
 ---
 
@@ -30,13 +30,18 @@ La matriz de consistencia permite visualizar la coherencia entre los elementos f
 ## Características del Estudio
 
 ### Variable Principal
-- **Dispersión organizativa de estructuras dramáticas** (variable madre / problema principal)
+- **Sistematización del proceso de pre-escritura de guiones** (variable de estudio)
 
 ### Sujetos de Estudio
-- **Guionistas del Departamento Central** (afectados por el problema)
+- **Guionistas del Departamento Central** (población objetivo)
 
 ### Contexto
-- **Departamento Central** (lugar de estudio actual)
+- **Departamento Central** (lugar de estudio)
+
+### Respaldo Teórico
+- **Sistematización del proceso creativo**: Concepto respaldado por literatura académica sobre guión transmedia (paper español, Academia.edu)
+- **Pre-escritura**: Fase reconocida en la literatura de Syd Field, Robert McKee y otros autores de guionismo
+- **Organización de elementos narrativos**: Field (2005), McKee (1997)
 
 ### Diseño Metodológico
 - **Diseño:** Descriptivo simple
