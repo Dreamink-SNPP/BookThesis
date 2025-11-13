@@ -17,13 +17,19 @@
 
 \subsection{Planteamiento del Problema}
 
-El proceso de creación de guiones audiovisuales presenta actualmente importantes dificultades en la organización y estructuración de los elementos narrativos esenciales, como personajes y locaciones. Muchos guionistas, especialmente aquellos que trabajan de forma independiente o en equipos pequeños, recurren a métodos manuales -utilizando papel, pizarras y notas sueltas- para conceptualizar y desarrollar sus fichas e historias antes de trasladarlas a un software de guion. Esta práctica, además de ser ineficiente, interrumpe el flujo creativo y genera una duplicación de esfuerzos, ya que la información debe ser transcrita posteriormente a programas especializados que, en la mayoría de los casos, no ofrecen herramientas específicas para la gestión previa de fichas narrativas.
+En el mundo entero, los guionistas enfrentan desafíos durante la pre-escritura, especialmente por la naturaleza no lineal de su trabajo creativo que transita sin orden específico entre conceptualización, desarrollo de personajes y estructuración narrativa \parencite{chi2025_screenwriters}. La investigación internacional ha documentado que los principales desafíos incluyen falta de inspiración, coherencia insuficiente y profundidad de contenido inadecuada \parencite{screenwriting_research_network}.
 
-A pesar de la existencia de diversos softwares de escritura de guiones, como Final Draft, Celtx o Fade In, estos suelen ser costosos, poco flexibles o no permiten la integración directa de fichas de personajes y locaciones en formatos abiertos como Fountain. Esta situación genera una brecha significativa entre la etapa de conceptualización y la redacción técnica del guion, limitando la eficiencia y la creatividad del proceso. Además, la falta de soluciones Open Source y adaptadas a distintas necesidades narrativas restringe el acceso de nuevos guionistas y equipos independientes a herramientas profesionales y actualizadas.
+En América Latina, los guionistas se forman mayormente de manera autodidacta: en Chile, 32.8\% aprenden por sí mismos \parencite{chile_guion_cine}, mientras que en Argentina los estudios revelan la necesidad de analizar cómo organizan su trabajo creativo \parencite{argentina_telenovelas_guionistas}. Los centros y programas de escritura en la región son recientes y las prácticas organizativas de los guionistas constituyen un área escasamente documentada \parencite{centros_escritura_latam}.
 
-El problema se agrava por la ausencia de aplicaciones web que permitan diseñar, estructurar y vincular fichas de personajes y locaciones de manera sencilla, personalizada y compatible con estándares de la industria. La carencia de estas funcionalidades obliga a los creadores a buscar soluciones alternativas o a realizar tareas repetitivas, lo que puede derivar en errores, pérdida de información y una menor calidad en los productos finales. Este vacío tecnológico afecta no solo la productividad, sino también la capacidad de innovación y experimentación en el ámbito audiovisual.
+En la República del Paraguay, el sector audiovisual experimenta una institucionalización reciente con iniciativas como el Premio Nacional de Guion del INAP \parencite{inap_premio_guion} y la Ley N° 6106 de Fomento al Audiovisual que reconoce al guionista como autor \parencite{ley_6106_paraguay}. Existen espacios como la Asociación de Guionistas del Paraguay (KUATIA) y la Residencia del Lago \parencite{residencia_lago_paraguay}, pero los métodos que usan los guionistas locales durante la pre-escritura no han sido estudiados académicamente.
 
-Ante este panorama, surge la necesidad de desarrollar una herramienta accesible, flexible y de código abierto que permita a los guionistas crear, organizar y exportar fichas narrativas al formato Fountain de manera eficiente. Un sistema de estas características facilitaría la integración de las etapas creativas y técnicas del proceso de guion, democratizando el acceso a recursos profesionales y optimizando la producción de obras audiovisuales de calidad.
+La sistematización del proceso de pre-escritura de guiones que emplean los guionistas del Departamento Central no ha sido estudiada en la literatura académica.
+
+La causa principal es que la investigación académica ha priorizado analizar guiones terminados en lugar de estudiar los procesos creativos que los originan, y la naturaleza personalizada del trabajo de pre-escritura dificulta su observación sistemática.
+
+La consecuencia para los guionistas, especialmente quienes se inician en la profesión, es que deben aprender de manera autodidacta sin referencias sobre métodos efectivos de organización, lo que limita su desarrollo profesional y prolonga innecesariamente su curva de aprendizaje.
+
+El presente estudio describe los métodos de sistematización del proceso de pre-escritura de guiones utilizados por los guionistas del Departamento Central durante 2025, mediante entrevistas semiestructuradas que permitan conocer sus prácticas reales de organización, herramientas empleadas y dificultades enfrentadas.
 
 \newpage
 
@@ -32,13 +38,13 @@ Ante este panorama, surge la necesidad de desarrollar una herramienta accesible,
 Aquí se presentarán las preguntas de investigación, como la pregunta general y las específicas.
 
 \subsubsection{Pregunta General}
-¿Cómo se puede desarrollar una herramienta accesible que permita a los guionistas crear y estructurar fichas de personajes y locaciones, integrándose eficientemente al formato Fountain para mejorar el proceso de escritura de guiones audiovisuales?
+¿Cuáles son los métodos de sistematización del proceso de pre-escritura de guiones utilizados por los guionistas del Departamento Central durante el año 2025?
 
 \subsubsection{Preguntas Específicas}
 \begin{enumerate}
-	\item ¿Cuáles son las funcionalidades clave que debe tener una herramienta para la creación de fichas de personajes y locaciones en el contexto de la escritura de guiones?
-	\item ¿Cómo se puede asegurar la compatibilidad y exportación de estos elementos al formato Fountain de manera eficiente?
-	\item ¿Qué características de interfaz y usabilidad son necesarias para facilitar el uso de la herramienta por parte de los guionistas?
+	\item ¿Cómo organizan los guionistas los elementos narrativos (personajes, locaciones e ideas) durante la fase de pre-escritura?
+	\item ¿Qué herramientas y métodos utilizan los guionistas para estructurar dramáticamente sus obras antes del guion literario?
+	\item ¿Cuáles son las principales dificultades que enfrentan los guionistas en la sistematización del proceso de pre-escritura?
 \end{enumerate}
 
 \newpage
@@ -48,67 +54,58 @@ Aquí se presentarán las preguntas de investigación, como la pregunta general 
 Aquí se demostrarán los objetivos tanto general como específicos.
 
 \subsubsection{Objetivo General}
-Desarrollar una aplicación web Open Source que permita la creación de fichas de personajes y locaciones, integrándose eficientemente al formato Fountain para mejorar el proceso de escritura de guiones audiovisuales.
+Describir los métodos de sistematización del proceso de pre-escritura de guiones utilizados por los guionistas del Departamento Central durante el año 2025.
 
 \subsubsection{Objetivos Específicos}
 \begin{enumerate}
-	\item Desarrollar una plataforma que permita a los usuarios crear fichas detalladas para personajes (nombre, motivaciones, conflictos internos/externos) y locaciones (descripción física, contexto narrativo).
-	\item Asegurar que la plataforma pueda exportar estos elementos directamente al formato Fountain para facilitar su integración en software de escritura de guiones.
-	\item Diseñar una interfaz intuitiva y fácil de usar para que los guionistas puedan aprovechar al máximo la herramienta sin necesidad de conocimientos técnicos avanzados.
+	\item Identificar las formas de organización de elementos narrativos (personajes, locaciones e ideas) empleadas por los guionistas durante la fase de pre-escritura.
+	\item Caracterizar las herramientas y métodos utilizados por los guionistas para estructurar dramáticamente sus obras antes del guion literario.
+	\item Describir las principales dificultades que enfrentan los guionistas en la sistematización del proceso de pre-escritura.
 \end{enumerate}
 
 \newpage
 
 \subsection{Justificación}
 
-El proceso de escritura de un guion literario audiovisual es inherentemente complejo, pues exige gestionar de forma detallada personajes, locaciones y estructuras dramáticas. Sin embargo, una gran parte de los guionistas, que trabajan de forma independiente o en equipos pequeños, no cuentan con herramientas digitales que se ajusten realmente a sus necesidades. El software que existe suele ser costoso, rígido y rara vez permite conectar la fase de conceptualización (el diseño de personajes o mundos) con la escritura literaria en formatos estándar como Fountain.
+Desde el punto de vista teórico, este estudio aporta conocimiento sobre una variable escasamente investigada en un contexto geográfico específico. La sistematización del proceso de pre-escritura de guiones no ha sido caracterizada en el Departamento Central de Paraguay, constituyendo un vacío de conocimiento sobre cómo los guionistas locales organizan efectivamente su trabajo creativo. Al describir estos métodos, se genera evidencia empírica que contribuye al desarrollo de marcos teóricos sobre procesos creativos en guionismo y prácticas profesionales en contextos latinoamericanos.
 
-En respuesta a este problema, surge el desarrollo de DREAMINK, una aplicación web de código abierto. Esta herramienta está diseñada para que los guionistas puedan crear y gestionar fichas detalladas de personajes y locaciones, permitiendo luego exportarlas directamente al formato Fountain. Esta función clave no solo agiliza la transición entre el diseño narrativo y la redacción literaria del guion, sino que también fomenta el uso de estándares abiertos, liberando a los creadores de la dependencia de plataformas propietarias y costosas.
+Desde el punto de vista práctico, el estudio permite prevenir que los guionistas, especialmente quienes se inician en la profesión, continúen aprendiendo exclusivamente de forma autodidacta sin referencias metodológicas. Al documentar las prácticas reales de sistematización empleadas por guionistas activos, se generan referentes concretos que pueden orientar la formación de nuevos profesionales y reducir la curva de aprendizaje innecesariamente prolongada que caracteriza al sector.
 
-El carácter Open Source de DREAMINK es un pilar fundamental del proyecto. Al ser de código abierto, democratiza el acceso a tecnología profesional, eliminando las barreras del costo. Esto es vital en contextos creativos donde los recursos son limitados. Además, fomenta que la propia comunidad de usuarios pueda personalizar y mejorar la herramienta continuamente, permitiendo que se adapte con flexibilidad a distintos géneros, formatos y necesidades de cada proyecto.
+Desde el punto de vista social, los beneficiarios directos son los guionistas del Departamento Central, cuyas prácticas profesionales serán visibilizadas y legitimadas académicamente. Asimismo, se benefician las instituciones educativas que ofrecen formación en guionismo, las organizaciones gremiales como KUATIA, los programas de desarrollo audiovisual como la Residencia del Lago, y los futuros estudiantes de narrativa audiovisual que accederán a conocimiento sistematizado sobre métodos de trabajo profesional.
 
-DREAMINK también busca optimizar el proceso creativo. Al reducir la fragmentación entre la conceptualización y la escritura, se minimizan los errores y la pérdida de información que ocurren al saltar entre distintos programas. La herramienta centraliza los datos clave de personajes y locaciones, ofreciendo al guionista una visión integral de su proyecto. Esto facilita la toma de decisiones narrativas y contribuye a desarrollar guiones con mayor coherencia y calidad final.
+Desde el punto de vista económico, el estudio puede contribuir a optimizar la inversión pública y privada en políticas de fomento al sector audiovisual. Al identificar las prácticas efectivas de sistematización y las principales dificultades enfrentadas por los guionistas, las instituciones como el INAP podrán diseñar programas de capacitación, talleres y recursos de apoyo más pertinentes a las necesidades reales de los profesionales, maximizando el impacto de los recursos destinados al desarrollo del sector.
 
-El desarrollo de DREAMINK puede ser una necesidad concreta de los equipos audiovisuales independientes de hoy, para quienes la agilidad y el acceso a la tecnología son claves. Este proyecto no se limita a resolver un problema técnico; su objetivo es impulsar la profesionalización y el crecimiento de guionistas y creadores en diversos entornos, ofreciendo una solución específica, flexible y alineada con los estándares de la industria.
+Desde el punto de vista metodológico, el estudio aporta una operacionalización validada de la variable «sistematización del proceso de pre-escritura de guiones» con dimensiones, indicadores e instrumento de recolección de datos específicamente diseñados para este fenómeno. Esta contribución metodológica puede ser empleada por otros investigadores interesados en estudiar procesos creativos de guionistas en diferentes contextos geográficos, facilitando la réplica y comparación de hallazgos en futuras investigaciones sobre prácticas profesionales en el sector audiovisual.
 
 \newpage
 
 \subsection{Limitaciones}
 
-Este sistema presentará las siguientes limitaciones, de acuerdo con su alcance técnico y funcional:
+El presente estudio reconoce las siguientes limitaciones inherentes a su diseño metodológico y alcance.
 
-\begin{enumerate}[label=\arabic*., leftmargin=1.5cm, itemsep=0.2em]
-	\item Funcionará únicamente en entornos web.
-	\item Será de uso exclusivamente local.
-	\item No permitirá trabajo colaborativo en modalidad multiusuario.
-	\item Cada usuario gestiona su propio proyecto.
-	\item Ningún usuario podrá gestionar el proyecto de otros.
-	\item Permitirá únicamente la exportación al formato \textit{Fountain}.
-	\item No admitirá la importación de formatos privativos (como \textit{FadeIn}, \textit{Final Draft}, \textit{WriterDuet}, etc.).
-	\item Se limitará a la estructuración previa del guion, sin abarcar el desarrollo del guion literario.
-	\item No cubrirá la elaboración del guion técnico.
-	\item La interfaz estará optimizada para pantallas de computadoras, no para dispositivos móviles.
-	\item No se integrará con modelos de lenguaje de gran escala (LLMs) ni con herramientas similares.
-\end{enumerate}
+El tamaño de la muestra es reducido, comprendiendo únicamente tres guionistas del Departamento Central. Esta característica, propia de los estudios cualitativos descriptivos que priorizan la profundidad sobre la amplitud, limita la posibilidad de generalización estadística de los hallazgos a poblaciones más extensas de guionistas.
+
+La delimitación geográfica al Departamento Central excluye las experiencias y prácticas de guionistas que trabajan en otros departamentos de Paraguay, potencialmente omitiendo variaciones regionales en los métodos de sistematización del proceso de pre-escritura.
+
+La temporalidad específica del estudio, circunscrita al año 2025, captura las prácticas actuales pero no permite observar evoluciones, cambios o tendencias en los métodos de sistematización a lo largo del tiempo.
+
+La dependencia de entrevistas como único instrumento de recolección de datos implica que los hallazgos se basan en las percepciones y relatos autorreportados de los participantes, sin observación directa de sus prácticas de trabajo, lo que puede introducir sesgos de deseabilidad social o limitaciones de memoria.
+
+La voluntariedad de la participación puede generar un sesgo de autoselección, donde los guionistas que aceptan participar podrían tener mayor interés en la sistematización de su trabajo o mayor apertura para compartir sus métodos, en comparación con aquellos que declinan participar.
+
+El enfoque cualitativo descriptivo, si bien permite caracterizar en profundidad los métodos empleados, no establece relaciones causales ni evalúa la efectividad de diferentes métodos de sistematización, limitándose a describir las prácticas existentes sin valoraciones de su eficacia.
 
 \newpage
 
 \subsection{Alcance o Delimitación}
 
-Se expresarán estos siguientes puntos para demostrar el alcance técnico y funcional del estudio:
+El presente estudio delimita su alcance en tres dimensiones fundamentales que definen el contexto específico de la investigación.
 
-\begin{enumerate}[label=\arabic*., leftmargin=1.5cm, itemsep=0.2em]
-	\item Permitirá el uso de cuentas de usuarios mediante correo y contraseña.
-	\item Posee el ingreso de cuentas y registro de nuevos usuarios.
-	\item Posee recuperación de contraseñas para cuentas de usuario.
-	\item Se podrán dar de alta, baja, modificación y consulta de personajes.
-	\item Se podrán dar de alta, baja, modificación y consulta de locaciones.
-	\item Se podrán dar de alta, baja, modificación y consulta de ideas.
-	\item Permite la organización de la estructura del guion en actos, secuencias y escenas.
-	\item Cada proyecto tendrá su propio tratamiento, estructura, personajes, locaciones e ideas.
-	\item Posibilidad de realizar reportes en PDF para tratamientos, personajes, locaciones e ideas.
-	\item Reportes en PDF individuales para cara personaje, locación o idea.
-\end{enumerate}
+Desde el punto de vista geográfico, el estudio se circunscribe exclusivamente al Departamento Central de Paraguay. Esta delimitación territorial responde a la concentración de actividad audiovisual profesional en esta zona, que incluye las principales instituciones, organizaciones gremiales y programas de desarrollo como KUATIA y la Residencia del Lago. Los hallazgos del estudio reflejarán las prácticas de sistematización de guionistas que trabajan en este contexto geográfico específico, sin extenderse a otros departamentos del país.
+
+Desde el punto de vista temporal, la investigación se desarrolla durante el año 2025. Este alcance temporal determina que las prácticas, métodos y herramientas de sistematización descritas corresponden al estado actual del sector en este período específico. La delimitación temporal permite capturar las condiciones contemporáneas del trabajo de pre-escritura de guionistas, incluyendo las tecnologías digitales disponibles, las metodologías en uso y los desafíos actuales del sector audiovisual paraguayo.
+
+Desde el punto de vista social, el estudio se enfoca en guionistas activos del Departamento Central que tengan experiencia comprobada en escritura de guiones audiovisuales y que voluntariamente acepten participar en el estudio. Esta delimitación poblacional especifica que los participantes son profesionales o practicantes con trayectoria en guionismo, excluyendo estudiantes sin experiencia práctica o aficionados sin proyectos desarrollados. La muestra cualitativa de tres guionistas permite profundizar en sus experiencias individuales, caracterizando la diversidad de métodos empleados en distintos tipos de proyectos audiovisuales (ficción, documental, series) dentro de este grupo social específico.
 
 \newpage
 
