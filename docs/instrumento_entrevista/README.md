@@ -13,7 +13,9 @@ Este directorio contiene todos los documentos relacionados con el instrumento de
 ## Contenido del directorio
 
 ### 1. `ConsentimientoInformado.md`
+
 Documento legal y ético que debe ser firmado por cada participante antes de la entrevista. Incluye:
+
 - Propósito del estudio
 - Procedimiento de la entrevista
 - Garantías de confidencialidad y anonimato
@@ -26,7 +28,9 @@ Documento legal y ético que debe ser firmado por cada participante antes de la 
 ---
 
 ### 2. `GuiaEntrevista.md`
+
 Instrumento principal de recolección de datos. Contiene:
+
 - 26 preguntas organizadas en 7 secciones
 - Preguntas principales y preguntas complementarias (probes)
 - Duración estimada por sección
@@ -34,6 +38,7 @@ Instrumento principal de recolección de datos. Contiene:
 - Alineación con las 4 dimensiones de la Matriz de Operacionalización
 
 **Estructura:**
+
 - **Sección A:** Datos generales (2-3 min)
 - **Sección B:** Contexto profesional (5 min)
 - **Sección C:** Organización de elementos narrativos - Dimensión 1 (10-12 min)
@@ -49,7 +54,9 @@ Instrumento principal de recolección de datos. Contiene:
 ---
 
 ### 3. `ProtocoloAplicacion.md`
+
 Manual completo para la aplicación del instrumento. Contiene:
+
 - Preparación previa a la entrevista
 - Procedimiento durante la entrevista
 - Acciones posteriores a la entrevista
@@ -142,12 +149,14 @@ Este instrumento se fundamenta en:
 **Tamaño:** 3 guionistas
 
 **Justificación del tamaño muestral:**
+
 - Estudio cualitativo descriptivo (no busca generalización estadística)
 - Profundidad sobre amplitud (entrevistas extensas y detalladas)
 - Saturación teórica esperada con 3 participantes en contexto específico
 - Coherente con recursos y tiempo disponible
 
 **Criterios de selección:**
+
 - Guionistas activos en el Departamento Central
 - Experiencia comprobada en escritura de guiones
 - Diversidad en tipos de proyectos (ficción, documental, series, etc.)
@@ -170,12 +179,13 @@ Este instrumento cumple con principios éticos fundamentales:
 
 Para consultas sobre el instrumento o el estudio:
 
-**Investigador principal:** [Nombre]
-**Correo:** [Email]
-**Institución:** [Institución]
+**Investigador principal:** Fernando Cardozo
+
+**Correo:** nuevo_10000@outlook.com
+
+**Institución:** Centro Tecnológico de Formación Profesional Paraguay - Japón de San Lorenzo
 
 ---
 
 **Documentos elaborados:** Noviembre 2025
 **Versión:** 1.0
-**Estado:** Listo para aplicación
