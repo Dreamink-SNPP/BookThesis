@@ -3,7 +3,9 @@
 **Título del estudio:** Sistematización del proceso de pre-escritura de guiones en los guionistas del Departamento Central. 2025.
 
 **Tipo de instrumento:** Entrevista semiestructurada
+
 **Duración estimada:** 50-60 minutos
+
 **Técnica de análisis:** Análisis de contenido cualitativo
 
 ---
@@ -205,5 +207,7 @@ _"Muchas gracias por su tiempo y por compartir su experiencia. Su participación
 ---
 
 **Documento elaborado:** Noviembre 2025
+
 **Validación:** Basado en Matriz de Operacionalización de Variables
+
 **Referencias teóricas:** Lovato (2020), Field (2005), McKee (1997), Koestler (1964)

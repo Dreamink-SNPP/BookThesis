@@ -3,7 +3,9 @@
 **Título del estudio:** Sistematización del proceso de pre-escritura de guiones en los guionistas del Departamento Central. 2025.
 
 **Investigador principal:** [Nombre del investigador]
+
 **Institución:** [Nombre de la institución]
+
 **Contacto:** [Correo electrónico o teléfono]
 
 ---
@@ -98,4 +100,5 @@ He leído (o me han leído) la información proporcionada en este documento. He 
 ---
 
 **Documento elaborado:** Noviembre 2025
+
 **Estudio:** Sistematización del proceso de pre-escritura de guiones - Departamento Central, Paraguay

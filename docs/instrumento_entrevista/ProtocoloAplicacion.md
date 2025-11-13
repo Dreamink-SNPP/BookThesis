@@ -254,5 +254,7 @@ Una vez completadas las 3 entrevistas:
 ---
 
 **Documento elaborado:** Noviembre 2025
+
 **Actualización:** Según sea necesario durante la aplicación piloto
+
 **Responsable:** Investigador principal del estudio
