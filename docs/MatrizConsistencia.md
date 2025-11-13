@@ -59,5 +59,26 @@ La matriz de consistencia permite visualizar la coherencia entre los elementos f
 
 ---
 
+## Matriz de Consistencia - Preguntas y Objetivos Específicos
+
+| **Preguntas Específicas** | **Objetivos Específicos** |
+|----------------------------|---------------------------|
+| PE1: ¿Cómo organizan los guionistas los elementos narrativos (personajes, locaciones e ideas) durante la fase de pre-escritura? | OE1: Identificar las formas de organización de elementos narrativos (personajes, locaciones e ideas) empleadas por los guionistas durante la fase de pre-escritura. |
+| PE2: ¿Qué herramientas y métodos utilizan los guionistas para estructurar dramáticamente sus obras antes del guion literario? | OE2: Caracterizar las herramientas y métodos utilizados por los guionistas para estructurar dramáticamente sus obras antes del guion literario. |
+| PE3: ¿Cuáles son las principales dificultades que enfrentan los guionistas en la sistematización del proceso de pre-escritura? | OE3: Describir las principales dificultades que enfrentan los guionistas en la sistematización del proceso de pre-escritura. |
+
+> [!NOTE]
+> Cada pregunta específica se corresponde directamente con su objetivo específico, manteniendo coherencia metodológica. Las preguntas específicas se formulan en forma interrogativa para guiar la investigación, mientras que los objetivos específicos se expresan en forma declarativa indicando las acciones a realizar (identificar, caracterizar, describir).
+
+### Relación con Dimensiones de la Variable
+
+Esta tabla de preguntas y objetivos específicos se alinea directamente con las dimensiones establecidas en la matriz de operacionalización de variables:
+
+- **PE1/OE1** → Dimensión 1: Organización de elementos narrativos
+- **PE2/OE2** → Dimensiones 2 y 3: Estructuración dramática + Métodos y herramientas de sistematización
+- **PE3/OE3** → Dimensión 4: Desafíos y dificultades en la sistematización
+
+---
+
 **Fecha de elaboración:** Noviembre 2025
 **Documento de referencia metodológica**
