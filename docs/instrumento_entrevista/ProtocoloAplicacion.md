@@ -9,6 +9,7 @@
 ### 1.1. Selección de participantes
 
 **Criterios de inclusión:**
+
 - Ser guionista activo o con experiencia en escritura de guiones audiovisuales
 - Residir o trabajar en el Departamento Central de Paraguay
 - Tener al menos un proyecto de guion desarrollado (finalizado o en proceso)
@@ -186,16 +187,19 @@
 ### 4.2. En caso de situaciones especiales
 
 **Si el entrevistado se siente incómodo:**
+
 - Pausar la entrevista
 - Ofrecer omitir la pregunta
 - Permitir que termine la entrevista si lo desea
 
 **Si surge información sensible no relacionada con el estudio:**
+
 - No grabar información personal sensible
 - Mantener confidencialidad absoluta
 - No incluir en el análisis información fuera del alcance del estudio
 
 **Si el entrevistado desea retirarse después de la entrevista:**
+
 - Eliminar inmediatamente grabación y transcripción
 - Documentar la eliminación
 - Agradecer de todos modos su participación inicial

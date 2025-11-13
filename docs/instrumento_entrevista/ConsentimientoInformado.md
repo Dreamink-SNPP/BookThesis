@@ -37,9 +37,11 @@ Si acepta participar en este estudio, se le solicitará:
 ## Riesgos y beneficios
 
 ### Riesgos
+
 La participación en este estudio no implica riesgos significativos. Las preguntas se centran en su experiencia profesional como guionista y no abordan temas sensibles o personales.
 
 ### Beneficios
+
 - Contribuir al desarrollo de conocimiento académico sobre prácticas profesionales de guionistas en Paraguay.
 - Visibilizar y legitimar las prácticas de sistematización empleadas por guionistas locales.
 - Aportar información que puede orientar futuras políticas de fomento y programas de formación en guionismo.
@@ -65,11 +67,11 @@ He leído (o me han leído) la información proporcionada en este documento. He 
 
 ---
 
-**Nombre del participante:** _______________________________________________
+**Nombre del participante:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-**Firma:** _______________________________________________
+**Firma:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-**Fecha:** _______________________________________________
+**Fecha:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ---
 
@@ -89,9 +91,9 @@ He leído (o me han leído) la información proporcionada en este documento. He 
 
 ---
 
-**Firma del investigador:** _______________________________________________
+**Firma del investigador:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-**Fecha:** _______________________________________________
+**Fecha:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ---
 
