@@ -1,3 +1,5 @@
+[![LaTeX CI](https://github.com/Dreamink-SNPP/BookThesis/actions/workflows/latex-ci.yml/badge.svg?branch=main)](https://github.com/Dreamink-SNPP/BookThesis/actions/workflows/latex-ci.yml)
+
 # Proyecto Técnico
 
 ## Documentación básica
