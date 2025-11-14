@@ -10,6 +10,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    # Permissions needed for GitHub Pages deployment
+    permissions:
+      contents: write      # For creating releases
+      pages: write         # For deploying to Pages
+      id-token: write      # For Pages deployment authentication
+
     container:
       image: danteev/texlive:latest
 
@@ -54,3 +60,85 @@ jobs:
     - name: Show PDF information
       if: success()
       run: ./compile.sh 5
+
+    - name: Validate PDF output
+      if: success()
+      run: |
+        # Check if PDF exists
+        if [ ! -f "build/Libro.pdf" ]; then
+          echo "Error: PDF file not found at build/Libro.pdf"
+          exit 1
+        fi
+
+        # Check if PDF is not empty (at least 1KB)
+        PDF_SIZE=$(stat -c%s "build/Libro.pdf" 2>/dev/null || stat -f%z "build/Libro.pdf" 2>/dev/null)
+        if [ "$PDF_SIZE" -lt 1024 ]; then
+          echo "Error: PDF file is too small ($PDF_SIZE bytes). Likely corrupted or empty."
+          exit 1
+        fi
+
+        # Check if file is actually a PDF (magic number check)
+        if ! head -c 4 "build/Libro.pdf" | grep -q "^%PDF"; then
+          echo "Error: File is not a valid PDF (missing PDF header)"
+          exit 1
+        fi
+
+        echo "✓ PDF validation passed"
+        echo "  Size: $PDF_SIZE bytes ($(echo "scale=2; $PDF_SIZE/1024" | bc) KB)"
+
+    - name: Create/Update GitHub Release
+      if: success() && github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@5be0e66d93ac7ed76da52eca8bb058f665c3a5fe  # v2.4.2
+      with:
+        tag_name: latest
+        name: Latest PDF Build
+        body: |
+          📚 Latest build of the book PDF
+
+          **Commit:** ${{ github.sha }}
+          **Date:** ${{ github.event.head_commit.timestamp }}
+          **Author:** ${{ github.event.head_commit.author.name }}
+
+          Download the PDF below ⬇️
+        files: build/Libro.pdf
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Prepare GitHub Pages content
+      if: success() && github.ref == 'refs/heads/main'
+      run: |
+        mkdir -p pages
+
+        # Copy PDF with error handling
+        if ! cp build/Libro.pdf pages/Libro.pdf; then
+          echo "Error: Failed to copy PDF to pages directory"
+          exit 1
+        fi
+
+        # Copy HTML template
+        if ! cp .github/pages-template/index.html pages/index.html; then
+          echo "Error: Failed to copy index.html to pages directory"
+          exit 1
+        fi
+
+        # Copy CSS file
+        if ! cp .github/pages-template/styles.css pages/styles.css; then
+          echo "Error: Failed to copy styles.css to pages directory"
+          exit 1
+        fi
+
+        echo "✓ GitHub Pages content prepared successfully"
+        ls -lah pages/
+
+    - name: Upload Pages artifact
+      if: success() && github.ref == 'refs/heads/main'
+      uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa  # v3.0.1
+      with:
+        path: ./pages
+
+    - name: Deploy to GitHub Pages
+      if: success() && github.ref == 'refs/heads/main'
+      uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e  # v4.0.5
+      id: deployment
