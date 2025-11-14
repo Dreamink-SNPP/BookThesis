@@ -1,0 +1,168 @@
+% SPDX-License-Identifier: MIT
+% Copyright (c) 2025 Fernando Cardozo and Alberto Álvarez
+%
+% Pandoc LaTeX Template for Academic Thesis Documents
+% Follows institutional style guide requirements
+
+\documentclass[12pt,a4paper]{article}
+
+% ============================================================================
+% PACKAGE IMPORTS
+% ============================================================================
+
+% Font and encoding
+\usepackage{fontspec}
+\usepackage[spanish]{babel}
+\usepackage{csquotes}
+
+% Page layout
+\usepackage[
+    left=3cm,
+    right=3cm,
+    top=2.54cm,
+    bottom=2.54cm
+]{geometry}
+
+% Line spacing
+\usepackage{setspace}
+\onehalfspacing  % 1.5 line spacing
+
+% Paragraph formatting
+\usepackage{parskip}
+\setlength{\parindent}{0pt}        % No paragraph indentation (as per style guide)
+\setlength{\parskip}{10pt}         % 10pt spacing after paragraphs
+
+% Section numbering
+\usepackage{titlesec}
+
+% Headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}                          % Clear all headers and footers
+\renewcommand{\headrulewidth}{0pt}  % No header line
+\renewcommand{\footrulewidth}{0pt}  % No footer line
+\fancyfoot[C]{\thepage}             % Page number centered at bottom
+
+% Graphics and figures
+\usepackage{graphicx}
+\usepackage{float}
+
+% Tables
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+
+% Links and references
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,
+    urlcolor=blue,
+    citecolor=black,
+    pdftitle={$if(title)$$title$$endif$},
+    pdfauthor={$if(author)$$author$$endif$}
+}
+
+% Code highlighting (if needed)
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+% Lists
+\usepackage{enumitem}
+\setlist{nosep} % Reduce spacing in lists
+
+% ============================================================================
+% FONT CONFIGURATION
+% ============================================================================
+
+% Main font: TeX Gyre Termes (Times New Roman equivalent)
+% Falls back to system Times New Roman if TeX Gyre Termes is not available
+\IfFontExistsTF{TeX Gyre Termes}{
+    \setmainfont{TeX Gyre Termes}
+}{
+    % Fallback options in order of preference
+    \IfFontExistsTF{Times New Roman}{
+        \setmainfont{Times New Roman}
+    }{
+        \IfFontExistsTF{Liberation Serif}{
+            \setmainfont{Liberation Serif}
+        }{
+            % Last resort: use default serif font
+            \setmainfont{Latin Modern Roman}
+        }
+    }
+}
+
+% ============================================================================
+% TITLE FORMATTING
+% ============================================================================
+
+% Title styles (following style guide)
+\titleformat{\section}
+    {\normalfont\fontsize{16}{19}\bfseries\centering}{\thesection}{1em}{}
+
+\titleformat{\subsection}
+    {\normalfont\fontsize{14}{17}\bfseries\raggedright}{\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+    {\normalfont\fontsize{12}{14}\bfseries\raggedright}{\thesubsubsection}{1em}{}
+
+% ============================================================================
+% METADATA
+% ============================================================================
+
+$if(title)$
+\title{$title$}
+$endif$
+
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+
+$if(date)$
+\date{$date$}
+$else$
+\date{}
+$endif$
+
+% ============================================================================
+% DOCUMENT BODY
+% ============================================================================
+
+\begin{document}
+
+% Title page (if title exists)
+$if(title)$
+\maketitle
+\thispagestyle{empty}
+\clearpage
+$endif$
+
+% Table of contents (if requested)
+$if(toc)$
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+\clearpage
+}
+$endif$
+
+% List of tables (if requested)
+$if(lot)$
+\listoftables
+\clearpage
+$endif$
+
+% List of figures (if requested)
+$if(lof)$
+\listoffigures
+\clearpage
+$endif$
+
+% Main content
+$body$
+
+\end{document}

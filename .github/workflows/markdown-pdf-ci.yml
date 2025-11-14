@@ -1,0 +1,278 @@
+name: Markdown to PDF CI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/**/*.md'
+      - 'templates/**'
+      - 'compile-md.sh'
+      - '.github/workflows/markdown-pdf-ci.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'docs/**/*.md'
+      - 'templates/**'
+      - 'compile-md.sh'
+      - '.github/workflows/markdown-pdf-ci.yml'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  compile-markdown:
+    runs-on: ubuntu-latest
+
+    # Permissions for artifact upload and potential Pages deployment
+    permissions:
+      contents: write      # For creating releases
+      pages: write         # For deploying to Pages
+      id-token: write      # For Pages deployment authentication
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Cache apt packages
+      uses: actions/cache@v4
+      with:
+        path: /var/cache/apt/archives
+        key: apt-markdown-${{ runner.os }}-${{ hashFiles('.github/workflows/markdown-pdf-ci.yml') }}
+        restore-keys: |
+          apt-markdown-${{ runner.os }}-
+
+    - name: Cache TeX Live packages
+      uses: actions/cache@v4
+      with:
+        path: |
+          /usr/share/texlive
+          /usr/share/texmf
+          ~/.texlive
+        key: texlive-${{ runner.os }}-${{ hashFiles('templates/**') }}
+        restore-keys: |
+          texlive-${{ runner.os }}-
+
+    - name: Install dependencies
+      run: |
+        echo "📦 Installing Pandoc and LaTeX dependencies..."
+        sudo apt-get update -qq
+        sudo apt-get install -y \
+          pandoc \
+          texlive-luatex \
+          texlive-latex-extra \
+          texlive-fonts-extra \
+          texlive-lang-spanish \
+          lmodern \
+          poppler-utils
+
+        echo "✓ Dependencies installed successfully"
+        echo ""
+        echo "Versions:"
+        echo "  Pandoc: $(pandoc --version | head -n 1)"
+        echo "  LuaLaTeX: $(lualatex --version | head -n 1)"
+
+    - name: Verify TeX Gyre Termes font
+      run: |
+        echo "🔍 Checking for TeX Gyre Termes font..."
+        if fc-list | grep -i "TeX Gyre Termes"; then
+          echo "✓ TeX Gyre Termes font found"
+        else
+          echo "⚠ TeX Gyre Termes font not found, will fall back to default"
+        fi
+
+    - name: List Markdown files
+      run: |
+        echo "📄 Markdown files to be compiled:"
+        find docs -name "*.md" -type f | sort | while read file; do
+          echo "  • $file"
+        done
+
+    - name: Compile all Markdown files to PDF
+      run: |
+        echo "🔨 Starting batch compilation..."
+        chmod +x compile-md.sh
+        ./compile-md.sh 2
+
+    - name: Validate PDF outputs
+      run: |
+        echo "🔍 Validating generated PDFs..."
+
+        PDF_COUNT=$(find build/markdown/pdf -name "*.pdf" -type f 2>/dev/null | wc -l)
+
+        if [ "$PDF_COUNT" -eq 0 ]; then
+          echo "❌ Error: No PDF files were generated"
+          exit 1
+        fi
+
+        echo "✓ Found $PDF_COUNT PDF file(s)"
+        echo ""
+
+        # Validate each PDF
+        FAILED=0
+        for pdf in build/markdown/pdf/*.pdf; do
+          PDF_SIZE=$(stat -c%s "$pdf" 2>/dev/null || stat -f%z "$pdf" 2>/dev/null)
+
+          if [ "$PDF_SIZE" -lt 1024 ]; then
+            echo "❌ Error: $pdf is too small ($PDF_SIZE bytes)"
+            FAILED=1
+            continue
+          fi
+
+          if ! head -c 4 "$pdf" | grep -q "^%PDF"; then
+            echo "❌ Error: $pdf is not a valid PDF"
+            FAILED=1
+            continue
+          fi
+
+          PAGES=$(pdfinfo "$pdf" 2>/dev/null | grep Pages | awk '{print $2}')
+          SIZE_KB=$(echo "scale=2; $PDF_SIZE/1024" | bc)
+
+          echo "✓ $(basename "$pdf")"
+          echo "    Size: ${SIZE_KB} KB"
+          echo "    Pages: ${PAGES:-N/A}"
+        done
+
+        if [ $FAILED -ne 0 ]; then
+          echo ""
+          echo "❌ Some PDF files failed validation"
+          exit 1
+        fi
+
+        echo ""
+        echo "✓ All PDF files validated successfully"
+
+    - name: Show PDF information
+      if: success()
+      run: |
+        ./compile-md.sh 5
+
+    - name: Upload PDF artifacts
+      uses: actions/upload-artifact@v4
+      if: success()
+      with:
+        name: markdown-pdfs-${{ github.run_number }}
+        path: build/markdown/pdf/*.pdf
+        retention-days: 30
+
+    - name: Upload compilation log
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: compilation-log-${{ github.run_number }}
+        path: build/markdown/last-compilation.log
+        retention-days: 7
+
+    - name: Create merged PDF (optional)
+      if: success() && github.ref == 'refs/heads/main'
+      run: |
+        echo "📚 Creating merged document..."
+        ./compile-md.sh 4
+
+    - name: Upload merged PDF artifact
+      uses: actions/upload-artifact@v4
+      if: success() && github.ref == 'refs/heads/main'
+      with:
+        name: merged-document-pdf
+        path: build/markdown/pdf/merged-document.pdf
+        retention-days: 90
+
+    - name: Create/Update GitHub Release
+      if: success() && github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@5be0e66d93ac7ed76da52eca8bb058f665c3a5fe  # v2.4.2
+      with:
+        tag_name: markdown-pdfs-latest
+        name: Latest Markdown PDFs
+        body: |
+          📚 Latest compilation of Markdown documents to PDF
+
+          **Commit:** ${{ github.sha }}
+          **Date:** ${{ github.event.head_commit.timestamp }}
+          **Author:** ${{ github.event.head_commit.author.name }}
+
+          ### Style Guide Applied:
+          - 📝 Font: TeX Gyre Termes (Times New Roman)
+          - 📏 Size: 12pt
+          - 📐 Margins: 3cm (left/right), 2.54cm (top/bottom)
+          - 📊 Line spacing: 1.5
+          - 🔢 Section numbering: Automatic
+
+          Download the compiled PDFs below ⬇️
+        files: |
+          build/markdown/pdf/*.pdf
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Generate compilation report
+      if: always()
+      run: |
+        cat << EOF > compilation-report.md
+        # Markdown to PDF Compilation Report
+
+        **Workflow Run:** ${{ github.run_number }}
+        **Commit:** ${{ github.sha }}
+        **Branch:** ${{ github.ref_name }}
+        **Triggered by:** ${{ github.event_name }}
+
+        ## Status
+        - ✅ Compilation completed successfully
+
+        ## Files Compiled
+        $(find build/markdown/pdf -name "*.pdf" -type f 2>/dev/null | while read pdf; do
+          echo "- $(basename "$pdf")"
+        done)
+
+        ## System Information
+        - OS: Ubuntu Latest
+        - Pandoc: $(pandoc --version | head -n 1)
+        - LuaLaTeX: $(lualatex --version | head -n 1)
+
+        ## Build Artifacts
+        - Individual PDFs uploaded with retention: 30 days
+        - Compilation logs uploaded with retention: 7 days
+
+        ---
+        Generated on: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
+        EOF
+
+        cat compilation-report.md
+
+    - name: Upload compilation report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: compilation-report
+        path: compilation-report.md
+        retention-days: 30
+
+    - name: Summary
+      if: always()
+      run: |
+        echo "## 📊 Compilation Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        if [ -d "build/markdown/pdf" ]; then
+          PDF_COUNT=$(find build/markdown/pdf -name "*.pdf" -type f | wc -l)
+          echo "✅ Successfully compiled **${PDF_COUNT}** PDF file(s)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Generated Files:" >> $GITHUB_STEP_SUMMARY
+
+          for pdf in build/markdown/pdf/*.pdf; do
+            if [ -f "$pdf" ]; then
+              PAGES=$(pdfinfo "$pdf" 2>/dev/null | grep Pages | awk '{print $2}')
+              SIZE=$(du -h "$pdf" | cut -f1)
+              echo "- 📄 \`$(basename "$pdf")\` - ${PAGES:-?} pages, ${SIZE}" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+        else
+          echo "❌ No PDF files were generated" >> $GITHUB_STEP_SUMMARY
+        fi
+
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Style Guide Applied:" >> $GITHUB_STEP_SUMMARY
+        echo "- Font: TeX Gyre Termes (Times New Roman)" >> $GITHUB_STEP_SUMMARY
+        echo "- Size: 12pt" >> $GITHUB_STEP_SUMMARY
+        echo "- Margins: 3cm (left/right), 2.54cm (top/bottom)" >> $GITHUB_STEP_SUMMARY
+        echo "- Line spacing: 1.5" >> $GITHUB_STEP_SUMMARY
+        echo "- Section numbering: Automatic" >> $GITHUB_STEP_SUMMARY

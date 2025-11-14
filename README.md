@@ -1,4 +1,5 @@
 [![LaTeX CI](https://github.com/Dreamink-SNPP/BookThesis/actions/workflows/latex-ci.yml/badge.svg?branch=main)](https://github.com/Dreamink-SNPP/BookThesis/actions/workflows/latex-ci.yml)
+[![Markdown to PDF CI](https://github.com/Dreamink-SNPP/BookThesis/actions/workflows/markdown-pdf-ci.yml/badge.svg?branch=main)](https://github.com/Dreamink-SNPP/BookThesis/actions/workflows/markdown-pdf-ci.yml)
 
 # Proyecto Técnico
 
@@ -9,6 +10,21 @@ Se debe entregar una documentación básica para la primera entrega de este proy
 ## Documentación a trabajar
 
 Aquí se presentará el documento **oficial** del libro para la entrega del proyecto, en el cual contendrá todos los elementos requeridos para su entrega.
+
+### Compilación de documentos
+
+Este proyecto incluye dos sistemas de compilación:
+
+1. **LaTeX → PDF**: Para el libro principal (`src/Libro.tex`)
+   - Script: `./compile.sh`
+   - Documentación: [README_COMPILE.md](README_COMPILE.md)
+
+2. **Markdown → PDF**: Para documentos en `docs/`
+   - Script: `./compile-md.sh`
+   - Documentación: [README_MARKDOWN_COMPILE.md](README_MARKDOWN_COMPILE.md)
+   - Compilación automática: [Markdown PDF CI](.github/workflows/markdown-pdf-ci.yml)
+
+Ambos sistemas siguen el [STYLE_GUIDE_DOC.md](STYLE_GUIDE_DOC.md) institucional.
 
 ### Tema
 
