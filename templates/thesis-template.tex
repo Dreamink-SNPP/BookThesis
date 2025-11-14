@@ -73,6 +73,10 @@ $endif$
 \usepackage{enumitem}
 \setlist{nosep} % Reduce spacing in lists
 
+% Define tightlist command for pandoc compatibility
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
 % ============================================================================
 % FONT CONFIGURATION
 % ============================================================================
