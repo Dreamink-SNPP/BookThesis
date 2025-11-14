@@ -424,12 +424,30 @@ show_pdf_info() {
     print_info "=== PDF Files Information ==="
     echo ""
 
-    if [ ! -d "$OUTPUT_DIR" ] || [ -z "$(ls -A "$OUTPUT_DIR" 2>/dev/null)" ]; then
-        print_warning "No PDF files found in $OUTPUT_DIR/"
-        return 1
+    if [ ! -d "$OUTPUT_DIR" ]; then
+        print_warning "Output directory does not exist: $OUTPUT_DIR/"
+        print_info "Compile some files first with option 1 or 2"
+        return 0
     fi
 
+    # Check if any PDF files exist
+    local pdf_count=$(find "$OUTPUT_DIR" -name "*.pdf" -type f 2>/dev/null | wc -l)
+
+    if [ "$pdf_count" -eq 0 ]; then
+        print_warning "No PDF files found in $OUTPUT_DIR/"
+        print_info "Compile some files first with option 1 or 2"
+        return 0
+    fi
+
+    print_info "Found $pdf_count PDF file(s)"
+    echo ""
+
     for pdf in "$OUTPUT_DIR"/*.pdf; do
+        # Double-check file exists (in case of race condition)
+        if [ ! -f "$pdf" ]; then
+            continue
+        fi
+
         local filename=$(basename "$pdf")
         local size=$(du -h "$pdf" | cut -f1)
 

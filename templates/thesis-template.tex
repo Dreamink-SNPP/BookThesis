@@ -82,6 +82,12 @@ $endif$
 % Math symbols (for checkboxes)
 \usepackage{amssymb}
 
+% Unicode character mapping for checkboxes
+\usepackage{newunicodechar}
+\newunicodechar{☐}{\(\square\)}      % U+2610 Ballot Box (unchecked)
+\newunicodechar{☑}{\(\boxtimes\)}    % U+2611 Ballot Box with Check
+\newunicodechar{☒}{\(\boxtimes\)}    % U+2612 Ballot Box with X
+
 % Define tightlist command for pandoc compatibility
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
