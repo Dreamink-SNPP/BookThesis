@@ -174,7 +174,7 @@ compile_markdown_file() {
     # Create output directory
     mkdir -p "$OUTPUT_DIR"
 
-    # Build pandoc command with conditional TOC
+    # Build pandoc command with conditional TOC and numbering
     local pandoc_args=(
         "$input_file"
         --output="$output_file"
@@ -190,15 +190,15 @@ compile_markdown_file() {
         --variable=geometry:top=2.54cm
         --variable=geometry:bottom=2.54cm
         --variable=linestretch=1.5
-        --number-sections
     )
 
-    # Conditionally add TOC based on document content (unless overridden)
+    # Conditionally add TOC and section numbering together
+    # (numbering only makes sense with TOC)
     if [ "$skip_toc_detection" = "false" ] && should_generate_toc "$input_file"; then
-        pandoc_args+=(--toc --toc-depth=3)
+        pandoc_args+=(--toc --toc-depth=3 --number-sections)
     fi
 
-    # Add extra args if provided (can override TOC)
+    # Add extra args if provided (can override TOC and numbering)
     if [ -n "$extra_args" ]; then
         pandoc_args+=($extra_args)
     fi
@@ -270,14 +270,14 @@ compile_single_file() {
     local selected_file="${files[$((file_num-1))]}"
     local output_name=$(basename "$selected_file" .md)
 
-    # Ask about TOC generation
+    # Ask about TOC and numbering
     echo ""
-    echo "Table of Contents options:"
-    echo "  y = Generate TOC (always)"
-    echo "  n = Skip TOC (never)"
+    echo "Table of Contents & Section Numbering options:"
+    echo "  y = Generate TOC + numbering (always)"
+    echo "  n = Skip TOC + numbering (cleaner for simple docs)"
     echo "  a = Auto-detect (default: 3+ sections)"
     echo ""
-    read -p "Generate Table of Contents? [y/n/a] (default: a): " toc_choice
+    read -p "Generate TOC & Numbering? [y/n/a] (default: a): " toc_choice
     toc_choice=${toc_choice:-a}  # Default to auto
 
     local extra_args=""
@@ -285,21 +285,21 @@ compile_single_file() {
 
     case "${toc_choice,,}" in
         y|yes)
-            print_info "TOC: Enabled (forced)"
-            extra_args="--toc --toc-depth=3"
+            print_info "TOC & Numbering: Enabled (forced)"
+            extra_args="--toc --toc-depth=3 --number-sections"
             skip_auto="true"
             ;;
         n|no)
-            print_info "TOC: Disabled (forced)"
-            # Don't add any TOC flags - absence means no TOC
+            print_info "TOC & Numbering: Disabled (forced)"
+            # Don't add any TOC or numbering flags - cleaner for simple docs
             extra_args=""
             skip_auto="true"
             ;;
         a|auto)
             if should_generate_toc "$selected_file"; then
-                print_info "TOC: Enabled (auto-detected)"
+                print_info "TOC & Numbering: Enabled (auto-detected)"
             else
-                print_info "TOC: Disabled (auto-detected)"
+                print_info "TOC & Numbering: Disabled (auto-detected)"
             fi
             # Let the compile function handle auto-detection
             skip_auto="false"
@@ -415,14 +415,14 @@ compile_custom_file() {
 
     local output_name=$(basename "$input_file" .md)
 
-    # Ask about TOC generation
+    # Ask about TOC and numbering
     echo ""
-    echo "Table of Contents options:"
-    echo "  y = Generate TOC (always)"
-    echo "  n = Skip TOC (never)"
+    echo "Table of Contents & Section Numbering options:"
+    echo "  y = Generate TOC + numbering (always)"
+    echo "  n = Skip TOC + numbering (cleaner for simple docs)"
     echo "  a = Auto-detect (default: 3+ sections)"
     echo ""
-    read -p "Generate Table of Contents? [y/n/a] (default: a): " toc_choice
+    read -p "Generate TOC & Numbering? [y/n/a] (default: a): " toc_choice
     toc_choice=${toc_choice:-a}  # Default to auto
 
     local extra_args=""
@@ -430,21 +430,21 @@ compile_custom_file() {
 
     case "${toc_choice,,}" in
         y|yes)
-            print_info "TOC: Enabled (forced)"
-            extra_args="--toc --toc-depth=3"
+            print_info "TOC & Numbering: Enabled (forced)"
+            extra_args="--toc --toc-depth=3 --number-sections"
             skip_auto="true"
             ;;
         n|no)
-            print_info "TOC: Disabled (forced)"
-            # Don't add any TOC flags - absence means no TOC
+            print_info "TOC & Numbering: Disabled (forced)"
+            # Don't add any TOC or numbering flags - cleaner for simple docs
             extra_args=""
             skip_auto="true"
             ;;
         a|auto)
             if should_generate_toc "$input_file"; then
-                print_info "TOC: Enabled (auto-detected)"
+                print_info "TOC & Numbering: Enabled (auto-detected)"
             else
-                print_info "TOC: Disabled (auto-detected)"
+                print_info "TOC & Numbering: Disabled (auto-detected)"
             fi
             # Let the compile function handle auto-detection
             skip_auto="false"
@@ -581,10 +581,12 @@ OPTIONS:
   7  - Show this help
   8  - Exit
 
-TABLE OF CONTENTS (TOC) OPTIONS:
+TABLE OF CONTENTS & NUMBERING OPTIONS:
   • Options 1 & 3 ask interactively: y/n/auto
+  • y = TOC + section numbering enabled
+  • n = TOC + section numbering disabled (cleaner for simple docs)
+  • a = Auto-detect both (3+ sections = enabled)
   • Option 2 (batch) uses auto-detection for each file
-  • Auto-detect: Generates TOC for documents with 3+ sections
   • YAML override: Add 'toc: true' or 'toc: false' in frontmatter
 
 STYLE GUIDE APPLIED:
@@ -633,7 +635,7 @@ show_menu() {
   7) Show help
   8) Exit
 
-  💡 Options 1 & 3 let you choose: TOC Yes/No/Auto
+  💡 Options 1 & 3 let you choose: TOC+Numbering Yes/No/Auto
 
 EOF
 }
