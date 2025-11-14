@@ -6,6 +6,11 @@
 
 \documentclass[12pt,a4paper]{article}
 
+% Fix for "Missing number" error with pandoc-generated content
+\makeatletter
+\@ifundefined{BreakableAlign}{\newenvironment{BreakableAlign}{}{}}{}
+\makeatother
+
 % ============================================================================
 % PACKAGE IMPORTS
 % ============================================================================
@@ -51,6 +56,7 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{calc}  % For calculations in tables
 
 % Links and references
 \usepackage{hyperref}
@@ -76,6 +82,15 @@ $endif$
 % Define tightlist command for pandoc compatibility
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Additional pandoc compatibility fixes
+\providecommand{\passthrough}[1]{#1}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{cslreferences}%
+  {\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
+  {\par}
 
 % ============================================================================
 % FONT CONFIGURATION

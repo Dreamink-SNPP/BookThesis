@@ -18,6 +18,11 @@ TEMPLATE_FILE="templates/thesis-template.tex"
 BUILD_DIR="build/markdown"
 DOCS_DIR="docs"
 OUTPUT_DIR="$BUILD_DIR/pdf"
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Performance: Enable parallel compilation (requires GNU parallel)
+# Set to 0 to disable, or number of jobs (e.g., 4)
+PARALLEL_JOBS=0
 
 # Colors for output
 RED='\033[0;31m'
@@ -88,6 +93,59 @@ check_template() {
     return 0
 }
 
+# Security: Validate file path to prevent path traversal attacks
+validate_file_path() {
+    local file_path="$1"
+
+    # Check for path traversal attempts
+    if [[ "$file_path" =~ \.\. ]]; then
+        print_error "Security: Path traversal not allowed (..)"
+        return 1
+    fi
+
+    # Check for absolute paths outside repository
+    if [[ "$file_path" = /* ]]; then
+        # Resolve to canonical path
+        local canonical_path=$(readlink -f "$file_path" 2>/dev/null || realpath "$file_path" 2>/dev/null)
+        if [ -z "$canonical_path" ]; then
+            print_error "Security: Cannot resolve path: $file_path"
+            return 1
+        fi
+
+        # Ensure it's within repository root
+        if [[ ! "$canonical_path" =~ ^"$REPO_ROOT" ]]; then
+            print_error "Security: File must be within repository: $file_path"
+            return 1
+        fi
+    fi
+
+    return 0
+}
+
+# Detect if document needs TOC based on content
+should_generate_toc() {
+    local input_file="$1"
+
+    # Check YAML frontmatter for toc: true/false
+    if grep -q "^toc: *false" "$input_file" 2>/dev/null; then
+        return 1  # Don't generate TOC
+    fi
+
+    if grep -q "^toc: *true" "$input_file" 2>/dev/null; then
+        return 0  # Generate TOC
+    fi
+
+    # Auto-detect: count headings (## or more)
+    local heading_count=$(grep -c "^##" "$input_file" 2>/dev/null || echo "0")
+
+    # Generate TOC if document has 3 or more sections
+    if [ "$heading_count" -ge 3 ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 # ============================================================================
 # COMPILATION FUNCTIONS
 # ============================================================================
@@ -97,6 +155,12 @@ compile_markdown_file() {
     local output_name="$2"
     local extra_args="${3:-}"
 
+    # Security: Validate file path
+    if ! validate_file_path "$input_file"; then
+        return 1
+    fi
+
+    # File existence check (note: TOCTOU is mitigated by pandoc's own error handling)
     if [ ! -f "$input_file" ]; then
         print_error "Input file not found: $input_file"
         return 1
@@ -109,28 +173,43 @@ compile_markdown_file() {
     # Create output directory
     mkdir -p "$OUTPUT_DIR"
 
-    # Compile with pandoc
-    pandoc "$input_file" \
-        --output="$output_file" \
-        --from=markdown \
-        --to=pdf \
-        --pdf-engine=lualatex \
-        --template="$TEMPLATE_FILE" \
-        --variable=fontsize=12pt \
-        --variable=papersize=a4 \
-        --variable=geometry:left=3cm \
-        --variable=geometry:right=3cm \
-        --variable=geometry:top=2.54cm \
-        --variable=geometry:bottom=2.54cm \
-        --variable=linestretch=1.5 \
-        --number-sections \
-        --toc \
-        --toc-depth=3 \
-        $extra_args \
-        2>&1 | tee "$BUILD_DIR/last-compilation.log"
+    # Build pandoc command with conditional TOC
+    local pandoc_args=(
+        "$input_file"
+        --output="$output_file"
+        --from=markdown+yaml_metadata_block
+        --to=pdf
+        --pdf-engine=lualatex
+        --pdf-engine-opt=-interaction=nonstopmode
+        --template="$TEMPLATE_FILE"
+        --variable=fontsize=12pt
+        --variable=papersize=a4
+        --variable=geometry:left=3cm
+        --variable=geometry:right=3cm
+        --variable=geometry:top=2.54cm
+        --variable=geometry:bottom=2.54cm
+        --variable=linestretch=1.5
+        --number-sections
+    )
 
-    local exit_code=${PIPESTATUS[0]}
+    # Conditionally add TOC based on document content
+    if should_generate_toc "$input_file"; then
+        pandoc_args+=(--toc --toc-depth=3)
+    fi
 
+    # Add extra args if provided
+    if [ -n "$extra_args" ]; then
+        pandoc_args+=($extra_args)
+    fi
+
+    # Compile with pandoc (atomic operation, handles TOCTOU internally)
+    if pandoc "${pandoc_args[@]}" 2>&1 | tee "$BUILD_DIR/last-compilation.log"; then
+        local exit_code=0
+    else
+        local exit_code=$?
+    fi
+
+    # Verify successful compilation
     if [ $exit_code -eq 0 ] && [ -f "$output_file" ]; then
         local size=$(du -h "$output_file" | cut -f1)
         if command -v pdfinfo &> /dev/null; then
@@ -143,6 +222,13 @@ compile_markdown_file() {
     else
         print_error "Compilation failed for: $input_file"
         print_info "Check log: $BUILD_DIR/last-compilation.log"
+
+        # Show last few lines of error
+        if [ -f "$BUILD_DIR/last-compilation.log" ]; then
+            echo ""
+            print_info "Last error lines:"
+            tail -n 15 "$BUILD_DIR/last-compilation.log" | grep -E "^!|ERROR|Warning" || tail -n 5 "$BUILD_DIR/last-compilation.log"
+        fi
         return 1
     fi
 }
@@ -203,29 +289,53 @@ compile_all_files() {
     fi
 
     print_info "Found ${#files[@]} Markdown file(s)"
-    echo ""
 
-    local success_count=0
-    local fail_count=0
+    # Check if parallel is available and enabled
+    if [ "$PARALLEL_JOBS" -gt 0 ] && command -v parallel &> /dev/null; then
+        print_info "Using parallel compilation with $PARALLEL_JOBS jobs"
+        echo ""
 
-    for file in "${files[@]}"; do
-        local output_name=$(basename "$file" .md)
+        # Export functions and variables for GNU parallel
+        export -f compile_markdown_file validate_file_path should_generate_toc
+        export -f print_info print_success print_error print_warning print_step
+        export TEMPLATE_FILE BUILD_DIR OUTPUT_DIR REPO_ROOT
+        export RED GREEN YELLOW BLUE MAGENTA CYAN NC
 
-        if compile_markdown_file "$file" "$output_name"; then
-            ((success_count++))
-        else
-            ((fail_count++))
+        # Compile in parallel
+        printf "%s\n" "${files[@]}" | \
+            parallel --jobs "$PARALLEL_JOBS" --line-buffer \
+            'compile_markdown_file {} $(basename {} .md); echo ""'
+
+        local exit_code=$?
+    else
+        if [ "$PARALLEL_JOBS" -gt 0 ]; then
+            print_warning "GNU parallel not found, using sequential compilation"
         fi
         echo ""
-    done
 
-    echo "═══════════════════════════════════════════"
-    print_info "Compilation Summary:"
-    print_success "Successful: $success_count"
-    if [ $fail_count -gt 0 ]; then
-        print_error "Failed: $fail_count"
+        # Sequential compilation
+        local success_count=0
+        local fail_count=0
+
+        for file in "${files[@]}"; do
+            local output_name=$(basename "$file" .md)
+
+            if compile_markdown_file "$file" "$output_name"; then
+                ((success_count++))
+            else
+                ((fail_count++))
+            fi
+            echo ""
+        done
+
+        echo "═══════════════════════════════════════════"
+        print_info "Compilation Summary:"
+        print_success "Successful: $success_count"
+        if [ $fail_count -gt 0 ]; then
+            print_error "Failed: $fail_count"
+        fi
+        echo "═══════════════════════════════════════════"
     fi
-    echo "═══════════════════════════════════════════"
 }
 
 compile_custom_file() {
