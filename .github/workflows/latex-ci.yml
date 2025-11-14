@@ -54,3 +54,39 @@ jobs:
     - name: Show PDF information
       if: success()
       run: ./compile.sh 5
+
+    - name: Create/Update GitHub Release
+      if: success() && github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: latest
+        name: Latest PDF Build
+        body: |
+          📚 Latest build of the book PDF
+
+          **Commit:** ${{ github.sha }}
+          **Date:** ${{ github.event.head_commit.timestamp }}
+          **Author:** ${{ github.event.head_commit.author.name }}
+
+          Download the PDF below ⬇️
+        files: build/Libro.pdf
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Prepare GitHub Pages content
+      if: success() && github.ref == 'refs/heads/main'
+      run: |
+        mkdir -p pages
+        cp build/Libro.pdf pages/Libro.pdf
+        cp .github/pages-template/index.html pages/index.html
+
+    - name: Deploy to GitHub Pages
+      if: success() && github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./pages
+        publish_branch: gh-pages
+        force_orphan: true
