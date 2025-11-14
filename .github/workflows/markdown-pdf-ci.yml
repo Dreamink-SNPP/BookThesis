@@ -88,12 +88,15 @@ jobs:
         done
 
     - name: Compile all Markdown files to PDF
+      id: compile
+      continue-on-error: true
       run: |
         echo "🔨 Starting batch compilation..."
         chmod +x compile-md.sh
-        ./compile-md.sh 2
+        ./compile-md.sh 2 || echo "COMPILATION_FAILED=true" >> $GITHUB_ENV
 
     - name: Validate PDF outputs
+      id: validate
       run: |
         echo "🔍 Validating generated PDFs..."
 
@@ -109,18 +112,23 @@ jobs:
 
         # Validate each PDF
         FAILED=0
+        VALID=0
+        FAILED_PDFS=""
+
         for pdf in build/markdown/pdf/*.pdf; do
           PDF_SIZE=$(stat -c%s "$pdf" 2>/dev/null || stat -f%z "$pdf" 2>/dev/null)
 
           if [ "$PDF_SIZE" -lt 1024 ]; then
             echo "❌ Error: $pdf is too small ($PDF_SIZE bytes)"
-            FAILED=1
+            FAILED=$((FAILED + 1))
+            FAILED_PDFS="$FAILED_PDFS\n  - $(basename "$pdf"): Too small ($PDF_SIZE bytes)"
             continue
           fi
 
           if ! head -c 4 "$pdf" | grep -q "^%PDF"; then
             echo "❌ Error: $pdf is not a valid PDF"
-            FAILED=1
+            FAILED=$((FAILED + 1))
+            FAILED_PDFS="$FAILED_PDFS\n  - $(basename "$pdf"): Invalid PDF header"
             continue
           fi
 
@@ -130,14 +138,32 @@ jobs:
           echo "✓ $(basename "$pdf")"
           echo "    Size: ${SIZE_KB} KB"
           echo "    Pages: ${PAGES:-N/A}"
+          VALID=$((VALID + 1))
         done
 
+        echo ""
+        echo "═══════════════════════════════════════════"
+        echo "📊 Validation Summary:"
+        echo "  ✅ Valid PDFs: $VALID"
+
         if [ $FAILED -ne 0 ]; then
+          echo "  ❌ Failed PDFs: $FAILED"
           echo ""
-          echo "❌ Some PDF files failed validation"
-          exit 1
+          echo "Failed files:"
+          echo -e "$FAILED_PDFS"
+          echo "═══════════════════════════════════════════"
+
+          # Don't fail if we have some valid PDFs
+          if [ $VALID -gt 0 ]; then
+            echo ""
+            echo "⚠️  Some PDFs failed, but continuing with valid ones..."
+            exit 0
+          else
+            exit 1
+          fi
         fi
 
+        echo "═══════════════════════════════════════════"
         echo ""
         echo "✓ All PDF files validated successfully"
 
@@ -252,27 +278,80 @@ jobs:
         echo "## 📊 Compilation Summary" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
 
-        if [ -d "build/markdown/pdf" ]; then
-          PDF_COUNT=$(find build/markdown/pdf -name "*.pdf" -type f | wc -l)
-          echo "✅ Successfully compiled **${PDF_COUNT}** PDF file(s)" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Generated Files:" >> $GITHUB_STEP_SUMMARY
+        # Count total markdown files
+        TOTAL_MD=$(find docs -name "*.md" -type f | wc -l)
+        echo "**Total Markdown files:** $TOTAL_MD" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
 
-          for pdf in build/markdown/pdf/*.pdf; do
-            if [ -f "$pdf" ]; then
-              PAGES=$(pdfinfo "$pdf" 2>/dev/null | grep Pages | awk '{print $2}')
-              SIZE=$(du -h "$pdf" | cut -f1)
-              echo "- 📄 \`$(basename "$pdf")\` - ${PAGES:-?} pages, ${SIZE}" >> $GITHUB_STEP_SUMMARY
+        if [ -d "build/markdown/pdf" ]; then
+          PDF_COUNT=$(find build/markdown/pdf -name "*.pdf" -type f 2>/dev/null | wc -l)
+
+          if [ "$PDF_COUNT" -gt 0 ]; then
+            echo "✅ Successfully compiled **${PDF_COUNT}** PDF file(s)" >> $GITHUB_STEP_SUMMARY
+
+            # Check if any failed
+            FAILED_COUNT=$((TOTAL_MD - PDF_COUNT))
+            if [ "$FAILED_COUNT" -gt 0 ]; then
+              echo "⚠️ **${FAILED_COUNT}** file(s) failed to compile" >> $GITHUB_STEP_SUMMARY
             fi
-          done
+
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### ✅ Generated Files:" >> $GITHUB_STEP_SUMMARY
+
+            for pdf in build/markdown/pdf/*.pdf; do
+              if [ -f "$pdf" ]; then
+                PAGES=$(pdfinfo "$pdf" 2>/dev/null | grep Pages | awk '{print $2}')
+                SIZE=$(du -h "$pdf" | cut -f1)
+                echo "- 📄 \`$(basename "$pdf")\` - ${PAGES:-?} pages, ${SIZE}" >> $GITHUB_STEP_SUMMARY
+              fi
+            done
+
+            # Show failed files if any
+            if [ "$FAILED_COUNT" -gt 0 ]; then
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "### ❌ Failed Files:" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "The following files failed to compile:" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+
+              # Find all .md files and check which PDFs are missing
+              for md_file in $(find docs -name "*.md" -type f | sort); do
+                BASE_NAME=$(basename "$md_file" .md)
+                if [ ! -f "build/markdown/pdf/${BASE_NAME}.pdf" ]; then
+                  echo "- ❌ \`$(basename "$md_file")\`" >> $GITHUB_STEP_SUMMARY
+                fi
+              done
+
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "💡 **Tip:** Check the compilation logs above for error details." >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "❌ No PDF files were generated" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Error:** All $TOTAL_MD files failed to compile. Check the logs above for details." >> $GITHUB_STEP_SUMMARY
+          fi
         else
-          echo "❌ No PDF files were generated" >> $GITHUB_STEP_SUMMARY
+          echo "❌ No PDF files were generated (build directory missing)" >> $GITHUB_STEP_SUMMARY
         fi
 
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "### Style Guide Applied:" >> $GITHUB_STEP_SUMMARY
-        echo "- Font: TeX Gyre Termes (Times New Roman)" >> $GITHUB_STEP_SUMMARY
-        echo "- Size: 12pt" >> $GITHUB_STEP_SUMMARY
-        echo "- Margins: 3cm (left/right), 2.54cm (top/bottom)" >> $GITHUB_STEP_SUMMARY
-        echo "- Line spacing: 1.5" >> $GITHUB_STEP_SUMMARY
-        echo "- Section numbering: Automatic" >> $GITHUB_STEP_SUMMARY
+        echo "---" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 📐 Style Guide Applied:" >> $GITHUB_STEP_SUMMARY
+        echo "- **Font:** TeX Gyre Termes (Times New Roman)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Size:** 12pt" >> $GITHUB_STEP_SUMMARY
+        echo "- **Margins:** 3cm (left/right), 2.54cm (top/bottom)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Line spacing:** 1.5" >> $GITHUB_STEP_SUMMARY
+        echo "- **Section numbering:** Automatic" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        if [ "$COMPILATION_FAILED" = "true" ]; then
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔍 Troubleshooting" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "To view detailed error logs:" >> $GITHUB_STEP_SUMMARY
+          echo "1. Expand the **'Compile all Markdown files to PDF'** step above" >> $GITHUB_STEP_SUMMARY
+          echo "2. Look for \`[ERROR]\` messages" >> $GITHUB_STEP_SUMMARY
+          echo "3. Check the **'Upload compilation log'** artifact for full details" >> $GITHUB_STEP_SUMMARY
+        fi

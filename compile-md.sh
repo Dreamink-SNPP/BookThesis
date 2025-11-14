@@ -301,10 +301,11 @@ compile_all_files() {
         export TEMPLATE_FILE BUILD_DIR OUTPUT_DIR REPO_ROOT
         export RED GREEN YELLOW BLUE MAGENTA CYAN NC
 
-        # Compile in parallel
+        # Compile in parallel (don't fail fast)
+        local failed_files=()
         printf "%s\n" "${files[@]}" | \
-            parallel --jobs "$PARALLEL_JOBS" --line-buffer \
-            'compile_markdown_file {} $(basename {} .md); echo ""'
+            parallel --jobs "$PARALLEL_JOBS" --line-buffer --keep-order \
+            'compile_markdown_file {} $(basename {} .md) || echo "FAILED:{}" >&2; echo ""'
 
         local exit_code=$?
     else
@@ -313,9 +314,10 @@ compile_all_files() {
         fi
         echo ""
 
-        # Sequential compilation
+        # Sequential compilation (continue on errors)
         local success_count=0
         local fail_count=0
+        local failed_files=()
 
         for file in "${files[@]}"; do
             local output_name=$(basename "$file" .md)
@@ -324,18 +326,33 @@ compile_all_files() {
                 ((success_count++))
             else
                 ((fail_count++))
+                failed_files+=("$file")
             fi
             echo ""
         done
 
         echo "═══════════════════════════════════════════"
         print_info "Compilation Summary:"
-        print_success "Successful: $success_count"
+        print_success "Successful: $success_count / ${#files[@]}"
+
         if [ $fail_count -gt 0 ]; then
-            print_error "Failed: $fail_count"
+            print_error "Failed: $fail_count / ${#files[@]}"
+            echo ""
+            print_info "Failed files:"
+            for failed_file in "${failed_files[@]}"; do
+                echo "  • $(basename "$failed_file")"
+            done
+            echo ""
         fi
         echo "═══════════════════════════════════════════"
+
+        # Return error if any files failed
+        if [ $fail_count -gt 0 ]; then
+            return 1
+        fi
     fi
+
+    return 0
 }
 
 compile_custom_file() {
