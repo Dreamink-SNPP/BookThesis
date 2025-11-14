@@ -154,6 +154,7 @@ compile_markdown_file() {
     local input_file="$1"
     local output_name="$2"
     local extra_args="${3:-}"
+    local skip_toc_detection="${4:-false}"
 
     # Security: Validate file path
     if ! validate_file_path "$input_file"; then
@@ -192,12 +193,12 @@ compile_markdown_file() {
         --number-sections
     )
 
-    # Conditionally add TOC based on document content
-    if should_generate_toc "$input_file"; then
+    # Conditionally add TOC based on document content (unless overridden)
+    if [ "$skip_toc_detection" = "false" ] && should_generate_toc "$input_file"; then
         pandoc_args+=(--toc --toc-depth=3)
     fi
 
-    # Add extra args if provided
+    # Add extra args if provided (can override TOC)
     if [ -n "$extra_args" ]; then
         pandoc_args+=($extra_args)
     fi
@@ -269,8 +270,49 @@ compile_single_file() {
     local selected_file="${files[$((file_num-1))]}"
     local output_name=$(basename "$selected_file" .md)
 
+    # Ask about TOC generation
     echo ""
-    compile_markdown_file "$selected_file" "$output_name"
+    echo "Table of Contents options:"
+    echo "  y = Generate TOC (always)"
+    echo "  n = Skip TOC (never)"
+    echo "  a = Auto-detect (default: 3+ sections)"
+    echo ""
+    read -p "Generate Table of Contents? [y/n/a] (default: a): " toc_choice
+    toc_choice=${toc_choice:-a}  # Default to auto
+
+    local extra_args=""
+    case "${toc_choice,,}" in
+        y|yes)
+            print_info "TOC: Enabled (forced)"
+            extra_args="--toc --toc-depth=3"
+            ;;
+        n|no)
+            print_info "TOC: Disabled (forced)"
+            extra_args="--no-toc"
+            ;;
+        a|auto)
+            if should_generate_toc "$selected_file"; then
+                print_info "TOC: Enabled (auto-detected)"
+            else
+                print_info "TOC: Disabled (auto-detected)"
+            fi
+            # Let the compile function handle auto-detection
+            ;;
+        *)
+            print_warning "Invalid choice, using auto-detect"
+            ;;
+    esac
+
+    echo ""
+
+    # Override auto-detection if user specified
+    if [ "$toc_choice" = "y" ] || [ "$toc_choice" = "n" ]; then
+        # Skip auto-detection and use user's choice
+        compile_markdown_file "$selected_file" "$output_name" "$extra_args" "true"
+    else
+        # Use auto-detection
+        compile_markdown_file "$selected_file" "$output_name"
+    fi
 }
 
 compile_all_files() {
@@ -372,8 +414,49 @@ compile_custom_file() {
 
     local output_name=$(basename "$input_file" .md)
 
+    # Ask about TOC generation
     echo ""
-    compile_markdown_file "$input_file" "$output_name"
+    echo "Table of Contents options:"
+    echo "  y = Generate TOC (always)"
+    echo "  n = Skip TOC (never)"
+    echo "  a = Auto-detect (default: 3+ sections)"
+    echo ""
+    read -p "Generate Table of Contents? [y/n/a] (default: a): " toc_choice
+    toc_choice=${toc_choice:-a}  # Default to auto
+
+    local extra_args=""
+    case "${toc_choice,,}" in
+        y|yes)
+            print_info "TOC: Enabled (forced)"
+            extra_args="--toc --toc-depth=3"
+            ;;
+        n|no)
+            print_info "TOC: Disabled (forced)"
+            extra_args="--no-toc"
+            ;;
+        a|auto)
+            if should_generate_toc "$input_file"; then
+                print_info "TOC: Enabled (auto-detected)"
+            else
+                print_info "TOC: Disabled (auto-detected)"
+            fi
+            # Let the compile function handle auto-detection
+            ;;
+        *)
+            print_warning "Invalid choice, using auto-detect"
+            ;;
+    esac
+
+    echo ""
+
+    # Override auto-detection if user specified
+    if [ "$toc_choice" = "y" ] || [ "$toc_choice" = "n" ]; then
+        # Skip auto-detection and use user's choice
+        compile_markdown_file "$input_file" "$output_name" "$extra_args" "true"
+    else
+        # Use auto-detection
+        compile_markdown_file "$input_file" "$output_name"
+    fi
 }
 
 compile_merged_document() {
@@ -487,14 +570,20 @@ USAGE:
   ./compile-md.sh [option]
 
 OPTIONS:
-  1  - Compile single file (interactive selection)
+  1  - Compile single file (interactive selection + TOC choice)
   2  - Compile all Markdown files in docs/
-  3  - Compile custom file (specify path)
+  3  - Compile custom file (specify path + TOC choice)
   4  - Compile merged document (all files combined)
   5  - Show PDF files information
   6  - Clean build files
   7  - Show this help
   8  - Exit
+
+TABLE OF CONTENTS (TOC) OPTIONS:
+  • Options 1 & 3 ask interactively: y/n/auto
+  • Option 2 (batch) uses auto-detection for each file
+  • Auto-detect: Generates TOC for documents with 3+ sections
+  • YAML override: Add 'toc: true' or 'toc: false' in frontmatter
 
 STYLE GUIDE APPLIED:
   • Font: TeX Gyre Termes (Times New Roman)
@@ -533,14 +622,16 @@ show_menu() {
 ║         Pandoc + LuaLaTeX + Academic Style Guide              ║
 ╚════════════════════════════════════════════════════════════════╝
 
-  1) Compile single file (interactive selection)
+  1) Compile single file (interactive + TOC choice)
   2) Compile all Markdown files in docs/
-  3) Compile custom file (specify path)
+  3) Compile custom file (specify path + TOC choice)
   4) Compile merged document (all files combined)
   5) Show PDF files information
   6) Clean build files
   7) Show help
   8) Exit
+
+  💡 Options 1 & 3 let you choose: TOC Yes/No/Auto
 
 EOF
 }
