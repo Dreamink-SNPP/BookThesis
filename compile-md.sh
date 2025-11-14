@@ -281,14 +281,19 @@ compile_single_file() {
     toc_choice=${toc_choice:-a}  # Default to auto
 
     local extra_args=""
+    local skip_auto="false"
+
     case "${toc_choice,,}" in
         y|yes)
             print_info "TOC: Enabled (forced)"
             extra_args="--toc --toc-depth=3"
+            skip_auto="true"
             ;;
         n|no)
             print_info "TOC: Disabled (forced)"
-            extra_args="--no-toc"
+            # Don't add any TOC flags - absence means no TOC
+            extra_args=""
+            skip_auto="true"
             ;;
         a|auto)
             if should_generate_toc "$selected_file"; then
@@ -297,22 +302,18 @@ compile_single_file() {
                 print_info "TOC: Disabled (auto-detected)"
             fi
             # Let the compile function handle auto-detection
+            skip_auto="false"
             ;;
         *)
             print_warning "Invalid choice, using auto-detect"
+            skip_auto="false"
             ;;
     esac
 
     echo ""
 
-    # Override auto-detection if user specified
-    if [ "$toc_choice" = "y" ] || [ "$toc_choice" = "n" ]; then
-        # Skip auto-detection and use user's choice
-        compile_markdown_file "$selected_file" "$output_name" "$extra_args" "true"
-    else
-        # Use auto-detection
-        compile_markdown_file "$selected_file" "$output_name"
-    fi
+    # Compile with appropriate TOC settings
+    compile_markdown_file "$selected_file" "$output_name" "$extra_args" "$skip_auto"
 }
 
 compile_all_files() {
@@ -425,14 +426,19 @@ compile_custom_file() {
     toc_choice=${toc_choice:-a}  # Default to auto
 
     local extra_args=""
+    local skip_auto="false"
+
     case "${toc_choice,,}" in
         y|yes)
             print_info "TOC: Enabled (forced)"
             extra_args="--toc --toc-depth=3"
+            skip_auto="true"
             ;;
         n|no)
             print_info "TOC: Disabled (forced)"
-            extra_args="--no-toc"
+            # Don't add any TOC flags - absence means no TOC
+            extra_args=""
+            skip_auto="true"
             ;;
         a|auto)
             if should_generate_toc "$input_file"; then
@@ -441,22 +447,18 @@ compile_custom_file() {
                 print_info "TOC: Disabled (auto-detected)"
             fi
             # Let the compile function handle auto-detection
+            skip_auto="false"
             ;;
         *)
             print_warning "Invalid choice, using auto-detect"
+            skip_auto="false"
             ;;
     esac
 
     echo ""
 
-    # Override auto-detection if user specified
-    if [ "$toc_choice" = "y" ] || [ "$toc_choice" = "n" ]; then
-        # Skip auto-detection and use user's choice
-        compile_markdown_file "$input_file" "$output_name" "$extra_args" "true"
-    else
-        # Use auto-detection
-        compile_markdown_file "$input_file" "$output_name"
-    fi
+    # Compile with appropriate TOC settings
+    compile_markdown_file "$input_file" "$output_name" "$extra_args" "$skip_auto"
 }
 
 compile_merged_document() {
