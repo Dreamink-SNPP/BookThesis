@@ -10,6 +10,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    # Permissions needed for GitHub Pages deployment
+    permissions:
+      contents: write      # For creating releases
+      pages: write         # For deploying to Pages
+      id-token: write      # For Pages deployment authentication
+
     container:
       image: danteev/texlive:latest
 
@@ -82,11 +88,13 @@ jobs:
         cp build/Libro.pdf pages/Libro.pdf
         cp .github/pages-template/index.html pages/index.html
 
+    - name: Upload Pages artifact
+      if: success() && github.ref == 'refs/heads/main'
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./pages
+
     - name: Deploy to GitHub Pages
       if: success() && github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./pages
-        publish_branch: gh-pages
-        force_orphan: true
+      uses: actions/deploy-pages@v4
+      id: deployment
