@@ -33,24 +33,12 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Cache apt packages
-      uses: actions/cache@v4
-      with:
-        path: /var/cache/apt/archives
-        key: apt-markdown-${{ runner.os }}-${{ hashFiles('.github/workflows/markdown-pdf-ci.yml') }}
-        restore-keys: |
-          apt-markdown-${{ runner.os }}-
+    # Note: apt package caching disabled due to permission issues
+    # GitHub Actions runners don't have write access to /var/cache/apt/archives
 
-    - name: Cache TeX Live packages
-      uses: actions/cache@v4
-      with:
-        path: |
-          /usr/share/texlive
-          /usr/share/texmf
-          ~/.texlive
-        key: texlive-${{ runner.os }}-${{ hashFiles('templates/**') }}
-        restore-keys: |
-          texlive-${{ runner.os }}-
+    # Note: TeX Live caching disabled due to permission issues
+    # System directories like /usr/share/texlive require root permissions
+    # The cache would only save marginal time on package installation
 
     - name: Install dependencies
       run: |

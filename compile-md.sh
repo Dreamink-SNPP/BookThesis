@@ -150,6 +150,42 @@ should_generate_toc() {
 # COMPILATION FUNCTIONS
 # ============================================================================
 
+# Preprocess markdown to handle GitHub-specific extensions
+preprocess_markdown() {
+    local input_file="$1"
+    local temp_file="$2"
+
+    # Copy file and process GitHub-specific syntax
+    sed -E '
+        # Convert GitHub alerts to blockquotes with bold labels
+        s/^> \[!NOTE\]/> **Nota:**/g
+        s/^> \[!WARNING\]/> **Advertencia:**/g
+        s/^> \[!TIP\]/> **Consejo:**/g
+        s/^> \[!IMPORTANT\]/> **Importante:**/g
+        s/^> \[!CAUTION\]/> **Precaución:**/g
+    ' "$input_file" > "$temp_file"
+
+    # Handle Mermaid diagrams - replace with placeholder text
+    # This is a simple solution; for production, consider using mermaid-filter
+    local in_mermaid=false
+    local temp_file2="${temp_file}.tmp"
+
+    while IFS= read -r line; do
+        if [[ "$line" == '```mermaid' ]]; then
+            in_mermaid=true
+            echo "" >> "$temp_file2"
+            echo "> **Diagrama:** El diagrama original está disponible en la versión web del documento." >> "$temp_file2"
+            echo "" >> "$temp_file2"
+        elif [[ "$line" == '```' ]] && [ "$in_mermaid" = true ]; then
+            in_mermaid=false
+        elif [ "$in_mermaid" = false ]; then
+            echo "$line" >> "$temp_file2"
+        fi
+    done < "$temp_file"
+
+    mv "$temp_file2" "$temp_file"
+}
+
 compile_markdown_file() {
     local input_file="$1"
     local output_name="$2"
@@ -174,9 +210,13 @@ compile_markdown_file() {
     # Create output directory
     mkdir -p "$OUTPUT_DIR"
 
+    # Preprocess markdown to handle GitHub-specific extensions
+    local temp_input="$BUILD_DIR/temp_${output_name}.md"
+    preprocess_markdown "$input_file" "$temp_input"
+
     # Build pandoc command with conditional TOC and numbering
     local pandoc_args=(
-        "$input_file"
+        "$temp_input"
         --output="$output_file"
         --from=markdown+yaml_metadata_block
         --to=pdf
@@ -194,7 +234,7 @@ compile_markdown_file() {
 
     # Conditionally add TOC and section numbering together
     # (numbering only makes sense with TOC)
-    if [ "$skip_toc_detection" = "false" ] && should_generate_toc "$input_file"; then
+    if [ "$skip_toc_detection" = "false" ] && should_generate_toc "$temp_input"; then
         pandoc_args+=(--toc --toc-depth=3 --number-sections)
     fi
 
@@ -204,11 +244,11 @@ compile_markdown_file() {
     fi
 
     # Compile with pandoc (atomic operation, handles TOCTOU internally)
-    if pandoc "${pandoc_args[@]}" 2>&1 | tee "$BUILD_DIR/last-compilation.log"; then
-        local exit_code=0
-    else
-        local exit_code=$?
-    fi
+    # Use PIPESTATUS to capture pandoc's exit code, not tee's
+    set +e  # Temporarily disable exit on error
+    pandoc "${pandoc_args[@]}" 2>&1 | tee "$BUILD_DIR/last-compilation.log"
+    local exit_code=${PIPESTATUS[0]}  # Get pandoc's exit code, not tee's
+    set -e  # Re-enable exit on error
 
     # Verify successful compilation
     if [ $exit_code -eq 0 ] && [ -f "$output_file" ]; then
@@ -219,17 +259,27 @@ compile_markdown_file() {
         else
             print_success "Compiled successfully: $output_file ($size)"
         fi
+        # Clean up temporary file
+        rm -f "$temp_input" "${temp_input}.tmp"
         return 0
     else
         print_error "Compilation failed for: $input_file"
         print_info "Check log: $BUILD_DIR/last-compilation.log"
 
-        # Show last few lines of error
+        # Show error details
         if [ -f "$BUILD_DIR/last-compilation.log" ]; then
             echo ""
-            print_info "Last error lines:"
-            tail -n 15 "$BUILD_DIR/last-compilation.log" | grep -E "^!|ERROR|Warning" || tail -n 5 "$BUILD_DIR/last-compilation.log"
+            print_error "Compilation error details:"
+            # Show pandoc errors (lines with ! or Error)
+            if grep -E "^!|[Ee]rror" "$BUILD_DIR/last-compilation.log" > /dev/null 2>&1; then
+                grep -E "^!|[Ee]rror" "$BUILD_DIR/last-compilation.log" | head -20
+            else
+                # If no clear errors, show last 10 lines
+                tail -n 10 "$BUILD_DIR/last-compilation.log"
+            fi
         fi
+        # Clean up temporary file even on error
+        rm -f "$temp_input" "${temp_input}.tmp"
         return 1
     fi
 }
