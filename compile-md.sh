@@ -18,6 +18,7 @@ TEMPLATE_FILE="templates/thesis-template.tex"
 BUILD_DIR="build/markdown"
 DOCS_DIR="docs"
 OUTPUT_DIR="$BUILD_DIR/pdf"
+LOG_DIR="$BUILD_DIR/logs"
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Performance: Enable parallel compilation (requires GNU parallel)
@@ -150,6 +151,42 @@ should_generate_toc() {
 # COMPILATION FUNCTIONS
 # ============================================================================
 
+# Preprocess markdown to handle GitHub-specific extensions
+preprocess_markdown() {
+    local input_file="$1"
+    local temp_file="$2"
+
+    # Copy file and process GitHub-specific syntax
+    sed -E '
+        # Convert GitHub alerts to blockquotes with bold labels
+        s/^> \[!NOTE\]/> **Nota:**/g
+        s/^> \[!WARNING\]/> **Advertencia:**/g
+        s/^> \[!TIP\]/> **Consejo:**/g
+        s/^> \[!IMPORTANT\]/> **Importante:**/g
+        s/^> \[!CAUTION\]/> **Precaución:**/g
+    ' "$input_file" > "$temp_file"
+
+    # Handle Mermaid diagrams - replace with placeholder text
+    # This is a simple solution; for production, consider using mermaid-filter
+    local in_mermaid=false
+    local temp_file2="${temp_file}.tmp"
+
+    while IFS= read -r line; do
+        if [[ "$line" == '```mermaid' ]]; then
+            in_mermaid=true
+            echo "" >> "$temp_file2"
+            echo "> **Diagrama:** El diagrama original está disponible en la versión web del documento." >> "$temp_file2"
+            echo "" >> "$temp_file2"
+        elif [[ "$line" == '```' ]] && [ "$in_mermaid" = true ]; then
+            in_mermaid=false
+        elif [ "$in_mermaid" = false ]; then
+            echo "$line" >> "$temp_file2"
+        fi
+    done < "$temp_file"
+
+    mv "$temp_file2" "$temp_file"
+}
+
 compile_markdown_file() {
     local input_file="$1"
     local output_name="$2"
@@ -171,12 +208,17 @@ compile_markdown_file() {
 
     print_step "Compiling: $(basename "$input_file") → $(basename "$output_file")"
 
-    # Create output directory
+    # Create output and log directories
     mkdir -p "$OUTPUT_DIR"
+    mkdir -p "$LOG_DIR"
+
+    # Preprocess markdown to handle GitHub-specific extensions
+    local temp_input="$BUILD_DIR/temp_${output_name}.md"
+    preprocess_markdown "$input_file" "$temp_input"
 
     # Build pandoc command with conditional TOC and numbering
     local pandoc_args=(
-        "$input_file"
+        "$temp_input"
         --output="$output_file"
         --from=markdown+yaml_metadata_block
         --to=pdf
@@ -194,7 +236,7 @@ compile_markdown_file() {
 
     # Conditionally add TOC and section numbering together
     # (numbering only makes sense with TOC)
-    if [ "$skip_toc_detection" = "false" ] && should_generate_toc "$input_file"; then
+    if [ "$skip_toc_detection" = "false" ] && should_generate_toc "$temp_input"; then
         pandoc_args+=(--toc --toc-depth=3 --number-sections)
     fi
 
@@ -204,11 +246,13 @@ compile_markdown_file() {
     fi
 
     # Compile with pandoc (atomic operation, handles TOCTOU internally)
-    if pandoc "${pandoc_args[@]}" 2>&1 | tee "$BUILD_DIR/last-compilation.log"; then
-        local exit_code=0
-    else
-        local exit_code=$?
-    fi
+    # Each file gets its own log for better error tracking
+    local log_file="$LOG_DIR/${output_name}.log"
+    set +e  # Temporarily disable exit on error
+    # Save output to log file (suppress console output for cleaner batch mode)
+    pandoc "${pandoc_args[@]}" > "$log_file" 2>&1
+    local exit_code=$?
+    set -e  # Re-enable exit on error
 
     # Verify successful compilation
     if [ $exit_code -eq 0 ] && [ -f "$output_file" ]; then
@@ -219,17 +263,27 @@ compile_markdown_file() {
         else
             print_success "Compiled successfully: $output_file ($size)"
         fi
+        # Clean up temporary file
+        rm -f "$temp_input" "${temp_input}.tmp"
         return 0
     else
         print_error "Compilation failed for: $input_file"
-        print_info "Check log: $BUILD_DIR/last-compilation.log"
+        print_info "Check log: $log_file"
 
-        # Show last few lines of error
-        if [ -f "$BUILD_DIR/last-compilation.log" ]; then
+        # Show error details
+        if [ -f "$log_file" ]; then
             echo ""
-            print_info "Last error lines:"
-            tail -n 15 "$BUILD_DIR/last-compilation.log" | grep -E "^!|ERROR|Warning" || tail -n 5 "$BUILD_DIR/last-compilation.log"
+            print_error "Compilation error details:"
+            # Show pandoc errors (lines with ! or Error)
+            if grep -E "^!|[Ee]rror" "$log_file" > /dev/null 2>&1; then
+                grep -E "^!|[Ee]rror" "$log_file" | head -20
+            else
+                # If no clear errors, show last 10 lines
+                tail -n 10 "$log_file"
+            fi
         fi
+        # Clean up temporary file even on error
+        rm -f "$temp_input" "${temp_input}.tmp"
         return 1
     fi
 }
@@ -339,9 +393,9 @@ compile_all_files() {
         echo ""
 
         # Export functions and variables for GNU parallel
-        export -f compile_markdown_file validate_file_path should_generate_toc
+        export -f compile_markdown_file validate_file_path should_generate_toc preprocess_markdown
         export -f print_info print_success print_error print_warning print_step
-        export TEMPLATE_FILE BUILD_DIR OUTPUT_DIR REPO_ROOT
+        export TEMPLATE_FILE BUILD_DIR OUTPUT_DIR LOG_DIR REPO_ROOT
         export RED GREEN YELLOW BLUE MAGENTA CYAN NC
 
         # Compile in parallel (don't fail fast)
@@ -366,9 +420,9 @@ compile_all_files() {
             local output_name=$(basename "$file" .md)
 
             if compile_markdown_file "$file" "$output_name"; then
-                ((success_count++))
+                success_count=$((success_count + 1))
             else
-                ((fail_count++))
+                fail_count=$((fail_count + 1))
                 failed_files+=("$file")
             fi
             echo ""
@@ -386,6 +440,31 @@ compile_all_files() {
                 echo "  • $(basename "$failed_file")"
             done
             echo ""
+            echo "═══════════════════════════════════════════"
+            print_error "Error Details:"
+            echo ""
+
+            # Show errors from each failed file
+            for failed_file in "${failed_files[@]}"; do
+                local failed_basename=$(basename "$failed_file" .md)
+                local failed_log="$LOG_DIR/${failed_basename}.log"
+
+                echo -e "${RED}❌ $(basename "$failed_file")${NC}"
+
+                if [ -f "$failed_log" ]; then
+                    # Show pandoc errors (lines with ! or Error)
+                    if grep -E "^!|[Ee]rror" "$failed_log" > /dev/null 2>&1; then
+                        grep -E "^!|[Ee]rror" "$failed_log" | head -5 | sed 's/^/   /'
+                    else
+                        # If no clear errors, show last 5 lines
+                        tail -n 5 "$failed_log" | sed 's/^/   /'
+                    fi
+                    echo "   Full log: $failed_log"
+                else
+                    echo "   Log file not found"
+                fi
+                echo ""
+            done
         fi
         echo "═══════════════════════════════════════════"
 

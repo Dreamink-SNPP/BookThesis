@@ -33,24 +33,12 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Cache apt packages
-      uses: actions/cache@v4
-      with:
-        path: /var/cache/apt/archives
-        key: apt-markdown-${{ runner.os }}-${{ hashFiles('.github/workflows/markdown-pdf-ci.yml') }}
-        restore-keys: |
-          apt-markdown-${{ runner.os }}-
+    # Note: apt package caching disabled due to permission issues
+    # GitHub Actions runners don't have write access to /var/cache/apt/archives
 
-    - name: Cache TeX Live packages
-      uses: actions/cache@v4
-      with:
-        path: |
-          /usr/share/texlive
-          /usr/share/texmf
-          ~/.texlive
-        key: texlive-${{ runner.os }}-${{ hashFiles('templates/**') }}
-        restore-keys: |
-          texlive-${{ runner.os }}-
+    # Note: TeX Live caching disabled due to permission issues
+    # System directories like /usr/share/texlive require root permissions
+    # The cache would only save marginal time on package installation
 
     - name: Install dependencies
       run: |
@@ -94,6 +82,41 @@ jobs:
         echo "🔨 Starting batch compilation..."
         chmod +x compile-md.sh
         ./compile-md.sh 2 || echo "COMPILATION_FAILED=true" >> $GITHUB_ENV
+
+    - name: Display compilation errors
+      if: always()
+      run: |
+        echo "📋 Checking for compilation errors..."
+
+        if [ -d "build/markdown/logs" ]; then
+          ERROR_COUNT=$(find build/markdown/logs -name "*.log" -type f 2>/dev/null | wc -l)
+
+          if [ "$ERROR_COUNT" -gt 0 ]; then
+            echo ""
+            echo "════════════════════════════════════════════"
+            echo "🔍 Compilation Error Summary"
+            echo "════════════════════════════════════════════"
+            echo ""
+
+            for log_file in build/markdown/logs/*.log; do
+              if [ -f "$log_file" ]; then
+                FILE_NAME=$(basename "$log_file" .log)
+
+                # Check if this compilation had errors
+                if grep -E "^!|[Ee]rror" "$log_file" > /dev/null 2>&1; then
+                  echo "❌ $FILE_NAME.md"
+                  echo "   Errors found:"
+                  grep -E "^!|[Ee]rror" "$log_file" | head -5 | sed 's/^/   /'
+                  echo ""
+                else
+                  echo "✅ $FILE_NAME.md - Compiled successfully"
+                fi
+              fi
+            done
+
+            echo "════════════════════════════════════════════"
+          fi
+        fi
 
     - name: Validate PDF outputs
       id: validate
@@ -180,12 +203,12 @@ jobs:
         path: build/markdown/pdf/*.pdf
         retention-days: 30
 
-    - name: Upload compilation log
+    - name: Upload compilation logs
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: compilation-log-${{ github.run_number }}
-        path: build/markdown/last-compilation.log
+        name: compilation-logs-${{ github.run_number }}
+        path: build/markdown/logs/*.log
         retention-days: 7
 
     - name: Create merged PDF (optional)
@@ -352,6 +375,6 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "To view detailed error logs:" >> $GITHUB_STEP_SUMMARY
           echo "1. Expand the **'Compile all Markdown files to PDF'** step above" >> $GITHUB_STEP_SUMMARY
-          echo "2. Look for \`[ERROR]\` messages" >> $GITHUB_STEP_SUMMARY
-          echo "3. Check the **'Upload compilation log'** artifact for full details" >> $GITHUB_STEP_SUMMARY
+          echo "2. Look for \`[ERROR]\` messages and error details" >> $GITHUB_STEP_SUMMARY
+          echo "3. Check the **'Upload compilation logs'** artifact for individual log files" >> $GITHUB_STEP_SUMMARY
         fi
