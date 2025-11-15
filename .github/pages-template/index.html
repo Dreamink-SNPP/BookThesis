@@ -10,6 +10,7 @@
     <meta name="robots" content="index, follow">
     <title>Sistema de Estructuración Dramática de Obras Audiovisuales</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
 </head>
 <body>
     <!-- Skip to main content for accessibility -->
@@ -29,22 +30,44 @@
             para obras audiovisuales.
         </p>
 
-        <nav aria-label="Acciones principales">
-            <a href="Libro.pdf"
-               class="download-btn"
-               download
-               aria-label="Descargar PDF del libro (se abre en nueva pestaña)"
-               role="button">
-                📥 Descargar PDF
-            </a>
+        <nav aria-label="Acciones principales" class="actions-nav">
+            <div class="button-group">
+                <a href="Libro.pdf"
+                   class="btn btn-primary"
+                   download
+                   aria-label="Descargar PDF del libro completo"
+                   role="button">
+                    <span class="btn-icon">📥</span>
+                    <span class="btn-text">
+                        <span class="btn-title">Descargar Libro</span>
+                        <span class="btn-subtitle">PDF completo del proyecto</span>
+                    </span>
+                </a>
 
-            <a href="https://github.com/Dreamink-SNPP/BookThesis"
-               class="github-link"
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="Ver repositorio en GitHub (se abre en nueva pestaña)">
-                🔗 Ver en GitHub
-            </a>
+                <a href="STYLE_GUIDE_DOC.pdf"
+                   class="btn btn-secondary"
+                   download
+                   aria-label="Descargar guía de estilo del proyecto"
+                   role="button">
+                    <span class="btn-icon">📋</span>
+                    <span class="btn-text">
+                        <span class="btn-title">Guía de Estilo</span>
+                        <span class="btn-subtitle">Lineamientos del proyecto</span>
+                    </span>
+                </a>
+
+                <a href="https://github.com/Dreamink-SNPP/BookThesis"
+                   class="btn btn-github"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Ver repositorio en GitHub (se abre en nueva pestaña)">
+                    <span class="btn-icon">🔗</span>
+                    <span class="btn-text">
+                        <span class="btn-title">Ver en GitHub</span>
+                        <span class="btn-subtitle">Código fuente y colaboración</span>
+                    </span>
+                </a>
+            </div>
         </nav>
 
         <footer class="info" role="contentinfo">

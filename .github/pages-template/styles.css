@@ -1,5 +1,10 @@
 /* BookThesis Landing Page Styles */
 
+/*
+ * BookThesis Landing Page Styles
+ * Mobile-first responsive design with modular components
+ */
+
 /* CSS Variables for easy theming and modularity */
 :root {
     /* Color palette - Dark theme */
@@ -16,17 +21,21 @@
     /* Accent colors */
     --accent-primary: #3b82f6;         /* Blue 500 */
     --accent-primary-hover: #2563eb;   /* Blue 600 */
-    --accent-secondary: #10b981;       /* Emerald 500 */
-    --accent-secondary-hover: #059669; /* Emerald 600 */
+    --accent-secondary: #8b5cf6;       /* Violet 500 */
+    --accent-secondary-hover: #7c3aed; /* Violet 600 */
+    --accent-tertiary: #10b981;        /* Emerald 500 */
+    --accent-tertiary-hover: #059669;  /* Emerald 600 */
 
     /* Button colors */
-    --btn-download-bg: var(--accent-primary);
-    --btn-download-hover: var(--accent-primary-hover);
+    --btn-primary-bg: var(--accent-primary);
+    --btn-primary-hover: var(--accent-primary-hover);
+    --btn-secondary-bg: var(--accent-secondary);
+    --btn-secondary-hover: var(--accent-secondary-hover);
     --btn-github-bg: #374151;          /* Gray 700 */
     --btn-github-hover: #4b5563;       /* Gray 600 */
 
     /* Badge color */
-    --badge-bg: var(--accent-secondary);
+    --badge-bg: var(--accent-tertiary);
     --badge-text: white;
 
     /* Border colors */
@@ -57,6 +66,7 @@
     --transition-fast: 0.2s;
 }
 
+/* ===== BASE STYLES ===== */
 * {
     margin: 0;
     padding: 0;
@@ -72,29 +82,37 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-md);
+    /* Mobile-first: smaller padding */
+    padding: var(--spacing-sm);
 }
 
+/* ===== CONTAINER ===== */
 .container {
-    max-width: 800px;
+    width: 100%;
+    max-width: 900px;
     background: var(--container-bg);
     border-radius: var(--radius-md);
     box-shadow: 0 20px 60px var(--container-shadow);
-    padding: var(--spacing-2xl);
+    /* Mobile-first: smaller padding */
+    padding: var(--spacing-lg) var(--spacing-md);
     text-align: center;
 }
 
+/* ===== TYPOGRAPHY ===== */
 h1 {
     color: var(--text-primary);
     font-size: var(--font-size-2xl);
     margin-bottom: var(--spacing-md);
     line-height: 1.2;
+    /* Better text wrapping on mobile */
+    word-wrap: break-word;
 }
 
 .subtitle {
     color: var(--text-secondary);
     font-size: var(--font-size-lg);
     margin-bottom: var(--spacing-lg);
+    max-width: 100%;
 }
 
 .authors {
@@ -104,60 +122,117 @@ h1 {
     font-style: italic;
 }
 
-.download-btn {
-    display: inline-block;
-    background: var(--btn-download-bg);
-    color: white;
-    padding: 15px 40px;
-    border-radius: var(--radius-sm);
-    text-decoration: none;
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
-    margin: var(--spacing-sm);
+/* ===== NAVIGATION & BUTTONS ===== */
+.actions-nav {
+    margin: var(--spacing-xl) 0;
 }
 
-.download-btn:hover {
-    background: var(--btn-download-hover);
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    width: 100%;
+}
+
+/* Base button styles - Mobile first */
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--spacing-md);
+    width: 100%;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: transform var(--transition-fast),
+                box-shadow var(--transition-fast),
+                background-color var(--transition-fast);
+    cursor: pointer;
+    border: none;
+    text-align: left;
+}
+
+.btn-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.btn-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    display: block;
+}
+
+.btn-subtitle {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    font-weight: 400;
+    display: block;
+}
+
+/* Button variants */
+.btn-primary {
+    background: var(--btn-primary-bg);
+}
+
+.btn-primary:hover {
+    background: var(--btn-primary-hover);
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
 }
 
-.download-btn:focus {
+.btn-primary:focus {
     outline: 3px solid var(--accent-primary);
     outline-offset: 2px;
 }
 
-.github-link {
-    display: inline-block;
-    background: var(--btn-github-bg);
-    color: white;
-    padding: 15px 40px;
-    border-radius: var(--radius-sm);
-    text-decoration: none;
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
-    margin: var(--spacing-sm);
+.btn-secondary {
+    background: var(--btn-secondary-bg);
 }
 
-.github-link:hover {
+.btn-secondary:hover {
+    background: var(--btn-secondary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+}
+
+.btn-secondary:focus {
+    outline: 3px solid var(--accent-secondary);
+    outline-offset: 2px;
+}
+
+.btn-github {
+    background: var(--btn-github-bg);
+}
+
+.btn-github:hover {
     background: var(--btn-github-hover);
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(55, 65, 81, 0.4);
 }
 
-.github-link:focus {
+.btn-github:focus {
     outline: 3px solid var(--btn-github-bg);
     outline-offset: 2px;
 }
 
+/* ===== FOOTER ===== */
 .info {
     margin-top: var(--spacing-xl);
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--border-color);
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    line-height: 1.8;
 }
 
 .info a {
@@ -171,6 +246,7 @@ h1 {
     text-decoration: underline;
 }
 
+/* ===== BADGE ===== */
 .badge {
     display: inline-block;
     background: var(--badge-bg);
@@ -182,6 +258,7 @@ h1 {
     margin-bottom: var(--spacing-md);
 }
 
+/* ===== ACCESSIBILITY ===== */
 /* Skip to content link for accessibility */
 .skip-link {
     position: absolute;
@@ -199,20 +276,80 @@ h1 {
     top: 0;
 }
 
-/* Responsive design */
-@media (max-width: 600px) {
-    :root {
-        --font-size-2xl: 1.8rem;
+/* ===== RESPONSIVE DESIGN ===== */
+/* Mobile-first approach - these styles apply to larger screens */
+
+/* Small tablets and larger (600px+) */
+@media (min-width: 600px) {
+    body {
+        padding: var(--spacing-md);
     }
 
     .container {
-        padding: var(--spacing-lg) var(--spacing-md);
+        padding: var(--spacing-xl) var(--spacing-lg);
     }
 
-    .download-btn,
-    .github-link {
-        display: block;
-        margin: var(--spacing-sm) 0;
+    .button-group {
+        gap: var(--spacing-md);
+    }
+
+    .btn {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+}
+
+/* Tablets and desktop (768px+) */
+@media (min-width: 768px) {
+    :root {
+        --font-size-2xl: 2.5rem;
+    }
+
+    .container {
+        padding: var(--spacing-2xl);
+    }
+
+    .button-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .btn {
+        flex: 1 1 calc(50% - var(--spacing-md));
+        min-width: 200px;
+        max-width: 280px;
+    }
+}
+
+/* Large desktop (1024px+) */
+@media (min-width: 1024px) {
+    .btn:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* Mobile-specific overrides (max-width approach for specific needs) */
+@media (max-width: 599px) {
+    :root {
+        --font-size-2xl: 1.6rem;
+        --font-size-xl: 1.1rem;
+        --font-size-lg: 1rem;
+    }
+
+    h1 {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .authors {
+        margin-bottom: var(--spacing-md);
+    }
+
+    .btn-title {
+        font-size: 1rem;
+    }
+
+    .btn-subtitle {
+        font-size: 0.8rem;
     }
 }
 
