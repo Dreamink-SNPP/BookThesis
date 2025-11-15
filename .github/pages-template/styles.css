@@ -374,8 +374,7 @@ h1 {
         transition: none !important;
     }
 
-    .download-btn:hover,
-    .github-link:hover {
+    .btn:hover {
         transform: none;
     }
 }

@@ -86,6 +86,70 @@ jobs:
         echo "✓ PDF validation passed"
         echo "  Size: $PDF_SIZE bytes ($(echo "scale=2; $PDF_SIZE/1024" | bc) KB)"
 
+    - name: Install Pandoc for Style Guide compilation
+      if: success() && github.ref == 'refs/heads/main'
+      run: |
+        echo "📦 Installing Pandoc for Style Guide PDF compilation..."
+        apt-get update -qq
+        apt-get install -y pandoc
+
+    - name: Compile Style Guide PDF
+      if: success() && github.ref == 'refs/heads/main'
+      run: |
+        echo "📚 Compiling Style Guide PDF..."
+
+        # Create output directories
+        mkdir -p build/markdown/pdf
+        mkdir -p build/markdown/logs
+
+        # Check if style guide exists
+        if [ ! -f "docs/STYLE_GUIDE_DOC.md" ]; then
+          echo "⚠ Warning: docs/STYLE_GUIDE_DOC.md not found, skipping"
+          exit 0
+        fi
+
+        # Preprocess markdown (handle GitHub-specific extensions)
+        sed -E '
+          s/^> \[!NOTE\]/> **Nota:**/g
+          s/^> \[!WARNING\]/> **Advertencia:**/g
+          s/^> \[!TIP\]/> **Consejo:**/g
+          s/^> \[!IMPORTANT\]/> **Importante:**/g
+          s/^> \[!CAUTION\]/> **Precaución:**/g
+        ' docs/STYLE_GUIDE_DOC.md > build/markdown/temp_STYLE_GUIDE_DOC.md
+
+        # Compile with pandoc
+        pandoc build/markdown/temp_STYLE_GUIDE_DOC.md \
+          --output=build/markdown/pdf/STYLE_GUIDE_DOC.pdf \
+          --from=markdown+yaml_metadata_block \
+          --to=pdf \
+          --pdf-engine=lualatex \
+          --pdf-engine-opt=-interaction=nonstopmode \
+          --template=templates/thesis-template.tex \
+          --variable=fontsize=12pt \
+          --variable=papersize=a4 \
+          --variable=geometry:left=3cm \
+          --variable=geometry:right=3cm \
+          --variable=geometry:top=2.54cm \
+          --variable=geometry:bottom=2.54cm \
+          --variable=linestretch=1.5 \
+          --toc \
+          --toc-depth=3 \
+          --number-sections \
+          > build/markdown/logs/STYLE_GUIDE_DOC.log 2>&1
+
+        # Verify compilation succeeded
+        if [ -f "build/markdown/pdf/STYLE_GUIDE_DOC.pdf" ]; then
+          SIZE=$(du -h build/markdown/pdf/STYLE_GUIDE_DOC.pdf | cut -f1)
+          echo "✓ Style Guide PDF compiled successfully ($SIZE)"
+        else
+          echo "❌ Style Guide compilation failed"
+          cat build/markdown/logs/STYLE_GUIDE_DOC.log
+          exit 1
+        fi
+
+        # Clean up temp file
+        rm -f build/markdown/temp_STYLE_GUIDE_DOC.md
+
     - name: Create/Update GitHub Release
       if: success() && github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@5be0e66d93ac7ed76da52eca8bb058f665c3a5fe  # v2.4.2
@@ -111,7 +175,7 @@ jobs:
       run: |
         mkdir -p pages
 
-        # Copy PDF with error handling
+        # Copy main book PDF with error handling
         if ! cp build/Libro.pdf pages/Libro.pdf; then
           echo "Error: Failed to copy PDF to pages directory"
           exit 1
@@ -127,6 +191,22 @@ jobs:
         if ! cp .github/pages-template/styles.css pages/styles.css; then
           echo "Error: Failed to copy styles.css to pages directory"
           exit 1
+        fi
+
+        # Copy JavaScript file
+        if ! cp .github/pages-template/main.js pages/main.js; then
+          echo "Error: Failed to copy main.js to pages directory"
+          exit 1
+        fi
+
+        # Copy Style Guide PDF if it exists (from markdown workflow)
+        # This is optional - if it doesn't exist, we'll create a placeholder
+        if [ -f "build/markdown/pdf/STYLE_GUIDE_DOC.pdf" ]; then
+          cp build/markdown/pdf/STYLE_GUIDE_DOC.pdf pages/STYLE_GUIDE_DOC.pdf
+          echo "✓ Style Guide PDF copied from markdown build"
+        else
+          echo "⚠ Style Guide PDF not found in markdown build"
+          echo "Note: The Style Guide will be available after the markdown-pdf-ci workflow runs"
         fi
 
         echo "✓ GitHub Pages content prepared successfully"
