@@ -20,6 +20,7 @@ Enter path: ../../etc/passwd  # ❌ BLOCKED
 ```
 
 **Protection:**
+
 - ✅ Blocks `..` in paths
 - ✅ Validates absolute paths are within repository
 - ✅ Uses canonical path resolution
@@ -29,11 +30,13 @@ Enter path: ../../etc/passwd  # ❌ BLOCKED
 **Issue:** Time-of-check-time-of-use race condition between file existence check and pandoc execution
 
 **Solution:**
+
 - File existence check remains for user-friendly error messages
 - Pandoc handles the actual file access atomically
 - Exit code verification after compilation
 
 **Before:**
+
 ```bash
 if [ ! -f "$input_file" ]; then
     # ... error
@@ -43,6 +46,7 @@ pandoc "$input_file" ...  # Might fail
 ```
 
 **After:**
+
 ```bash
 # Check exists (for UX)
 if [ ! -f "$input_file" ]; then
@@ -65,6 +69,7 @@ fi
 **Feature:** Compile multiple files simultaneously using GNU parallel
 
 **Configuration:**
+
 ```bash
 # In compile-md.sh:
 PARALLEL_JOBS=0  # Disabled by default
@@ -72,12 +77,14 @@ PARALLEL_JOBS=4  # Enable with 4 concurrent jobs
 ```
 
 **Usage:**
+
 ```bash
 # Edit compile-md.sh, set PARALLEL_JOBS=4
 ./compile-md.sh 2  # Batch compile with parallelization
 ```
 
 **Requirements:**
+
 ```bash
 # Install GNU parallel
 sudo apt-get install parallel  # Ubuntu/Debian
@@ -85,6 +92,7 @@ brew install parallel          # macOS
 ```
 
 **Performance:**
+
 - 10 documents, sequential: ~60 seconds
 - 10 documents, 4 jobs: ~20 seconds
 - **~3x faster** for large document sets
@@ -98,28 +106,36 @@ brew install parallel          # macOS
 **Solution:** Smart TOC detection with three modes
 
 #### Mode 1: YAML Frontmatter Control
+
 ```markdown
 ---
 toc: false
 ---
+
 # Short Document
+
 No TOC needed for this one-pager.
 ```
 
 #### Mode 2: Explicit Enable
+
 ```markdown
 ---
 toc: true
 ---
+
 # Complex Document
+
 Force TOC generation.
 ```
 
 #### Mode 3: Auto-Detection (Default)
+
 - **Generates TOC:** Documents with 3+ level-2 headings (`##`)
 - **Skips TOC:** Documents with < 3 sections
 
 **Benefits:**
+
 - ✅ Faster compilation for simple documents
 - ✅ Cleaner output for single-page docs
 - ✅ User control via frontmatter
@@ -132,11 +148,13 @@ Force TOC generation.
 ### 1. Enhanced Error Messages
 
 **Before:**
+
 ```
 [ERROR] Compilation failed for: docs/file.md
 ```
 
 **After:**
+
 ```
 [ERROR] Compilation failed for: docs/file.md
 [INFO] Check log: build/markdown/last-compilation.log
@@ -149,6 +167,7 @@ l.172 \tightlist
 ### 2. LaTeX Compatibility Fixes
 
 **Added to template:**
+
 ```latex
 % Fix "Missing number" errors
 \makeatletter
@@ -167,6 +186,7 @@ l.172 \tightlist
 ```
 
 **Common errors fixed:**
+
 - ✅ `\tightlist` undefined
 - ✅ `\passthrough` undefined
 - ✅ "Missing number" at `\begin`
@@ -188,16 +208,21 @@ l.172 \tightlist
 ## 📋 Configuration Variables
 
 ### Repository Root Detection
+
 ```bash
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ```
+
 **Purpose:** Security validation of file paths
 
 ### Parallel Jobs
+
 ```bash
 PARALLEL_JOBS=0  # Default: disabled
 ```
+
 **Options:**
+
 - `0` - Sequential compilation
 - `2-8` - Number of parallel jobs
 - Requires GNU parallel
@@ -207,6 +232,7 @@ PARALLEL_JOBS=0  # Default: disabled
 ## 🔍 Testing
 
 ### Test Path Security
+
 ```bash
 # Should block
 ./compile-md.sh 3
@@ -218,6 +244,7 @@ docs/ProtocoloBasico.md  # ✅ Allowed
 ```
 
 ### Test TOC Generation
+
 ```bash
 # Create test file
 cat > test.md <<EOF
@@ -235,6 +262,7 @@ test.md
 ```
 
 ### Test Parallel Compilation
+
 ```bash
 # Edit compile-md.sh: PARALLEL_JOBS=4
 time ./compile-md.sh 2
@@ -249,24 +277,26 @@ time ./compile-md.sh 2
 ## 📊 Performance Benchmarks
 
 | Documents | Sequential | Parallel (4 jobs) | Speedup |
-|-----------|-----------|-------------------|---------|
-| 5 files   | 30s       | 12s              | 2.5x    |
-| 10 files  | 60s       | 20s              | 3.0x    |
-| 20 files  | 120s      | 35s              | 3.4x    |
+| --------- | ---------- | ----------------- | ------- |
+| 5 files   | 30s        | 12s               | 2.5x    |
+| 10 files  | 60s        | 20s               | 3.0x    |
+| 20 files  | 120s       | 35s               | 3.4x    |
 
-*Note: Times vary based on document complexity and system resources*
+_Note: Times vary based on document complexity and system resources_
 
 ---
 
 ## 🔐 Security Best Practices
 
 ### For Users
+
 1. ✅ Only compile Markdown files from trusted sources
 2. ✅ Review files before compilation
 3. ✅ Keep compilation scripts updated
 4. ✅ Don't modify `REPO_ROOT` validation
 
 ### For Administrators
+
 1. ✅ Run compilation in sandboxed environment
 2. ✅ Limit file system access
 3. ✅ Monitor compilation logs
@@ -277,6 +307,7 @@ time ./compile-md.sh 2
 ## 🚀 Future Enhancements
 
 ### Potential Additions
+
 - [ ] File size limits for input/output
 - [ ] Compilation timeout per file
 - [ ] Checksum verification
@@ -298,16 +329,19 @@ time ./compile-md.sh 2
 ## ✅ Summary
 
 ### Security
+
 - ✅ Path traversal protection
 - ✅ TOCTOU mitigation
 - ✅ Input validation
 
 ### Performance
+
 - ✅ Parallel compilation support
 - ✅ Conditional TOC generation
 - ✅ Optimized pandoc arguments
 
 ### Reliability
+
 - ✅ Enhanced error messages
 - ✅ LaTeX compatibility fixes
 - ✅ Non-stop compilation mode

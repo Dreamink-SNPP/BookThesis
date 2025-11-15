@@ -2,7 +2,6 @@
 
 **Título del estudio:** Sistematización del proceso de pre-escritura de guiones en los guionistas del Departamento Central. 2025.
 
-
 ## 1. Preparación previa a la entrevista
 
 ### 1.1. Selección de participantes
@@ -43,7 +42,6 @@
 - ☐ Cuaderno de notas y bolígrafos
 - ☐ Tarjetas de presentación o contacto del investigador
 - ☐ Agua para el entrevistado
-
 
 ## 2. Durante la entrevista
 
@@ -119,7 +117,6 @@
    - Permitir unos minutos de conversación informal
    - Puede surgir información valiosa fuera de grabación (registrar en notas)
 
-
 ## 3. Después de la entrevista
 
 ### 3.1. Inmediatamente después
@@ -170,7 +167,6 @@
    - Digitalizar y almacenar en PDF
    - Guardar originales físicos en lugar seguro
 
-
 ## 4. Consideraciones éticas
 
 ### 4.1. Durante todo el proceso
@@ -200,7 +196,6 @@
 - Documentar la eliminación
 - Agradecer de todos modos su participación inicial
 
-
 ## 5. Control de calidad
 
 ### 5.1. Checklist pre-entrevista
@@ -220,7 +215,6 @@
 - ☐ Consentimiento Informado firmado y archivado
 - ☐ Transcripción programada
 - ☐ Datos almacenados de forma segura
-
 
 ## 6. Análisis de datos (posterior)
 
@@ -244,7 +238,6 @@ Una vez completadas las 3 entrevistas:
    - Uso de citas textuales representativas
    - Interpretación a la luz del marco teórico
    - Identificación de hallazgos relevantes
-
 
 **Documento elaborado:** Noviembre 2025
 

@@ -66,19 +66,19 @@ Displays a menu with all available options.
 
 All compiled PDFs automatically follow these specifications:
 
-| Property | Value |
-|----------|-------|
-| **Font** | TeX Gyre Termes (Times New Roman) |
-| **Size** | 12pt |
-| **Paper** | A4 |
-| **Margins (Left/Right)** | 3cm |
-| **Margins (Top/Bottom)** | 2.54cm |
-| **Line Spacing** | 1.5 |
-| **Paragraph Spacing** | 10pt after |
-| **Paragraph Indentation** | None (0pt) |
-| **Section Numbering** | Automatic |
-| **Headers** | Empty (configurable) |
-| **Footers** | Page numbers centered |
+| Property                  | Value                             |
+| ------------------------- | --------------------------------- |
+| **Font**                  | TeX Gyre Termes (Times New Roman) |
+| **Size**                  | 12pt                              |
+| **Paper**                 | A4                                |
+| **Margins (Left/Right)**  | 3cm                               |
+| **Margins (Top/Bottom)**  | 2.54cm                            |
+| **Line Spacing**          | 1.5                               |
+| **Paragraph Spacing**     | 10pt after                        |
+| **Paragraph Indentation** | None (0pt)                        |
+| **Section Numbering**     | Automatic                         |
+| **Headers**               | Empty (configurable)              |
+| **Footers**               | Page numbers centered             |
 
 These settings are defined in `templates/thesis-template.tex` and match the requirements in `STYLE_GUIDE_DOC.md`.
 
@@ -109,37 +109,44 @@ Run `./compile-md.sh` to see the interactive menu:
 ### Option Descriptions
 
 #### 1. Single File Compilation
+
 - Shows list of available Markdown files in `docs/`
 - Select file by number
 - Compiles to `build/markdown/pdf/[filename].pdf`
 
 #### 2. Batch Compilation
+
 - Compiles ALL `.md` files in `docs/` directory
 - Processes files recursively (includes subdirectories)
 - Shows summary of successes/failures
 
 #### 3. Custom File
+
 - Specify any Markdown file path
 - Useful for files outside `docs/` directory
 - Full or relative paths accepted
 
 #### 4. Merged Document
+
 - Combines all Markdown files into single PDF
 - Files sorted alphabetically
 - Output: `build/markdown/pdf/merged-document.pdf`
 - Useful for creating complete document compilations
 
 #### 5. PDF Information
+
 - Lists all generated PDFs
 - Shows file size, page count, PDF version
 - Requires `pdfinfo` utility
 
 #### 6. Clean Build Files
+
 - Removes entire `build/markdown/` directory
 - Frees disk space
 - Useful before fresh compilation
 
 #### 7. Show Help
+
 - Displays usage information
 - Lists style guide specifications
 - Shows requirements
@@ -204,6 +211,7 @@ After workflow completes:
 ### System Dependencies
 
 #### Ubuntu/Debian
+
 ```bash
 sudo apt-get update
 sudo apt-get install -y \
@@ -216,6 +224,7 @@ sudo apt-get install -y \
 ```
 
 #### Fedora/RHEL
+
 ```bash
 sudo dnf install -y \
   pandoc \
@@ -224,17 +233,20 @@ sudo dnf install -y \
 ```
 
 #### macOS
+
 ```bash
 brew install pandoc
 brew install --cask mactex
 ```
 
 ### Minimal Requirements
+
 - **Pandoc** ≥ 2.x
 - **LuaLaTeX** (from TeX Live)
 - **TeX Gyre Termes font** (included in texlive-fonts-extra)
 
 ### Optional Tools
+
 - `pdfinfo` - For detailed PDF information (from poppler-utils)
 
 ---
@@ -246,6 +258,7 @@ brew install --cask mactex
 The LaTeX template is located at `templates/thesis-template.tex`.
 
 #### Change Font
+
 ```latex
 \setmainfont{TeX Gyre Termes}
 ```
@@ -253,6 +266,7 @@ The LaTeX template is located at `templates/thesis-template.tex`.
 Replace with another font name (must be installed on system).
 
 #### Adjust Margins
+
 ```latex
 \usepackage[
     left=3cm,
@@ -263,6 +277,7 @@ Replace with another font name (must be installed on system).
 ```
 
 #### Line Spacing
+
 ```latex
 \onehalfspacing  % 1.5 spacing
 % or
@@ -270,6 +285,7 @@ Replace with another font name (must be installed on system).
 ```
 
 #### Add Headers/Footers
+
 ```latex
 \fancyhead[L]{Left Header}
 \fancyhead[C]{Center Header}
@@ -285,12 +301,11 @@ Add YAML frontmatter to your Markdown files:
 title: "Document Title"
 author: "Author Name"
 date: "2025-11-14"
-toc: true           # Include table of contents
-toc-depth: 3        # TOC depth level
-lot: true           # List of tables
-lof: true           # List of figures
+toc: true # Include table of contents
+toc-depth: 3 # TOC depth level
+lot: true # List of tables
+lof: true # List of figures
 ---
-
 # Your content here
 ```
 
@@ -312,11 +327,13 @@ OUTPUT_DIR="$BUILD_DIR/pdf"
 ### Problem: Font not found
 
 **Error:**
+
 ```
 ! Package fontspec Error: The font "TeX Gyre Termes" cannot be found.
 ```
 
 **Solution:**
+
 ```bash
 # Check if font is installed
 fc-list | grep "TeX Gyre Termes"
@@ -331,6 +348,7 @@ sudo apt-get install texlive-fonts-extra
 ### Problem: Pandoc not found
 
 **Solution:**
+
 ```bash
 # Ubuntu/Debian
 sudo apt-get install pandoc
@@ -342,6 +360,7 @@ pandoc --version
 ### Problem: LuaLaTeX not found
 
 **Solution:**
+
 ```bash
 # Ubuntu/Debian
 sudo apt-get install texlive-luatex
@@ -355,16 +374,19 @@ lualatex --version
 **Solutions:**
 
 1. **Check log file:**
+
    ```bash
    cat build/markdown/last-compilation.log
    ```
 
 2. **Try compiling single file first:**
+
    ```bash
    ./compile-md.sh 1
    ```
 
 3. **Clean and retry:**
+
    ```bash
    ./compile-md.sh 6  # Clean
    ./compile-md.sh 2  # Compile all
@@ -378,6 +400,7 @@ lualatex --version
 ### Problem: PDF is empty or corrupt
 
 **Checklist:**
+
 - ✅ Markdown file contains content
 - ✅ No LaTeX compilation errors in log
 - ✅ Template file exists and is valid
@@ -388,11 +411,13 @@ lualatex --version
 **Solutions:**
 
 1. **Use relative paths from repository root:**
+
    ```markdown
    ![Caption](images/diagram.png)
    ```
 
 2. **Ensure images exist:**
+
    ```bash
    ls images/diagram.png
    ```
@@ -407,6 +432,7 @@ lualatex --version
 **Solution:**
 
 Add to Markdown frontmatter:
+
 ```yaml
 ---
 lang: es-ES
@@ -414,6 +440,7 @@ lang: es-ES
 ```
 
 Or ensure UTF-8 encoding:
+
 ```bash
 file -i your-file.md
 ```
@@ -441,6 +468,7 @@ More content.
 ```
 
 **Compile:**
+
 ```bash
 ./compile-md.sh 1
 # Select file number
@@ -470,6 +498,7 @@ The research problem is...
 ```
 
 **Compile:**
+
 ```bash
 pandoc docs/thesis-chapter.md \
   -o output.pdf \

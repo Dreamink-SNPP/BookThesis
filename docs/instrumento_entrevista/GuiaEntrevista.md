@@ -8,18 +8,15 @@
 
 **Técnica de análisis:** Análisis de contenido cualitativo
 
-
 ## Objetivo General del Instrumento
 
 Recopilar información detallada sobre los métodos de sistematización del proceso de pre-escritura de guiones utilizados por los guionistas del Departamento Central, caracterizando sus prácticas, herramientas y dificultades.
-
 
 ## Objetivos Específicos que responde el instrumento
 
 1. **OE1:** Identificar las formas de organización de elementos narrativos (personajes, locaciones e ideas) durante la fase de pre-escritura.
 2. **OE2:** Caracterizar las herramientas y métodos utilizados para estructurar dramáticamente sus obras antes del guion literario.
 3. **OE3:** Describir las principales dificultades que enfrentan en la sistematización del proceso de pre-escritura.
-
 
 ## Estructura de la Entrevista
 
@@ -37,7 +34,6 @@ Recopilar información detallada sobre los métodos de sistematización del proc
    - ☐ Licenciatura/carrera relacionada
    - ☐ Otro: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-
 ### **B. CONTEXTO PROFESIONAL** (5 minutos - warming up)
 
 **Objetivo:** Establecer rapport y comprender la trayectoria del guionista
@@ -50,7 +46,6 @@ Recopilar información detallada sobre los métodos de sistematización del proc
 
 7. ¿Actualmente está trabajando en algún proyecto de guion?
    - _Probe:_ ¿En qué fase se encuentra ese proyecto?
-
 
 ### **C. ORGANIZACIÓN DE ELEMENTOS NARRATIVOS** (10-12 minutos)
 
@@ -82,7 +77,6 @@ Recopilar información detallada sobre los métodos de sistematización del proc
     - _Probe:_ ¿Son formatos propios o utiliza plantillas estándar?
     - _Probe:_ ¿Ha desarrollado su propio sistema de organización?
 
-
 ### **D. ESTRUCTURACIÓN DRAMÁTICA** (10 minutos)
 
 **Dimensión 2** - Responde al **Objetivo Específico 2** (parte 1)
@@ -108,7 +102,6 @@ Recopilar información detallada sobre los métodos de sistematización del proc
 15. ¿Cómo visualiza o representa la estructura dramática durante la pre-escritura?
     - _Probe:_ ¿Usa diagramas, escaletas, tarjetas, mapas mentales?
     - _Probe:_ ¿Prefiere métodos visuales o textuales?
-
 
 ### **E. MÉTODOS Y HERRAMIENTAS** (10-12 minutos)
 
@@ -140,7 +133,6 @@ Recopilar información detallada sobre los métodos de sistematización del proc
     - _Probe:_ ¿Cómo ha sido su experiencia?
     - _Probe:_ ¿Por qué continúa o dejó de usar esas herramientas?
 
-
 ### **F. DESAFÍOS Y DIFICULTADES** (8-10 minutos)
 
 **Dimensión 4** - Responde al **Objetivo Específico 3**
@@ -167,7 +159,6 @@ Recopilar información detallada sobre los métodos de sistematización del proc
 23. ¿Qué funcionalidad o característica le gustaría tener en una herramienta de pre-escritura?
     - _Probe:_ ¿Algo que haya imaginado pero que no existe aún?
 
-
 ### **G. CIERRE** (3-5 minutos)
 
 **Objetivo:** Capturar reflexiones finales y perspectiva global
@@ -179,11 +170,9 @@ Recopilar información detallada sobre los métodos de sistematización del proc
 
 26. ¿Le gustaría recibir los resultados de este estudio una vez finalizado?
 
-
 ## Agradecimiento final
 
 _"Muchas gracias por su tiempo y por compartir su experiencia. Su participación es muy valiosa para comprender cómo trabajan los guionistas paraguayos y contribuirá al desarrollo de conocimiento sobre prácticas profesionales en nuestro sector audiovisual."_
-
 
 **Notas para el entrevistador:**
 
@@ -192,7 +181,6 @@ _"Muchas gracias por su tiempo y por compartir su experiencia. Su participación
 - Permitir que el entrevistado se extienda cuando sea pertinente.
 - Estar atento a temas emergentes no previstos en la guía.
 - Registrar observaciones no verbales si son relevantes.
-
 
 **Documento elaborado:** Noviembre 2025
 

@@ -74,13 +74,14 @@ BookThesis/
 
 ### LaTeX Compilation (`./compile.sh`)
 
-| Source | Output Location | Description |
-|--------|----------------|-------------|
+| Source          | Output Location   | Description      |
+| --------------- | ----------------- | ---------------- |
 | `src/Libro.tex` | `build/Libro.pdf` | Main thesis book |
-| `src/**/*.tex` | `build/*.aux` | Auxiliary files |
-| - | `build/*.log` | Compilation logs |
+| `src/**/*.tex`  | `build/*.aux`     | Auxiliary files  |
+| -               | `build/*.log`     | Compilation logs |
 
 **Quick access:**
+
 ```bash
 ./compile.sh 1      # Full compilation
 ls -lh build/*.pdf  # View output
@@ -88,13 +89,14 @@ ls -lh build/*.pdf  # View output
 
 ### Markdown Compilation (`./compile-md.sh`)
 
-| Source | Output Location | Description |
-|--------|----------------|-------------|
-| `docs/**/*.md` | `build/markdown/pdf/[name].pdf` | Individual PDFs |
+| Source          | Output Location                          | Description       |
+| --------------- | ---------------------------------------- | ----------------- |
+| `docs/**/*.md`  | `build/markdown/pdf/[name].pdf`          | Individual PDFs   |
 | All `docs/*.md` | `build/markdown/pdf/merged-document.pdf` | Combined document |
-| - | `build/markdown/last-compilation.log` | Compilation log |
+| -               | `build/markdown/last-compilation.log`    | Compilation log   |
 
 **Quick access:**
+
 ```bash
 ./compile-md.sh 2                    # Compile all
 ls -lh build/markdown/pdf/           # View outputs
@@ -186,6 +188,7 @@ Upload: Artifacts + Release
 ### Source Files (Tracked by Git)
 
 ✅ **Keep in Git:**
+
 - `src/*.tex` - LaTeX source
 - `docs/*.md` - Markdown documentation
 - `bibliography/*.bib` - References
@@ -196,6 +199,7 @@ Upload: Artifacts + Release
 ### Build Files (Git-Ignored)
 
 ❌ **NOT in Git** (automatically ignored via `.gitignore`):
+
 - `build/` - ALL compilation outputs
 - `*.aux`, `*.log`, `*.toc` - LaTeX auxiliary files
 - `*.pdf` (except tracked LFS files)
@@ -214,13 +218,13 @@ Upload: Artifacts + Release
 
 Both compilation systems follow: `STYLE_GUIDE_DOC.md`
 
-| Property | Value |
-|----------|-------|
-| Font | TeX Gyre Termes (Times New Roman) |
-| Size | 12pt |
-| Margins | 3cm (L/R), 2.54cm (T/B) |
-| Line spacing | 1.5 |
-| Section numbering | Automatic |
+| Property          | Value                             |
+| ----------------- | --------------------------------- |
+| Font              | TeX Gyre Termes (Times New Roman) |
+| Size              | 12pt                              |
+| Margins           | 3cm (L/R), 2.54cm (T/B)           |
+| Line spacing      | 1.5                               |
+| Section numbering | Automatic                         |
 
 ---
 
@@ -294,17 +298,20 @@ Add to README.md to show build status:
 ## 🎯 Summary
 
 ### For Writers
+
 - Put LaTeX in `src/`
 - Put Markdown in `docs/`
 - Run `./compile.sh` or `./compile-md.sh`
 - Find PDFs in `build/`
 
 ### For Readers
+
 - Download from [Releases](../../releases)
 - Or get from [Actions](../../actions) artifacts
 - Or view on [GitHub Pages](https://dreamink-snpp.github.io/BookThesis/)
 
 ### For Maintainers
+
 - Source files are version controlled
 - Build outputs are auto-generated
 - CI/CD handles compilation

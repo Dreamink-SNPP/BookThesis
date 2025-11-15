@@ -93,12 +93,14 @@ This mode is useful for automation and scripting.
 ### Installation
 
 Ubuntu/Debian:
+
 ```bash
 apt-get install texlive-luatex biber git-lfs
 git lfs install
 ```
 
 After cloning the repository:
+
 ```bash
 git lfs pull
 ```

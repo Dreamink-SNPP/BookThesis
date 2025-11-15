@@ -10,6 +10,7 @@
 4. **Click on the workflow run** to see details
 
 **Direct URL format:**
+
 ```
 https://github.com/Dreamink-SNPP/BookThesis/actions
 ```
@@ -21,15 +22,18 @@ https://github.com/Dreamink-SNPP/BookThesis/actions
 When a workflow completes, GitHub shows a **Summary** page with:
 
 ### ✅ What Succeeded
+
 - Number of PDFs successfully compiled
 - List of generated files with page counts and sizes
 
 ### ❌ What Failed
+
 - Number of files that failed
 - Exact list of which `.md` files failed
 - Links to error logs
 
 **Example:**
+
 ```
 📊 Compilation Summary
 
@@ -105,12 +109,14 @@ gh run download [RUN_ID] --repo Dreamink-SNPP/BookThesis
 ### Error: `\square` undefined
 
 **Problem:** Markdown checkboxes not supported
+
 ```
 ! Undefined control sequence.
 l.231   \item[$\square$]
 ```
 
 **Solution:** Already fixed! Update to latest template
+
 ```bash
 git pull origin main
 ```
@@ -120,6 +126,7 @@ git pull origin main
 ### Error: `\tightlist` undefined
 
 **Problem:** Compact list formatting not defined
+
 ```
 ! Undefined control sequence.
 l.172 \tightlist
@@ -132,6 +139,7 @@ l.172 \tightlist
 ### Error: "Missing number"
 
 **Problem:** LaTeX parsing error with certain Markdown constructs
+
 ```
 Error producing PDF.
 ! Missing number, treated as zero.
@@ -144,16 +152,19 @@ Error producing PDF.
 ### Error: Font not found
 
 **Problem:** TeX Gyre Termes font not available
+
 ```
 ! Package fontspec Error: The font "TeX Gyre Termes" cannot be found.
 ```
 
 **Solution:** Template automatically falls back to:
+
 1. Times New Roman
 2. Liberation Serif
 3. Latin Modern Roman
 
 No action needed! But for best results on local machine:
+
 ```bash
 sudo apt-get install texlive-fonts-extra
 ```
@@ -163,16 +174,20 @@ sudo apt-get install texlive-fonts-extra
 ### Error: Image not found
 
 **Problem:** Image path is incorrect
+
 ```
 ! Package pdftex.def Error: File `images/diagram.png' not found
 ```
 
 **Solution:** Use paths relative to repository root:
+
 ```markdown
 <!-- ✅ Correct -->
+
 ![Diagram](images/diagram.png)
 
 <!-- ❌ Incorrect -->
+
 ![Diagram](../images/diagram.png)
 ![Diagram](/absolute/path/diagram.png)
 ```
@@ -186,6 +201,7 @@ sudo apt-get install texlive-fonts-extra
 **Step:** "Install dependencies"
 
 **What to check:**
+
 ```
 ✓ Dependencies installed successfully
 
@@ -203,6 +219,7 @@ Versions:
 **Step:** "Compile all Markdown files to PDF"
 
 **What to check:**
+
 ```
 [INFO] Found X Markdown file(s)
 
@@ -219,6 +236,7 @@ Failed files:
 ```
 
 **Look for:**
+
 - `[ERROR]` lines - which files failed
 - `Failed files:` list - names of problematic files
 - Error messages with line numbers
@@ -230,6 +248,7 @@ Failed files:
 **Step:** "Validate PDF outputs"
 
 **What to check:**
+
 ```
 ═══════════════════════════════════════════
 📊 Validation Summary:
@@ -239,6 +258,7 @@ Failed files:
 ```
 
 **If PDFs fail validation:**
+
 - Check file size (should be > 1KB)
 - Verify PDF header (`%PDF`)
 - Review compilation errors above
@@ -250,6 +270,7 @@ Failed files:
 ### Continue on Error
 
 The workflow is designed to:
+
 - ✅ **Continue compiling** even if one file fails
 - ✅ **Upload valid PDFs** to artifacts
 - ✅ **Show summary** of what succeeded/failed
@@ -257,6 +278,7 @@ The workflow is designed to:
 - ✅ **Still create release** with valid PDFs
 
 This means you'll get:
+
 - All successfully compiled PDFs
 - Clear indication of which files need fixing
 - Artifacts to download
@@ -268,17 +290,20 @@ This means you'll get:
 Before pushing to GitHub, test locally:
 
 ### Test Single File
+
 ```bash
 ./compile-md.sh 1
 # Select the problematic file
 ```
 
 ### Test All Files
+
 ```bash
 ./compile-md.sh 2
 ```
 
 ### View Errors
+
 ```bash
 cat build/markdown/last-compilation.log | grep -A5 "^!"
 ```
@@ -288,16 +313,19 @@ cat build/markdown/last-compilation.log | grep -A5 "^!"
 ## 📞 Getting Help
 
 ### 1. Check Logs First
+
 - Expand all workflow steps
 - Read error messages carefully
 - Note the line numbers
 
 ### 2. Check Documentation
+
 - [README_MARKDOWN_COMPILE.md](README_MARKDOWN_COMPILE.md) - Usage guide
 - [SECURITY_PERFORMANCE.md](SECURITY_PERFORMANCE.md) - Advanced features
 - [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) - File organization
 
 ### 3. Common Issues
+
 - Checkbox errors → Template includes `amssymb`
 - Font errors → Auto-fallback enabled
 - Path errors → Use relative paths from repo root
@@ -308,28 +336,36 @@ cat build/markdown/last-compilation.log | grep -A5 "^!"
 ## 💡 Pro Tips
 
 ### Tip 1: Use Workflow Summary
+
 Always check the **Summary** tab first - it shows exactly which files failed
 
 ### Tip 2: Download Artifacts
+
 For complex errors, download the `compilation-log` artifact
 
 ### Tip 3: Test Locally
+
 Faster iteration when fixing errors:
+
 ```bash
 ./compile-md.sh 1  # Test single file
 ```
 
 ### Tip 4: Check File Names
+
 If a PDF is missing, ensure:
+
 - `.md` file exists in `docs/`
 - Filename doesn't contain special characters
 - File isn't in `.gitignore`
 
 ### Tip 5: Enable Detailed Logging
+
 Edit the problematic `.md` file to test specific features:
+
 ```markdown
 ---
-toc: false  # Disable TOC if causing issues
+toc: false # Disable TOC if causing issues
 ---
 
 # Test Document
@@ -358,12 +394,14 @@ When a workflow fails:
 **Scenario:** GuiaEntrevista.md fails to compile
 
 ### Step 1: Check Summary
+
 ```
 ❌ Failed Files:
 - ❌ GuiaEntrevista.md
 ```
 
 ### Step 2: Expand Compilation Step
+
 ```
 [ERROR] Compilation failed for: docs/instrumento_entrevista/GuiaEntrevista.md
 
@@ -374,20 +412,24 @@ l.231   \item[$\square$]
 ```
 
 ### Step 3: Identify Issue
+
 - Error at line 231
 - Problem with `\square` command
 - This is from a Markdown checkbox
 
 ### Step 4: Check Markdown File
+
 ```markdown
 Line 231: - [ ] Checkbox item
 ```
 
 ### Step 5: Verify Fix
+
 - Template should include `\usepackage{amssymb}`
 - Check `templates/thesis-template.tex:82-83`
 
 ### Step 6: Test Locally
+
 ```bash
 ./compile-md.sh 1
 # Select GuiaEntrevista.md
@@ -395,6 +437,7 @@ Line 231: - [ ] Checkbox item
 ```
 
 ### Step 7: Commit and Push
+
 ```bash
 git add templates/thesis-template.tex
 git commit -m "Fix checkbox support"

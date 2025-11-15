@@ -2,11 +2,9 @@
 
 **Estudio:** Sistematización del proceso de pre-escritura de guiones en los guionistas del Departamento Central. 2025.
 
-
 ## Descripción
 
 Este directorio contiene todos los documentos relacionados con el instrumento de recolección de datos para el estudio cualitativo descriptivo sobre la sistematización del proceso de pre-escritura de guiones.
-
 
 ## Contenido del directorio
 
@@ -22,7 +20,6 @@ Documento legal y ético que debe ser firmado por cada participante antes de la 
 - Autorizaciones específicas (grabación de audio, uso de nombre/seudónimo)
 
 **Uso:** Imprimir 2 copias para cada entrevista (una para el participante, una para el investigador)
-
 
 ### 2. `GuiaEntrevista.md`
 
@@ -48,7 +45,6 @@ Instrumento principal de recolección de datos. Contiene:
 
 **Uso:** Guía flexible durante la entrevista. No es obligatorio seguir el orden estrictamente, pero sí cubrir todas las dimensiones.
 
-
 ### 3. `ProtocoloAplicacion.md`
 
 Manual completo para la aplicación del instrumento. Contiene:
@@ -61,7 +57,6 @@ Manual completo para la aplicación del instrumento. Contiene:
 - Orientaciones para el análisis de datos
 
 **Uso:** Leer completamente antes de realizar la primera entrevista. Consultar como referencia durante el proceso.
-
 
 ## Fundamentación metodológica
 
@@ -87,7 +82,6 @@ Este instrumento se fundamenta en:
 
 **Análisis:** Análisis de contenido cualitativo (codificación temática)
 
-
 ## Criterios de calidad
 
 ### Validez
@@ -101,7 +95,6 @@ Este instrumento se fundamenta en:
 - **Consistencia interna:** Todas las preguntas apuntan a caracterizar la sistematización del proceso de pre-escritura
 - **Replicabilidad:** El protocolo permite que otros investigadores apliquen el instrumento de manera similar
 - **Triangulación:** Los datos pueden triangularse con observación documental (si el participante comparte ejemplos)
-
 
 ## Instrucciones de uso
 
@@ -135,7 +128,6 @@ Este instrumento se fundamenta en:
 3. Identificar patrones y categorías emergentes
 4. Redactar resultados descriptivos
 
-
 ## Muestra del estudio
 
 **Tamaño:** 3 guionistas
@@ -154,7 +146,6 @@ Este instrumento se fundamenta en:
 - Diversidad en tipos de proyectos (ficción, documental, series, etc.)
 - Voluntad de participar y compartir su experiencia
 
-
 ## Ética de la investigación
 
 Este instrumento cumple con principios éticos fundamentales:
@@ -163,7 +154,6 @@ Este instrumento cumple con principios éticos fundamentales:
 - **Beneficencia:** Contribución al conocimiento y al sector audiovisual
 - **No maleficencia:** Sin riesgos para los participantes
 - **Justicia:** Trato equitativo, confidencialidad garantizada
-
 
 ## Contacto
 
@@ -174,7 +164,6 @@ Para consultas sobre el instrumento o el estudio:
 **Correo:** nuevo_10000@outlook.com
 
 **Institución:** Centro Tecnológico de Formación Profesional Paraguay - Japón de San Lorenzo
-
 
 **Documentos elaborados:** Noviembre 2025
 **Versión:** 1.0
