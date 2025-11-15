@@ -1,5 +1,8 @@
 # Formato para el Libro del Proyecto
 
+> [!WARNING]
+> Este formato es una guía general y puede ser ajustado según las necesidades específicas del proyecto. Las _necesidades específicas_ de este proyecto se adaptan para la **parte técnica o requerimientos del software** como la **parte metodológica**. Se intentará en lo posible que el formato sea coherente y esté bien estructurado.
+
 ## La forma
 
 - **Tipos de letra**: Arial o Times New Roman
@@ -41,7 +44,10 @@
 
 ### Parte Textual
 
-#### Desarrollo del trabajo, dividido en cuatro capítulos
+#### Desarrollo del trabajo, dividido en cinco capítulos
+
+> [!NOTE]
+> En este trabajo para esta técnicatura se utilizará un quinto capítulo: **Requerimientos del Software**. Porque tenemos que demostrar que se ha realizado el software como _propuesta_ o _implementación_ de un **aporte** o **solución** respectivamente.
 
 **INDEPENDIENTE**
 
@@ -87,6 +93,9 @@
 - Procesamiento de los datos recogidos
 - Análisis en base a diversas técnicas
 - Presentación de los resultados y discusión de los mismos
+
+> [!IMPORTANT]
+> Desde el capítulo uno hasta el cuatro se ha dedicado _específicamente para la parte metodológica_, donde se explican los pasos, detalles y procedimientos utilizados en la investigación.
 
 **ÚLTIMOS INDEPENDIENTES**
 
