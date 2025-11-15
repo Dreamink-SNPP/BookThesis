@@ -97,6 +97,32 @@
 > [!IMPORTANT]
 > Desde el capítulo uno hasta el cuatro se ha dedicado _específicamente para la parte metodológica_, donde se explican los pasos, detalles y procedimientos utilizados en la investigación.
 
+**CAPÍTULO V - REQUERIMIENTOS DEL SOFTWARE**
+
+- _Introducción_
+  - Propósito
+  - Ámbito del sistema
+  - Definiciones, acrónimos y abreviaturas
+  - Referencias
+  - Visión general del documento
+- _Descripción General_
+  - Perspectiva del producto
+  - Funciones del producto
+  - Características de los usuarios
+  - Restricciones
+  - Factores que se asumen y futuros requisitos
+- _Requisitos Específicos_
+  - Requisitos funcionales
+  - Requisitos de interfaces externas
+  - Requisitos de rendimiento
+  - Restricciones de diseño
+  - Atributos del sistema
+- Diagramas de Caso de Uso
+- Diagrams de Clase
+- Diagramas de Entidad-Relación
+- Diagramas de Actividades (Gantt)
+- Presupuesto
+
 **ÚLTIMOS INDEPENDIENTES**
 
 1. Conclusión
