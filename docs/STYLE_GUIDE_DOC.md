@@ -1,3 +1,7 @@
+---
+toc: false
+---
+
 # Formato para el Libro del Proyecto
 
 > [!WARNING]
