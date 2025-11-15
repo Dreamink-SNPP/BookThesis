@@ -34,8 +34,9 @@ The page includes three main action buttons:
 1. **Descargar Libro** (Primary - Blue)
    - Downloads the complete book PDF (`Libro.pdf`)
 
-2. **Guía de Estilo** (Secondary - Violet)
+2. **Guía de Estilo** (Secondary - Red)
    - Downloads the style guide PDF (`STYLE_GUIDE_DOC.pdf`)
+   - Red color emphasizes the importance of style guidelines
 
 3. **Ver en GitHub** (GitHub - Gray)
    - Links to the repository
@@ -46,7 +47,7 @@ All colors, spacing, and typography are controlled via CSS custom properties (va
 
 ```css
 --accent-primary: #3b82f6;      /* Blue for main download */
---accent-secondary: #8b5cf6;    /* Violet for style guide */
+--accent-secondary: #ef4444;    /* Red for style guide (importance) */
 --accent-tertiary: #10b981;     /* Emerald for badge */
 ```
 

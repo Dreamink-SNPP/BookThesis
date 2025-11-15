@@ -21,8 +21,8 @@
     /* Accent colors */
     --accent-primary: #3b82f6;         /* Blue 500 */
     --accent-primary-hover: #2563eb;   /* Blue 600 */
-    --accent-secondary: #8b5cf6;       /* Violet 500 */
-    --accent-secondary-hover: #7c3aed; /* Violet 600 */
+    --accent-secondary: #ef4444;       /* Red 500 - Important Style Guide */
+    --accent-secondary-hover: #dc2626; /* Red 600 */
     --accent-tertiary: #10b981;        /* Emerald 500 */
     --accent-tertiary-hover: #059669;  /* Emerald 600 */
 
@@ -202,7 +202,7 @@ h1 {
 .btn-secondary:hover {
     background: var(--btn-secondary-hover);
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
 }
 
 .btn-secondary:focus {
