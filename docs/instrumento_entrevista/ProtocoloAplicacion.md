@@ -2,9 +2,9 @@
 
 **Título del estudio:** Sistematización del proceso de pre-escritura de guiones en los guionistas del Departamento Central. 2025.
 
-## 1. Preparación previa a la entrevista
+## Preparación previa a la entrevista
 
-### 1.1. Selección de participantes
+### Selección de participantes
 
 **Criterios de inclusión:**
 
@@ -15,7 +15,7 @@
 
 **Muestra:** 3 guionistas (estudio cualitativo descriptivo)
 
-### 1.2. Contacto inicial
+### Contacto inicial
 
 1. Identificar guionistas potenciales mediante:
    - Asociación de Guionistas del Paraguay (KUATIA)
@@ -33,7 +33,7 @@
    - Breve resumen del estudio
    - Confirmación de fecha, hora y lugar
 
-### 1.3. Materiales necesarios
+### Materiales necesarios
 
 - ☐ Consentimiento Informado impreso (2 copias)
 - ☐ Guía de Entrevista impresa
@@ -43,9 +43,9 @@
 - ☐ Tarjetas de presentación o contacto del investigador
 - ☐ Agua para el entrevistado
 
-## 2. Durante la entrevista
+## Durante la entrevista
 
-### 2.1. Inicio (5-10 minutos)
+### Inicio (5-10 minutos)
 
 1. **Saludo y rapport:**
    - Agradecer la participación
@@ -69,7 +69,7 @@
    - Verificar que ambas grabadoras funcionan
    - Registrar en audio: fecha, hora, código/seudónimo del entrevistado
 
-### 2.2. Desarrollo de la entrevista (50-60 minutos)
+### Desarrollo de la entrevista (50-60 minutos)
 
 **Principios generales:**
 
@@ -98,7 +98,7 @@
 - **Silencio estratégico:** Dar espacio para que el entrevistado elabore sus ideas
 - **Validación:** Reconocer la experiencia y conocimiento del entrevistado
 
-### 2.3. Cierre (5 minutos)
+### Cierre (5 minutos)
 
 1. **Preguntas finales:**
    - Permitir que el entrevistado agregue información relevante
@@ -117,9 +117,9 @@
    - Permitir unos minutos de conversación informal
    - Puede surgir información valiosa fuera de grabación (registrar en notas)
 
-## 3. Después de la entrevista
+## Después de la entrevista
 
-### 3.1. Inmediatamente después
+### Inmediatamente después
 
 1. **Notas de campo:**
    - Registrar observaciones sobre el contexto de la entrevista
@@ -136,7 +136,7 @@
    - Escribir resumen breve de la entrevista (puntos clave)
    - Identificar categorías emergentes preliminares
 
-### 3.2. Transcripción (máximo 72 horas después)
+### Transcripción (máximo 72 horas después)
 
 1. **Transcripción verbatim:**
    - Transcribir textualmente la entrevista completa
@@ -151,7 +151,7 @@
    - Escuchar nuevamente y corregir la transcripción
    - Verificar que no haya errores de comprensión
 
-### 3.3. Almacenamiento seguro
+### Almacenamiento seguro
 
 1. **Archivos de audio:**
    - Carpeta segura con contraseña
@@ -167,16 +167,16 @@
    - Digitalizar y almacenar en PDF
    - Guardar originales físicos en lugar seguro
 
-## 4. Consideraciones éticas
+## Consideraciones éticas
 
-### 4.1. Durante todo el proceso
+### Durante todo el proceso
 
 - Mantener confidencialidad estricta de la información
 - No compartir detalles de las entrevistas con terceros
 - Usar seudónimos en todas las comunicaciones
 - Respetar el derecho del participante a retirarse en cualquier momento
 
-### 4.2. En caso de situaciones especiales
+### En caso de situaciones especiales
 
 **Si el entrevistado se siente incómodo:**
 
@@ -196,9 +196,9 @@
 - Documentar la eliminación
 - Agradecer de todos modos su participación inicial
 
-## 5. Control de calidad
+## Control de calidad
 
-### 5.1. Checklist pre-entrevista
+### Checklist pre-entrevista
 
 - ☐ Contacto confirmado con participante
 - ☐ Fecha, hora y lugar acordados
@@ -207,7 +207,7 @@
 - ☐ Grabadoras con batería y memoria suficiente
 - ☐ Guía de entrevista impresa y revisada
 
-### 5.2. Checklist post-entrevista
+### Checklist post-entrevista
 
 - ☐ Grabación guardada correctamente
 - ☐ Copia de respaldo realizada
@@ -216,7 +216,7 @@
 - ☐ Transcripción programada
 - ☐ Datos almacenados de forma segura
 
-## 6. Análisis de datos (posterior)
+## Análisis de datos (posterior)
 
 Una vez completadas las 3 entrevistas:
 
