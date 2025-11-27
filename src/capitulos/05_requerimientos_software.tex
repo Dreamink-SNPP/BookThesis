@@ -175,6 +175,8 @@ La base de datos debe ser PostgreSQL versión 16 empleando migraciones de Active
 
 \textbf{Portabilidad:} El sistema debe ser desplegable mediante contenedores Docker en cualquier plataforma que soporte dicha tecnología. La configuración debe externalizarse mediante variables de entorno. El código debe evitar dependencias específicas de sistemas operativos particulares.
 
+\clearpage
+
 \subsection{Diagramas de Caso de Uso}
 
 En esta sección se presentaron los diagramas de caso de uso del sistema Dreamink, organizados por dominio funcional.
@@ -190,6 +192,8 @@ La Figura~\ref{fig:uc-general} mostró una visión general de todos los casos de
 	\label{fig:uc-general}
 \end{figure}
 
+\clearpage
+
 \subsubsection{Gestión de Personajes}
 
 La Figura~\ref{fig:uc-characters} presentó los casos de uso para la administración de personajes y sus características internas y externas.
@@ -201,7 +205,7 @@ La Figura~\ref{fig:uc-characters} presentó los casos de uso para la administrac
 	\label{fig:uc-characters}
 \end{figure}
 
-\newpage
+\clearpage
 
 \subsubsection{Gestión de Locaciones}
 
@@ -214,7 +218,7 @@ La Figura~\ref{fig:uc-locations} ilustró los casos de uso relacionados con la a
 	\label{fig:uc-locations}
 \end{figure}
 
-\newpage
+\clearpage
 
 \subsubsection{Gestión de Ideas}
 
@@ -227,7 +231,7 @@ La Figura~\ref{fig:uc-ideas} describió los casos de uso para el manejo de ideas
 	\label{fig:uc-ideas}
 \end{figure}
 
-\newpage
+\clearpage
 
 \subsection{Diagramas de Clase}
 
@@ -244,6 +248,8 @@ La Figura~\ref{fig:class-overview} proporcionó una visión de alto nivel de tod
 	\label{fig:class-overview}
 \end{figure}
 
+\clearpage
+
 \subsubsection{Estructura Dramática}
 
 La Figura~\ref{fig:class-structure} detalló la jerarquía principal del sistema: la relación entre Project, Act, Sequence y Scene que formó la base de la estructura dramática.
@@ -254,6 +260,8 @@ La Figura~\ref{fig:class-structure} detalló la jerarquía principal del sistema
 	\caption{Jerarquía de Estructura Dramática: Project → Act → Sequence → Scene}
 	\label{fig:class-structure}
 \end{figure}
+
+\clearpage
 
 \subsubsection{Gestión de Personajes}
 
@@ -266,6 +274,8 @@ La Figura~\ref{fig:class-characters} presentó el modelo de clases para la admin
 	\label{fig:class-characters}
 \end{figure}
 
+\clearpage
+
 \subsubsection{Gestión de Locaciones}
 
 La Figura~\ref{fig:class-locations} ilustró el modelo de clases para locaciones, incluyendo la relación de muchos a muchos entre \textit{Scene} y \textit{Location} a través de la tabla de unión \textit{SceneLocation}.
@@ -276,6 +286,8 @@ La Figura~\ref{fig:class-locations} ilustró el modelo de clases para locaciones
 	\caption{Modelo de Clases: Gestión de Locaciones}
 	\label{fig:class-locations}
 \end{figure}
+
+\clearpage
 
 \subsection{Diagramas de Entidad-Relación}
 
