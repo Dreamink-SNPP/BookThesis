@@ -27,7 +27,7 @@
 - **Tipo de proyectos:** Ficción, series, largometrajes, cortometrajes.
 
 - **Formación en guionismo:**
-  - [ x ] Autodidacta
+  - [x] Autodidacta
   - [ ] Talleres especializados
   - [ ] Cursos universitarios
   - [ ] Licenciatura/carrera relacionada
@@ -95,7 +95,7 @@ _Objetivo: Establecer rapport y comprender la trayectoria del guionista_
 
 **[NOTAS DE OBSERVACIÓN]:** mueve las manos de forma animada, pero tranquila. Muestra una calma y seguridad en su expresión corporal.
 
-**PROBE aplicado (si/no):** [ x ] ¿Cómo comenzó a escribir guiones?
+**PROBE aplicado (si/no):** [x] ¿Cómo comenzó a escribir guiones?
 
 **E1 (probe):** **Sí...** Vamos a probar. Pero es básicamente lo que te dije, que, ehh..., desde chico yo... Sí. Siempre escribí, veía leía cuentos y veía películas y escribía mi propia historia y guiones específicamente en mi adolescencia, cuando, mmm..., yo autodidacta busqué software en Internet, busqué tutoriales y fui creando historias que fue grabadas por mis compañeros y... Eso fue básicamente cómo empecé haciendo, ehh, guion; empecé... [pequeña pausa] como guionista.
 
@@ -127,7 +127,7 @@ _Objetivo: Establecer rapport y comprender la trayectoria del guionista_
 
 **[NOTAS DE OBSERVACIÓN]:** lenguaje corporal pensativo para elaborar sus palabras.
 
-**PROBE aplicado (si/no):** [ x ] ¿En qué fase se encuentra ese proyecto?
+**PROBE aplicado (si/no):** [x] ¿En qué fase se encuentra ese proyecto?
 
 **E1 (probe):** Eh... el de acción prácticamente, mmm... Estamos en una primera versión, relativamente nueva va a ser, menos de un mes me hablaron. Y... el otro proyecto de cortometraje de comedia, ya está [pequeña pausa] ya estaríamos terminando; ya estaríamos como en las versiones finales ya listos para rodar en... en un mes a más tardar.
 
@@ -157,7 +157,7 @@ _Indicadores: Gestión de personajes, gestión de locaciones, gestión de ideas/
 
 **[NOTAS DE OBSERVACIÓN PROBE]:** [observaciones]
 
-**PROBE aplicado (si/no):** [ x ] ¿Crea fichas de personajes, biografías, perfiles psicológicos?
+**PROBE aplicado (si/no):** [x] ¿Crea fichas de personajes, biografías, perfiles psicológicos?
 
 **E1 (probe):** Sí... Justamente, siempre... [...] siempre creo, de los personajes principales no necesariamente todos de... que por, que, depende del tamaño, si si, por ejemplo es corto, de, cortometraje que a veces tiene pocos personajes es más fácil, eh..., si son cuatro personajes hago los cuatro. Cuando hay proyectos que involucran más personajes intento hacer... alrededor de eso, de, eh..., las fichas de los personajes principales, eh... De cuatro a seis más o menos. Y sí, también como un poco de repente un párrafo de biografía el resto.
 
