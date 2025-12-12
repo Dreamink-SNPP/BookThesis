@@ -95,8 +95,10 @@ ls build/markdown/pdf/                  # Markdown outputs
     - `04_marco_analitico.tex` (797 lines) - Data analysis, results (most substantial)
     - `05_requerimientos_software.tex` (353 lines) - Software requirements
   - `pretextual/` - Pre-textual matter
-    - `portada.tex` (37 lines) - Cover/portrait page
-    - `aprobacion.tex` (34 lines) - Approval/signature page
+    - `portada.tex` (37 lines) - Cover/portrait page (no page number displayed)
+    - `aprobacion.tex` (34 lines) - Approval/signature page (page ii, ToC entry without visible title)
+    - `dedicatoria.tex` (17 lines) - Dedication page (vertically centered, right-aligned, ToC entry)
+    - `agradecimientos.tex` (23 lines) - Acknowledgments page (vertically centered, right-aligned, ToC entry)
     - `resumen.tex` (22 lines) - Spanish summary (uses `\sectionplain{}`)
     - `abstract.tex` (22 lines) - English summary (uses `\sectionplain{}`)
   - `postextual/` - Post-textual matter
@@ -163,8 +165,8 @@ ls build/markdown/pdf/                  # Markdown outputs
 
 The main thesis follows institutional format with three parts:
 
-1. **Pre-textual** (Roman numerals): Cover, approval, Resumen, Abstract, TOC, lists (tables/figures)
-2. **Textual** (Arabic numerals): Introduction + 5 chapters
+1. **Pre-textual** (Lowercase Roman numerals: i, ii, iii...): Cover, approval, dedicatoria, agradecimientos, Resumen, Abstract, TOC, lists (tables/figures)
+2. **Textual** (Arabic numerals: 1, 2, 3...): Introduction + 5 chapters
    - Chapter 0: Introduction (overview, chapter summaries)
    - Chapter I: Marco Introductorio (problem, questions, objectives, justification)
    - Chapter II: Marco Teórico (literature review, theoretical foundation)
@@ -192,6 +194,8 @@ These are configured in `src/config/preamble.tex` (LaTeX) and `templates/thesis-
 - Resumen and Abstract titles use the custom `\sectionplain{}` command (defined in preamble.tex)
 - This command creates centered, non-bold titles at 16pt (meeting style guide requirement: "centrado y sin negrita")
 - Keywords in both summaries are in normal text (not bold, not italic)
+- Babel package configured with `es-lcroman` option to force lowercase Roman numerals (i, ii, iii) instead of uppercase (I, II, III) for Spanish documents
+- Pre-textual pages (aprobacion, dedicatoria, agradecimientos) have ToC entries via `\addcontentsline` but no visible section titles on the pages themselves
 
 ## GitHub Actions Workflows
 
