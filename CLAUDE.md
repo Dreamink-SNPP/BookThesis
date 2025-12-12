@@ -85,7 +85,8 @@ ls build/markdown/pdf/                  # Markdown outputs
 
 - `src/` - LaTeX source files for main thesis book (~2,000 lines)
   - `Libro.tex` - Main document (article class, 12pt, A4)
-  - `config/preamble.tex` - Packages and styling configuration (80+ lines)
+  - `config/preamble.tex` - Packages and styling configuration (~110 lines)
+    - Includes custom `\sectionplain{}` command for non-bold centered titles
   - `capitulos/` - Book chapters
     - `00_introduccion.tex` (24 lines) - Document overview
     - `01_marco_introductorio.tex` (110 lines) - Problem, objectives, scope
@@ -96,6 +97,8 @@ ls build/markdown/pdf/                  # Markdown outputs
   - `pretextual/` - Pre-textual matter
     - `portada.tex` (37 lines) - Cover/portrait page
     - `aprobacion.tex` (34 lines) - Approval/signature page
+    - `resumen.tex` (22 lines) - Spanish summary (uses `\sectionplain{}`)
+    - `abstract.tex` (22 lines) - English summary (uses `\sectionplain{}`)
   - `postextual/` - Post-textual matter
     - `conclusion.tex` (24 lines) - Final conclusions
     - `recomendaciones.tex` (48 lines) - Recommendations
@@ -160,7 +163,7 @@ ls build/markdown/pdf/                  # Markdown outputs
 
 The main thesis follows institutional format with three parts:
 
-1. **Pre-textual** (Roman numerals): Cover, approval, TOC, lists (tables/figures)
+1. **Pre-textual** (Roman numerals): Cover, approval, Resumen, Abstract, TOC, lists (tables/figures)
 2. **Textual** (Arabic numerals): Introduction + 5 chapters
    - Chapter 0: Introduction (overview, chapter summaries)
    - Chapter I: Marco Introductorio (problem, questions, objectives, justification)
@@ -184,6 +187,11 @@ Both compilation systems enforce institutional standards from `docs/STYLE_GUIDE_
 - **Headers/Footers**: Empty (centered page numbers only)
 
 These are configured in `src/config/preamble.tex` (LaTeX) and `templates/thesis-template.tex` (Markdown).
+
+**Special formatting notes:**
+- Resumen and Abstract titles use the custom `\sectionplain{}` command (defined in preamble.tex)
+- This command creates centered, non-bold titles at 16pt (meeting style guide requirement: "centrado y sin negrita")
+- Keywords in both summaries are in normal text (not bold, not italic)
 
 ## GitHub Actions Workflows
 
