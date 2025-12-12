@@ -85,8 +85,9 @@ ls build/markdown/pdf/                  # Markdown outputs
 
 - `src/` - LaTeX source files for main thesis book (~2,000 lines)
   - `Libro.tex` - Main document (article class, 12pt, A4)
-  - `config/preamble.tex` - Packages and styling configuration (~110 lines)
+  - `config/preamble.tex` - Packages and styling configuration (~115 lines)
     - Includes custom `\sectionplain{}` command for non-bold centered titles
+    - Configures ToC, LoF, and LoT with centered non-bold 16pt titles and non-bold entries
   - `capitulos/` - Book chapters
     - `00_introduccion.tex` (24 lines) - Document overview
     - `01_marco_introductorio.tex` (110 lines) - Problem, objectives, scope
@@ -196,6 +197,11 @@ These are configured in `src/config/preamble.tex` (LaTeX) and `templates/thesis-
 - Keywords in both summaries are in normal text (not bold, not italic)
 - Babel package configured with `es-lcroman` option to force lowercase Roman numerals (i, ii, iii) instead of uppercase (I, II, III) for Spanish documents
 - Pre-textual pages (aprobacion, dedicatoria, agradecimientos) have ToC entries via `\addcontentsline` but no visible section titles on the pages themselves
+- Table of Contents, List of Figures (Lista de gráficos), and List of Tables (Lista de tablas):
+  - Titles are centered, non-bold, 16pt (using tocloft package customization)
+  - All entries and page numbers use normal font (non-bold)
+  - Minimal spacing between titles and entries (0pt before/after title)
+  - Consistent 1.5 line spacing for entries matching document body text
 
 ## GitHub Actions Workflows
 
