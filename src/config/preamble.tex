@@ -82,16 +82,30 @@
 \setlength{\cftbeforesubsubsecskip}{2pt}
 \setlength{\cftbeforefigskip}{2pt}
 
-% Espaciado antes y después del título del ToC:
+% Espaciado antes y después del título del ToC, LoF y LoT:
 \renewcommand{\cftbeforetoctitleskip}{0pt}
-\renewcommand{\cftaftertoctitleskip}{\baselineskip}
-
-% Espaciado antes y después del título del LoF:
+\renewcommand{\cftaftertoctitleskip}{0pt}
 \renewcommand{\cftbeforeloftitleskip}{0pt}
-\renewcommand{\cftafterloftitleskip}{\baselineskip}
+\renewcommand{\cftafterloftitleskip}{0pt}
 \renewcommand{\cftbeforelottitleskip}{0pt}
-\renewcommand{\cftafterlottitleskip}{\baselineskip}
+\renewcommand{\cftafterlottitleskip}{0pt}
 \setlength{\cftbeforetabskip}{2pt}
+
+% Centrar títulos del ToC, LoF y LoT (16pt, sin negrita):
+\renewcommand{\cfttoctitlefont}{\hfill\normalfont\fontsize{16}{19.2}\selectfont}
+\renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftloftitlefont}{\hfill\normalfont\fontsize{16}{19.2}\selectfont}
+\renewcommand{\cftafterloftitle}{\hfill}
+\renewcommand{\cftlottitlefont}{\hfill\normalfont\fontsize{16}{19.2}\selectfont}
+\renewcommand{\cftafterlottitle}{\hfill}
+
+% Remover negrita de las entradas del ToC, LoF y LoT:
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+\renewcommand{\cftfigfont}{\normalfont}
+\renewcommand{\cftfigpagefont}{\normalfont}
+\renewcommand{\cfttabfont}{\normalfont}
+\renewcommand{\cfttabpagefont}{\normalfont}
 
 % Renombrar títulos de listas:
 \addto\captionsspanish{\renewcommand{\listfigurename}{Lista de gráficos}}
