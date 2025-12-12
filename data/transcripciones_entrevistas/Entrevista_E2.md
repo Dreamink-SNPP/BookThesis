@@ -444,3 +444,15 @@ _Objetivo: Capturar reflexiones finales y perspectiva global_
 **E2:** Gracias a vos. Ojalá saquen esa herramienta de la que hablábamos, ¡yo sería el primer cliente! [Se levanta y estrecha la mano].
 
 **[NOTAS DE OBSERVACIÓN FINAL]:** Despedida enérgica, actitud colaborativa hasta el final. Se retira guardando su libreta con cuidado.
+
+---
+
+## NOTAS POST-ENTREVISTA
+
+**Fecha de transcripción:** 2025-11-15
+
+**Transcrito por:** Fernando Cardozo
+
+**Duración de transcripción:** Aproximadamente 121 minutos.
+
+**FIN DE LA TRANSCRIPCIÓN E2**
