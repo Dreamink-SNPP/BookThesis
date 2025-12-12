@@ -97,3 +97,14 @@
 \addto\captionsspanish{\renewcommand{\listfigurename}{Lista de gráficos}}
 \addto\captionsspanish{\renewcommand{\listtablename}{Lista de tablas}}
 \addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
+
+% Comando personalizado para secciones sin negrita (para Resumen y Abstract)
+% Uso: \sectionplain{Resumen} en lugar de \section*{Resumen}
+\newcommand{\sectionplain}[1]{%
+	\par\noindent%
+	\begin{center}%
+		\normalfont\fontsize{16}{19.2}\selectfont #1%
+	\end{center}%
+	\vspace{-\parskip}% Compensar el espacio de párrafo
+	\par%
+}
