@@ -107,6 +107,9 @@
 \renewcommand{\cfttabfont}{\normalfont}
 \renewcommand{\cfttabpagefont}{\normalfont}
 
+% Agregar puntos suspensivos (dotted leaders) a las entradas de sección en el ToC:
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
 % Renombrar títulos de listas:
 \addto\captionsspanish{\renewcommand{\listfigurename}{Lista de gráficos}}
 \addto\captionsspanish{\renewcommand{\listtablename}{Lista de tablas}}
