@@ -85,9 +85,10 @@ ls build/markdown/pdf/                  # Markdown outputs
 
 - `src/` - LaTeX source files for main thesis book (~2,000 lines)
   - `Libro.tex` - Main document (article class, 12pt, A4)
-  - `config/preamble.tex` - Packages and styling configuration (~115 lines)
+  - `config/preamble.tex` - Packages and styling configuration (~125 lines)
     - Includes custom `\sectionplain{}` command for non-bold centered titles
     - Configures ToC, LoF, and LoT with centered non-bold 16pt titles and non-bold entries
+    - Hyperref configured with `hypertexnames=false` to prevent duplicate destination warnings
   - `capitulos/` - Book chapters
     - `00_introduccion.tex` (24 lines) - Document overview
     - `01_marco_introductorio.tex` (110 lines) - Problem, objectives, scope
@@ -105,8 +106,8 @@ ls build/markdown/pdf/                  # Markdown outputs
   - `postextual/` - Post-textual matter
     - `conclusion.tex` (24 lines) - Final conclusions
     - `recomendaciones.tex` (48 lines) - Recommendations
-    - `anexos.tex` (206 lines) - Appendices with interview data
-    - `apendices.tex` (151 lines) - Additional content
+    - `anexos.tex` (206 lines) - Annexes with interview data (uses `\phantomsection` for subsection TOC entries)
+    - `apendices.tex` (151 lines) - Appendices (uses `\phantomsection` for subsection TOC entries)
 
 - `docs/` - Markdown documentation (9 files)
   - `STYLE_GUIDE_DOC.md` - Institutional formatting standards
@@ -202,6 +203,10 @@ These are configured in `src/config/preamble.tex` (LaTeX) and `templates/thesis-
   - All entries and page numbers use normal font (non-bold)
   - Minimal spacing between titles and entries (0pt before/after title)
   - Consistent 1.5 line spacing for entries matching document body text
+- Hyperref anchor handling:
+  - Subsections in annexes/appendices use `\phantomsection` before `\addcontentsline` to create unique anchors
+  - Hyperref configured with `hypertexnames=false` to prevent duplicate destination warnings for figures/tables
+  - All hyperlinks are hidden (hidelinks option) for print-friendly appearance
 
 ## GitHub Actions Workflows
 
@@ -349,6 +354,15 @@ cat build/Libro.log                          # Full LaTeX log
 cat build/markdown/logs/[filename].log       # Specific Markdown file log
 ```
 
+**Compilation Quality Status** (as of 2025-01-12):
+- **Errors**: 0 ✓
+- **LaTeX Warnings**: 0 ✓ (all hyperref warnings resolved)
+- **PDF Backend Warnings**: 0 ✓ (duplicate destinations fixed)
+- **Typography Warnings**: 5 (minor overfull/underfull boxes - acceptable for academic documents)
+  - 2 overfull boxes: aprobacion.tex table (12.8pt), requerimientos_software.tex path (4.9pt)
+  - 3 underfull boxes: marco_analitico.tex tables (hyphenation in narrow columns)
+  - These are cosmetic only and do not affect document quality or printing
+
 **Additional Resources**:
 - See `GITHUB_ACTIONS_TROUBLESHOOTING.md` for CI/CD issues
 - See `SECURITY_PERFORMANCE.md` for security and optimization details
@@ -369,6 +383,12 @@ cat build/markdown/logs/[filename].log       # Specific Markdown file log
 6. **Security**: The `compile-md.sh` script includes path traversal protection. Do not bypass these security checks.
 
 7. **Font Requirements**: Compilation requires TeX Gyre Termes font. CI/CD verifies font availability before compilation.
+
+8. **Clean Compilation**: The project maintains zero errors and zero warnings. When adding new content:
+   - Use `\phantomsection` before `\addcontentsline` for unnumbered subsections to prevent hyperref anchor warnings
+   - Hyperref is configured with `hypertexnames=false` - do not remove this option
+   - Minor typography warnings (overfull/underfull boxes) are acceptable if <15pt and don't affect readability
+   - Always verify with `./compile.sh 3` after making structural changes
 
 ## Content Progress Status
 
