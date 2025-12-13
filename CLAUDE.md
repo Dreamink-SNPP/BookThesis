@@ -204,9 +204,12 @@ These are configured in `src/config/preamble.tex` (LaTeX) and `templates/thesis-
   - Minimal spacing between titles and entries (0pt before/after title)
   - Consistent 1.5 line spacing for entries matching document body text
 - Hyperref anchor handling:
-  - Subsections in annexes/appendices use `\phantomsection` before `\addcontentsline` to create unique anchors
+  - **ALL** unnumbered sections (those using `\section*{}`) require `\phantomsection` before `\addcontentsline{toc}{section}` to create unique PDF bookmark anchors
+  - This applies to: pre-textual pages (aprobacion, dedicatoria, agradecimientos, resumen, abstract), introduction, all chapter entries, bibliography, and post-textual sections (conclusion, recomendaciones, anexos, apendices)
+  - Subsections in annexes/appendices also use `\phantomsection` before `\addcontentsline{toc}{subsection}` for proper nesting
   - Hyperref configured with `hypertexnames=false` to prevent duplicate destination warnings for figures/tables
   - All hyperlinks are hidden (hidelinks option) for print-friendly appearance
+  - Without `\phantomsection`, PDF bookmarks will incorrectly nest as children instead of siblings
 
 ## GitHub Actions Workflows
 
@@ -354,10 +357,10 @@ cat build/Libro.log                          # Full LaTeX log
 cat build/markdown/logs/[filename].log       # Specific Markdown file log
 ```
 
-**Compilation Quality Status** (as of 2025-01-12):
+**Compilation Quality Status** (as of 2025-12-12):
 - **Errors**: 0 ✓
 - **LaTeX Warnings**: 0 ✓ (all hyperref warnings resolved)
-- **PDF Backend Warnings**: 0 ✓ (duplicate destinations fixed)
+- **PDF Backend Warnings**: 0 ✓ (duplicate destinations fixed, PDF bookmark hierarchy corrected)
 - **Typography Warnings**: 5 (minor overfull/underfull boxes - acceptable for academic documents)
   - 2 overfull boxes: aprobacion.tex table (12.8pt), requerimientos_software.tex path (4.9pt)
   - 3 underfull boxes: marco_analitico.tex tables (hyphenation in narrow columns)
@@ -385,7 +388,9 @@ cat build/markdown/logs/[filename].log       # Specific Markdown file log
 7. **Font Requirements**: Compilation requires TeX Gyre Termes font. CI/CD verifies font availability before compilation.
 
 8. **Clean Compilation**: The project maintains zero errors and zero warnings. When adding new content:
-   - Use `\phantomsection` before `\addcontentsline` for unnumbered subsections to prevent hyperref anchor warnings
+   - **CRITICAL**: Use `\phantomsection` before **EVERY** `\addcontentsline{toc}{section}` command for unnumbered sections (`\section*{}`)
+   - **CRITICAL**: Use `\phantomsection` before **EVERY** `\addcontentsline{toc}{subsection}` command for unnumbered subsections (`\subsection*{}`)
+   - Without `\phantomsection`, PDF bookmarks will incorrectly nest as children instead of appearing as siblings
    - Hyperref is configured with `hypertexnames=false` - do not remove this option
    - Minor typography warnings (overfull/underfull boxes) are acceptable if <15pt and don't affect readability
    - Always verify with `./compile.sh 3` after making structural changes
